@@ -60,6 +60,8 @@ The first after run exposed a large layout jump (roughly 0.32 from one shift). T
 
 The before and after runs use the same production-localhost observation protocol and imported snapshot. Each profile has three independent browser contexts, each with a fresh and repeated browser navigation and five page turns. Desktop uses a 1440 × 1000 viewport. The constrained mobile profile uses a 390 × 844 viewport, 4× CPU slowdown, 100 ms simulated latency, 1.6 Mbps download and 0.75 Mbps upload. It is desktop Chrome emulating constraints, not a physical phone.
 
+The measured after version is preserved at `portfolio-after`. Subsequent changes improve detail-dialog contrast and retain in-flight map requests when Leaflet reports unchanged bounds. The timing series was not rerun after those corrections, so the table describes the tagged version rather than claiming new timings for the live deployment.
+
 The database is the same local PostGIS container throughout: AMD64 on an ARM Mac, limited to 1.5 CPUs and 1 GB RAM. Server/database caches are not reset. The report’s historical `cold-browser` / `warm-browser` labels mean first/repeated navigation within the context. Playwright routing disables the browser HTTP cache, so the repeat is **not an HTTP-cache-hit benchmark**. Host processes are not isolated. Street tiles are intercepted synthetic images so the benchmark does not crawl OpenStreetMap. These conditions do not describe the native Neon deployment; deployed HTTP smoke checks are recorded separately.
 
 Automation settlement includes Playwright dispatch and assertions. Event Timing is quantized and excludes events below the observer threshold; it is not field INP. rAF intervals describe callback scheduling, not presented-frame FPS. Long-task/frame observers and tracing add overhead. The heap-window probe forces GC at several checkpoints, but a short plateau cannot establish that an app is leak-free. Timing claims are limited to the recorded samples.
@@ -77,7 +79,9 @@ The continuous-window probe traversed **1,550 records**. At its recorded checkpo
 
 ## Verification and delivery
 
-TypeScript and production builds pass. Unit tests cover validation, cursor scope, import normalization and URL round-trips. Five real PostgreSQL/PostGIS integration tests use temporary tables or test-owned sessions, including lost-connection recovery, rollback and bidirectional microsecond keysets. All 28 browser checks pass and exercise cancellation, deep links, history, local retries, map outage fallbacks, continuous scrolling bounds and automated WCAG A/AA scans at desktop/mobile widths, including the open request-detail dialog.
+TypeScript and production builds pass. Unit tests cover validation, cursor scope, import normalization and URL round-trips. Five real PostgreSQL/PostGIS integration tests use temporary tables or test-owned sessions, including lost-connection recovery, rollback and bidirectional microsecond keysets. The 29 browser checks exercise cancellation, deep links, history, local retries, map outage fallbacks, continuous scrolling bounds and automated WCAG A/AA scans at desktop/mobile widths, including the open request-detail dialog.
+
+The first CI runs exposed a startup race that local checks had missed: Leaflet could emit a second `moveend` with identical bounds, creating a new viewport object and cancelling the first query. Retaining the previous object for equal bounds and zoom removes that redundant request. A regression test resets an already fitted map while its response is held; it failed before the fix and passed afterward, without weakening stale-response or map-count assertions.
 
 The lint run exits successfully with one known `react-hooks/incompatible-library` warning for TanStack Virtual’s instance API. React Compiler is not enabled, and the instance is consumed within its component; it is not passed into memoized children. The warning is retained rather than suppressing the rule.
 

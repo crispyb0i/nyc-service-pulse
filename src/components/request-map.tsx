@@ -126,7 +126,11 @@ export default function RequestMap({ filters, missingCoordinates, camera, onCame
         requestsLayerRef.current = L.layerGroup().addTo(map);
         const updateViewport = () => {
           const bounds = map.getBounds();
-          setViewport({ bounds: [bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()].map((value) => Number(value.toFixed(6))) as MapBounds, zoom: map.getZoom() });
+          const next = { bounds: [bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()].map((value) => Number(value.toFixed(6))) as MapBounds, zoom: map.getZoom() };
+          // Leaflet can emit moveend for a zero-pixel pan or camera round trip.
+          // Retain the viewport identity so that an identical view neither
+          // aborts an in-flight fetch nor schedules a duplicate query.
+          setViewport((previous) => previous?.zoom === next.zoom && previous.bounds.every((value, index) => value === next.bounds[index]) ? previous : next);
           const center = map.getCenter();
           onCameraChange?.({ latitude: Number(center.lat.toFixed(6)), longitude: Number(center.lng.toFixed(6)), zoom: map.getZoom() });
           setMoving(false);

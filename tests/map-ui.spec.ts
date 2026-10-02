@@ -340,6 +340,34 @@ function deferred() {
   return { promise, resolve };
 }
 
+test("an unchanged viewport retains its in-flight request", async ({ page }) => {
+  const started = deferred();
+  const release = deferred();
+  let calls = 0;
+  const aborted: string[] = [];
+  page.on("requestfailed", (request) => {
+    if (new URL(request.url()).pathname === "/api/map") aborted.push(request.url());
+  });
+  await page.route("**/api/map?*", async (route) => {
+    calls++;
+    started.resolve();
+    await release.promise;
+    await fulfillMap(route, "SAME-VIEW", 42);
+  });
+  await page.goto("/");
+  await panel(page).scrollIntoViewIfNeeded();
+  await started.promise;
+  // Resetting the already fitted map emits moveend without changing its bounds.
+  await panel(page).getByRole("button", { name: "Reset map to all boroughs" }).click();
+  // Cross the 250 ms request debounce while the original response stays pending.
+  await page.waitForTimeout(400);
+  expect(calls).toBe(1);
+  expect(aborted).toEqual([]);
+  release.resolve();
+  await expect(panel(page).getByTestId("map-visible-count")).toHaveText("42");
+  await expect(markers(page)).toHaveCount(1);
+});
+
 test("map has explicit loading, empty, error, and retry states without losing dashboard totals", async ({ page }) => {
   const gate = deferred();
   let calls = 0;

@@ -5,7 +5,7 @@
 - `npm test`: 24 passed; five database tests skipped without TEST_DATABASE_URL.
 - `TEST_DATABASE_URL=<local database> npm run test:db`: five real PostgreSQL/PostGIS tests passed. Test fixtures use temporary tables and owned sessions; no imported records were modified.
 - `npm run build`: passed.
-- `npm run test:ui`: 28 passed on the final build; report is ui-results.json. Earlier failed attempts are preserved in attempt-1, attempt-2 and attempt-3, with explanations.
+- `npm run test:ui`: 29 passed on the final build; report is ui-results.json. Earlier failed attempts are preserved in attempt-1, attempt-2 and attempt-3, with explanations.
 - `npm run measure:performance -- --label before --samples 3 --trace`: six runs passed.
 - `npm run measure:performance -- --label after --samples 3 --trace`: six runs passed; revealed a layout-shift regression, retained for transparency.
 - `npm run measure:window -- --label window`: passed; 1,550 records traversed, at most 400 cached and 14 mounted in sampled windows.
@@ -24,3 +24,8 @@ Timings are lab observations. See the case study for conditions, comparability l
 
 - Final detail contrast refinement: `npm run typecheck`, `npm run lint`, and `npm run build` passed; `npx playwright test tests/explorer-ui.spec.ts --grep "automated WCAG" --reporter=line` passed with the detail dialog included at both widths.
 - Public Chrome check: 328,892 records, no page overflow at 390 px, continuous mode rendered 10 rows from 50 cached, no console errors, and real street/building tiles visible with a linked request selected.
+
+- Initial GitHub CI runs [36972392306](https://github.com/crispyb0i/nyc-service-pulse/actions/runs/36972392306) and [36972679414](https://github.com/crispyb0i/nyc-service-pulse/actions/runs/36972679414) exposed redundant initial map fetches. Leaflet reported identical bounds with a new object, cancelling an in-flight request. The viewport now retains its identity when bounds and zoom are unchanged.
+- `npx playwright test tests/map-ui.spec.ts --grep "unchanged viewport" --reporter=line`: failed before the fix (two requests instead of one), passed after it. The test holds the first response, resets the already fitted map, and verifies one request with no abort before releasing the response.
+- Post-fix `npm run typecheck`, `npm run build`, and `npm run lint`: passed; lint retains the one documented warning. `npm test`: 24 passed, five DB tests skipped. `npm run test:db` with the local database loaded from `.env.local`: five passed. `npm run test:ui`: all 29 passed in 1.9 minutes.
+- Performance timings belong to the preserved `portfolio-after` tag. The contrast and unchanged-viewport corrections were checked separately; the timing series was not rerun after them.
