@@ -1,0 +1,47 @@
+
+> nyc-service-pulse@0.1.0 measure
+> node --env-file=.env.local --import tsx scripts/measure.ts
+
+{
+  "quality": {
+    "total": 328892,
+    "distinct_ids": 328892,
+    "closed": 303483,
+    "valid_closed_intervals": 303143,
+    "missing_coordinates": 6302,
+    "negative_intervals": 344,
+    "table_including_indexes": "164 MB"
+  },
+  "endpoints": [
+    {
+      "name": "cohort",
+      "medianMs": 562.73,
+      "bytes": 13508,
+      "rows": 50
+    },
+    {
+      "name": "complaint",
+      "medianMs": 69.63,
+      "bytes": 13570,
+      "rows": 50
+    },
+    {
+      "name": "singleDay",
+      "medianMs": 28.65,
+      "bytes": 12426,
+      "rows": 50
+    },
+    {
+      "name": "empty",
+      "medianMs": 10.3,
+      "bytes": 1739,
+      "rows": 0
+    },
+    {
+      "name": "problems",
+      "medianMs": 194.27,
+      "bytes": 7096
+    }
+  ],
+  "report": "reports/measurements.json"
+}

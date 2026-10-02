@@ -1,0 +1,1159 @@
+{
+  "config": {
+    "argv": [
+      "/Users/david/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+      "/Users/david/Developer/nyc-service-pulse/node_modules/.bin/playwright",
+      "test"
+    ],
+    "configFile": "/Users/david/Developer/nyc-service-pulse/playwright.config.ts",
+    "rootDir": "/Users/david/Developer/nyc-service-pulse/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/david/Developer/nyc-service-pulse/reports/portfolio/playwright",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/david/Developer/nyc-service-pulse/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "ui.spec.ts",
+          "map-ui.spec.ts",
+          "explorer-ui.spec.ts"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "reports/portfolio/ui-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "explorer-ui.spec.ts",
+      "file": "explorer-ui.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "page turns and cached back navigation leave aggregates and map interactive",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7566,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:51:09.799Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "45ae630dcaf3212bd9ba-e27e83242d98ea03ce97",
+          "file": "explorer-ui.spec.ts",
+          "line": 5,
+          "column": 1
+        },
+        {
+          "title": "continuous traversal bounds cache and DOM after a thousand records, and supports keyboard focus",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 15351,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('region', { name: 'Continuous service requests', exact: true }).locator('[data-row-index=\"1\"]')\nExpected: focused\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeFocused\" getByRole('region', { name: 'Continuous service requests', exact: true }).locator('[data-row-index=\"1\"]') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('region', { name: 'Continuous service requests', exact: true }).locator('[data-row-index=\"1\"]')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('region', { name: 'Continuous service requests', exact: true }).locator('[data-row-index=\"1\"]')\nExpected: focused\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeFocused\" getByRole('region', { name: 'Continuous service requests', exact: true }).locator('[data-row-index=\"1\"]') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('region', { name: 'Continuous service requests', exact: true }).locator('[data-row-index=\"1\"]')\u001b[22m\n\n    at /Users/david/Developer/nyc-service-pulse/tests/explorer-ui.spec.ts:54:56",
+                    "location": {
+                      "file": "/Users/david/Developer/nyc-service-pulse/tests/explorer-ui.spec.ts",
+                      "column": 56,
+                      "line": 54
+                    },
+                    "snippet": "  52 |   await first.focus();\n  53 |   await page.keyboard.press(\"ArrowDown\");\n> 54 |   await expect(scroll.locator('[data-row-index=\"1\"]')).toBeFocused();\n     |                                                        ^\n  55 |   await page.getByRole(\"button\", { name: \"Load earlier requests\" }).click();\n  56 |   await expect(page.locator(\".explorer-feedback\")).not.toContainText(\"Loading\");\n  57 |   expect(Number(await page.locator(\"#requests\").getAttribute(\"data-cached-rows\"))).toBeLessThanOrEqual(400);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/david/Developer/nyc-service-pulse/tests/explorer-ui.spec.ts",
+                        "column": 56,
+                        "line": 54
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('region', { name: 'Continuous service requests', exact: true }).locator('[data-row-index=\"1\"]')\nExpected: focused\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeFocused\" getByRole('region', { name: 'Continuous service requests', exact: true }).locator('[data-row-index=\"1\"]') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('region', { name: 'Continuous service requests', exact: true }).locator('[data-row-index=\"1\"]')\u001b[22m\n\n\n  52 |   await first.focus();\n  53 |   await page.keyboard.press(\"ArrowDown\");\n> 54 |   await expect(scroll.locator('[data-row-index=\"1\"]')).toBeFocused();\n     |                                                        ^\n  55 |   await page.getByRole(\"button\", { name: \"Load earlier requests\" }).click();\n  56 |   await expect(page.locator(\".explorer-feedback\")).not.toContainText(\"Loading\");\n  57 |   expect(Number(await page.locator(\"#requests\").getAttribute(\"data-cached-rows\"))).toBeLessThanOrEqual(400);\n    at /Users/david/Developer/nyc-service-pulse/tests/explorer-ui.spec.ts:54:56"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:51:19.003Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/david/Developer/nyc-service-pulse/reports/portfolio/playwright/explorer-ui-continuous-tra-77d52-and-supports-keyboard-focus/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/david/Developer/nyc-service-pulse/reports/portfolio/playwright/explorer-ui-continuous-tra-77d52-and-supports-keyboard-focus/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/david/Developer/nyc-service-pulse/reports/portfolio/playwright/explorer-ui-continuous-tra-77d52-and-supports-keyboard-focus/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/david/Developer/nyc-service-pulse/tests/explorer-ui.spec.ts",
+                    "column": 56,
+                    "line": 54
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "45ae630dcaf3212bd9ba-a4d9a4f41996b700250c",
+          "file": "explorer-ui.spec.ts",
+          "line": 34,
+          "column": 1
+        },
+        {
+          "title": "day selection, request details and explicit map area survive shared URLs and browser history",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5091,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:51:35.466Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "45ae630dcaf3212bd9ba-525a75422058cba6103d",
+          "file": "explorer-ui.spec.ts",
+          "line": 60,
+          "column": 1
+        },
+        {
+          "title": "request-page failures retry locally and late filter responses cannot replace new data",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3447,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:51:41.392Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "45ae630dcaf3212bd9ba-a74147e15afa31a12dc6",
+          "file": "explorer-ui.spec.ts",
+          "line": 87,
+          "column": 1
+        },
+        {
+          "title": "desktop and mobile browsing modes have no automated WCAG A/AA violations",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 3890,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 21\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"id\": \"color-contrast\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"summary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element has insufficient color contrast of 4.05 (foreground color: #737b6a, background color: #f5f6f2, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1\",\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"footer > span:nth-child(2)\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"summary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element has insufficient color contrast of 4.05 (foreground color: #737b6a, background color: #f5f6f2, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1\",\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"footer > a[href$=\\\"#overview\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 21\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"id\": \"color-contrast\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"summary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element has insufficient color contrast of 4.05 (foreground color: #737b6a, background color: #f5f6f2, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1\",\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"footer > span:nth-child(2)\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"summary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element has insufficient color contrast of 4.05 (foreground color: #737b6a, background color: #f5f6f2, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1\",\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"footer > a[href$=\\\"#overview\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at /Users/david/Developer/nyc-service-pulse/tests/explorer-ui.spec.ts:111:157",
+                    "location": {
+                      "file": "/Users/david/Developer/nyc-service-pulse/tests/explorer-ui.spec.ts",
+                      "column": 157,
+                      "line": 111
+                    },
+                    "snippet": "  109 |       await page.getByRole(\"button\", { name: mode, exact: true }).click();\n  110 |       const results = await new AxeBuilder({ page }).withTags([\"wcag2a\",\"wcag2aa\",\"wcag21a\",\"wcag21aa\"]).analyze();\n> 111 |       expect(results.violations.map((item) => ({ id: item.id, nodes: item.nodes.map((node) => ({ target: node.target, summary: node.failureSummary })) }))).toEqual([]);\n      |                                                                                                                                                             ^\n  112 |     }\n  113 |     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();\n  114 |   }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/david/Developer/nyc-service-pulse/tests/explorer-ui.spec.ts",
+                        "column": 157,
+                        "line": 111
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 21\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"id\": \"color-contrast\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"summary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element has insufficient color contrast of 4.05 (foreground color: #737b6a, background color: #f5f6f2, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1\",\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"footer > span:nth-child(2)\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"summary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element has insufficient color contrast of 4.05 (foreground color: #737b6a, background color: #f5f6f2, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1\",\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"footer > a[href$=\\\"#overview\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  109 |       await page.getByRole(\"button\", { name: mode, exact: true }).click();\n  110 |       const results = await new AxeBuilder({ page }).withTags([\"wcag2a\",\"wcag2aa\",\"wcag21a\",\"wcag21aa\"]).analyze();\n> 111 |       expect(results.violations.map((item) => ({ id: item.id, nodes: item.nodes.map((node) => ({ target: node.target, summary: node.failureSummary })) }))).toEqual([]);\n      |                                                                                                                                                             ^\n  112 |     }\n  113 |     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();\n  114 |   }\n    at /Users/david/Developer/nyc-service-pulse/tests/explorer-ui.spec.ts:111:157"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:51:44.850Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/david/Developer/nyc-service-pulse/reports/portfolio/playwright/explorer-ui-desktop-and-mo-56e2b-omated-WCAG-A-AA-violations/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/david/Developer/nyc-service-pulse/reports/portfolio/playwright/explorer-ui-desktop-and-mo-56e2b-omated-WCAG-A-AA-violations/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/david/Developer/nyc-service-pulse/reports/portfolio/playwright/explorer-ui-desktop-and-mo-56e2b-omated-WCAG-A-AA-violations/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/david/Developer/nyc-service-pulse/tests/explorer-ui.spec.ts",
+                    "column": 157,
+                    "line": 111
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "45ae630dcaf3212bd9ba-06e64c357367e34d9868",
+          "file": "explorer-ui.spec.ts",
+          "line": 102,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "map-ui.spec.ts",
+      "file": "map-ui.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "real map aggregates retain every geocoded request and share dashboard filters",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1617,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:51:49.778Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "904fa23da2528066cfcc-c528c9616c53606cf45b",
+          "file": "map-ui.spec.ts",
+          "line": 31,
+          "column": 1
+        },
+        {
+          "title": "map rejects unsafe viewport parameters and caps detail mode without truncating dense areas",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 916,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:51:51.415Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "904fa23da2528066cfcc-210346ee1d7640a5c3b3",
+          "file": "map-ui.spec.ts",
+          "line": 48,
+          "column": 1
+        },
+        {
+          "title": "desktop map shares filters, zooms clusters, supports keyboard exploration, and opens real request details",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 16125,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:51:52.337Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "904fa23da2528066cfcc-140b9fe785a928a4e232",
+          "file": "map-ui.spec.ts",
+          "line": 147,
+          "column": 1
+        },
+        {
+          "title": "mobile map contains its controls, geography, feature list, and horizontal layout",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3907,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:52:08.904Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "904fa23da2528066cfcc-4183978bf8db50385cbb",
+          "file": "map-ui.spec.ts",
+          "line": 228,
+          "column": 1
+        },
+        {
+          "title": "slow street tiles do not block requests, and attribution stays visible when tiles load",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2435,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:52:12.822Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "904fa23da2528066cfcc-3f6b05088c155de0a42f",
+          "file": "map-ui.spec.ts",
+          "line": 251,
+          "column": 1
+        },
+        {
+          "title": "street tile failure falls back without losing filters, details, or keyboard retry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5649,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:52:15.270Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "904fa23da2528066cfcc-9dd2e485f023934e51fc",
+          "file": "map-ui.spec.ts",
+          "line": 270,
+          "column": 1
+        },
+        {
+          "title": "a stalled street tile request times out to local geography and can recover",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 13132,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:52:20.935Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "904fa23da2528066cfcc-21d9a6fb092e8d040572",
+          "file": "map-ui.spec.ts",
+          "line": 301,
+          "column": 1
+        },
+        {
+          "title": "map has explicit loading, empty, error, and retry states without losing dashboard totals",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3231,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:52:34.082Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "904fa23da2528066cfcc-be8941b79265c3757ef4",
+          "file": "map-ui.spec.ts",
+          "line": 343,
+          "column": 1
+        },
+        {
+          "title": "local geography failure offers a working retry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1815,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:52:37.330Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "904fa23da2528066cfcc-cf4985c812aeba904fa4",
+          "file": "map-ui.spec.ts",
+          "line": 373,
+          "column": 1
+        },
+        {
+          "title": "delayed filter responses cannot restore old counts, markers, list items, or request details",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6125,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:52:39.155Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "904fa23da2528066cfcc-2a31984d66682526dc8e",
+          "file": "map-ui.spec.ts",
+          "line": 384,
+          "column": 1
+        },
+        {
+          "title": "delayed pan responses cannot overwrite a newer viewport",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2697,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:52:45.299Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "904fa23da2528066cfcc-dd05ed360015538dd41f",
+          "file": "map-ui.spec.ts",
+          "line": 420,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "ui.spec.ts",
+      "file": "ui.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "local API rejects invalid dates and a cursor reused with different filters",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 571,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:52:48.046Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d425444c687fa36b5882-4e45b8df026e1f47bf45",
+          "file": "ui.spec.ts",
+          "line": 30,
+          "column": 1
+        },
+        {
+          "title": "live API keeps complaint/date totals, daily counts, and keyset pages consistent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 285,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:52:48.624Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d425444c687fa36b5882-a0f21a01864645a1fd58",
+          "file": "ui.spec.ts",
+          "line": 45,
+          "column": 1
+        },
+        {
+          "title": "desktop renders live data, shared filters, keyboard chart, and reversible pagination",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 14937,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:52:48.917Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d425444c687fa36b5882-eb33302a6572982bd5e9",
+          "file": "ui.spec.ts",
+          "line": 94,
+          "column": 1
+        },
+        {
+          "title": "mobile keeps controls accessible and contains table scrolling within the page",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3136,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:53:03.871Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d425444c687fa36b5882-35212610a7910fa6ba9f",
+          "file": "ui.spec.ts",
+          "line": 136,
+          "column": 1
+        },
+        {
+          "title": "loading state is explicit before the first API response",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 11273,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('QA-123', { exact: true })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('QA-123', { exact: true }) with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('QA-123', { exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('QA-123', { exact: true })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('QA-123', { exact: true }) with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('QA-123', { exact: true })\u001b[22m\n\n    at /Users/david/Developer/nyc-service-pulse/tests/ui.spec.ts:166:59",
+                    "location": {
+                      "file": "/Users/david/Developer/nyc-service-pulse/tests/ui.spec.ts",
+                      "column": 59,
+                      "line": 166
+                    },
+                    "snippet": "  164 |   await page.screenshot({ path: \"reports/portfolio/ui-loading.png\", fullPage: true, animations: \"disabled\" });\n  165 |   release();\n> 166 |   await expect(page.getByText(\"QA-123\", { exact: true })).toBeVisible();\n      |                                                           ^\n  167 | });\n  168 |\n  169 | test(\"empty results show zero totals and useful empty chart and table states\", async ({ page }) => {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/david/Developer/nyc-service-pulse/tests/ui.spec.ts",
+                        "column": 59,
+                        "line": 166
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('QA-123', { exact: true })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('QA-123', { exact: true }) with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('QA-123', { exact: true })\u001b[22m\n\n\n  164 |   await page.screenshot({ path: \"reports/portfolio/ui-loading.png\", fullPage: true, animations: \"disabled\" });\n  165 |   release();\n> 166 |   await expect(page.getByText(\"QA-123\", { exact: true })).toBeVisible();\n      |                                                           ^\n  167 | });\n  168 |\n  169 | test(\"empty results show zero totals and useful empty chart and table states\", async ({ page }) => {\n    at /Users/david/Developer/nyc-service-pulse/tests/ui.spec.ts:166:59"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:53:07.031Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/david/Developer/nyc-service-pulse/reports/portfolio/playwright/ui-loading-state-is-explicit-before-the-first-API-response/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/david/Developer/nyc-service-pulse/reports/portfolio/playwright/ui-loading-state-is-explicit-before-the-first-API-response/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/david/Developer/nyc-service-pulse/reports/portfolio/playwright/ui-loading-state-is-explicit-before-the-first-API-response/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/david/Developer/nyc-service-pulse/tests/ui.spec.ts",
+                    "column": 59,
+                    "line": 166
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d425444c687fa36b5882-85d975c3e8d2cbdbe86d",
+          "file": "ui.spec.ts",
+          "line": 156,
+          "column": 1
+        },
+        {
+          "title": "empty results show zero totals and useful empty chart and table states",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 10595,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.metric-card').filter({ hasText: 'Total requests' }).locator('.metric-value')\nExpected: \u001b[32m\"0\"\u001b[39m\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.metric-card').filter({ hasText: 'Total requests' }).locator('.metric-value') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('.metric-card').filter({ hasText: 'Total requests' }).locator('.metric-value')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.metric-card').filter({ hasText: 'Total requests' }).locator('.metric-value')\nExpected: \u001b[32m\"0\"\u001b[39m\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.metric-card').filter({ hasText: 'Total requests' }).locator('.metric-value') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('.metric-card').filter({ hasText: 'Total requests' }).locator('.metric-value')\u001b[22m\n\n    at assertDashboard (/Users/david/Developer/nyc-service-pulse/tests/ui.spec.ts:83:109)\n    at /Users/david/Developer/nyc-service-pulse/tests/ui.spec.ts:174:9",
+                    "location": {
+                      "file": "/Users/david/Developer/nyc-service-pulse/tests/ui.spec.ts",
+                      "column": 109,
+                      "line": 83
+                    },
+                    "snippet": "  81 |\n  82 | async function assertDashboard(page: Page, data: PulseResponse) {\n> 83 |   await expect(page.locator(\".metric-card\").filter({ hasText: \"Total requests\" }).locator(\".metric-value\")).toHaveText(formatCount(data.summary.total));\n     |                                                                                                             ^\n  84 |   const bars = page.getByRole(\"group\", { name: \"Daily request counts\" }).getByRole(\"button\");\n  85 |   await expect(bars).toHaveCount(data.daily.length);\n  86 |   for (let i = 0; i < data.daily.length; i++) {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/david/Developer/nyc-service-pulse/tests/ui.spec.ts",
+                        "column": 109,
+                        "line": 83
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.metric-card').filter({ hasText: 'Total requests' }).locator('.metric-value')\nExpected: \u001b[32m\"0\"\u001b[39m\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.metric-card').filter({ hasText: 'Total requests' }).locator('.metric-value') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('.metric-card').filter({ hasText: 'Total requests' }).locator('.metric-value')\u001b[22m\n\n\n  81 |\n  82 | async function assertDashboard(page: Page, data: PulseResponse) {\n> 83 |   await expect(page.locator(\".metric-card\").filter({ hasText: \"Total requests\" }).locator(\".metric-value\")).toHaveText(formatCount(data.summary.total));\n     |                                                                                                             ^\n  84 |   const bars = page.getByRole(\"group\", { name: \"Daily request counts\" }).getByRole(\"button\");\n  85 |   await expect(bars).toHaveCount(data.daily.length);\n  86 |   for (let i = 0; i < data.daily.length; i++) {\n    at assertDashboard (/Users/david/Developer/nyc-service-pulse/tests/ui.spec.ts:83:109)\n    at /Users/david/Developer/nyc-service-pulse/tests/ui.spec.ts:174:9"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:53:19.151Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/david/Developer/nyc-service-pulse/reports/portfolio/playwright/ui-empty-results-show-zero-c4bb8-mpty-chart-and-table-states/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/david/Developer/nyc-service-pulse/reports/portfolio/playwright/ui-empty-results-show-zero-c4bb8-mpty-chart-and-table-states/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/david/Developer/nyc-service-pulse/reports/portfolio/playwright/ui-empty-results-show-zero-c4bb8-mpty-chart-and-table-states/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/david/Developer/nyc-service-pulse/tests/ui.spec.ts",
+                    "column": 109,
+                    "line": 83
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d425444c687fa36b5882-575a632cc3e3498f51f9",
+          "file": "ui.spec.ts",
+          "line": 169,
+          "column": 1
+        },
+        {
+          "title": "service failure presents the API message and recovers through Try again",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 10508,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'This view couldn’t load.' })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'This view couldn’t load.' }) with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'This view couldn’t load.' })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'This view couldn’t load.' })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'This view couldn’t load.' }) with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'This view couldn’t load.' })\u001b[22m\n\n    at /Users/david/Developer/nyc-service-pulse/tests/ui.spec.ts:191:81",
+                    "location": {
+                      "file": "/Users/david/Developer/nyc-service-pulse/tests/ui.spec.ts",
+                      "column": 81,
+                      "line": 191
+                    },
+                    "snippet": "  189 |   });\n  190 |   await page.goto(\"/\");\n> 191 |   await expect(page.getByRole(\"heading\", { name: \"This view couldn’t load.\" })).toBeVisible();\n      |                                                                                 ^\n  192 |   await expect(page.locator(\".error-panel\")).toContainText(\"The local database is unavailable.\");\n  193 |   await expect(page.getByRole(\"table\")).toHaveCount(0);\n  194 |   await page.screenshot({ path: \"reports/portfolio/ui-error.png\", fullPage: true, animations: \"disabled\" });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/david/Developer/nyc-service-pulse/tests/ui.spec.ts",
+                        "column": 81,
+                        "line": 191
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'This view couldn’t load.' })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'This view couldn’t load.' }) with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'This view couldn’t load.' })\u001b[22m\n\n\n  189 |   });\n  190 |   await page.goto(\"/\");\n> 191 |   await expect(page.getByRole(\"heading\", { name: \"This view couldn’t load.\" })).toBeVisible();\n      |                                                                                 ^\n  192 |   await expect(page.locator(\".error-panel\")).toContainText(\"The local database is unavailable.\");\n  193 |   await expect(page.getByRole(\"table\")).toHaveCount(0);\n  194 |   await page.screenshot({ path: \"reports/portfolio/ui-error.png\", fullPage: true, animations: \"disabled\" });\n    at /Users/david/Developer/nyc-service-pulse/tests/ui.spec.ts:191:81"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:53:31.151Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/david/Developer/nyc-service-pulse/reports/portfolio/playwright/ui-service-failure-present-c91f4--recovers-through-Try-again/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/david/Developer/nyc-service-pulse/reports/portfolio/playwright/ui-service-failure-present-c91f4--recovers-through-Try-again/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/david/Developer/nyc-service-pulse/reports/portfolio/playwright/ui-service-failure-present-c91f4--recovers-through-Try-again/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/david/Developer/nyc-service-pulse/tests/ui.spec.ts",
+                    "column": 81,
+                    "line": 191
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d425444c687fa36b5882-3dff037094c7400e2261",
+          "file": "ui.spec.ts",
+          "line": 181,
+          "column": 1
+        },
+        {
+          "title": "changing filters marks previous data busy until the replacement response arrives",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 11065,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('QA-123', { exact: true })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('QA-123', { exact: true }) with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('QA-123', { exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('QA-123', { exact: true })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('QA-123', { exact: true }) with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('QA-123', { exact: true })\u001b[22m\n\n    at /Users/david/Developer/nyc-service-pulse/tests/ui.spec.ts:212:59",
+                    "location": {
+                      "file": "/Users/david/Developer/nyc-service-pulse/tests/ui.spec.ts",
+                      "column": 59,
+                      "line": 212
+                    },
+                    "snippet": "  210 |   });\n  211 |   await page.goto(\"/\");\n> 212 |   await expect(page.getByText(\"QA-123\", { exact: true })).toBeVisible();\n      |                                                           ^\n  213 |   await page.getByLabel(\"Problem type\").selectOption(\"Noise - Residential\");\n  214 |   await expect(page.locator(\".view-context\").getByRole(\"status\")).toContainText(\"Updating chart and requests\");\n  215 |   await expect(page.locator(\".data-content\")).toHaveAttribute(\"aria-busy\", \"true\");"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/david/Developer/nyc-service-pulse/tests/ui.spec.ts",
+                        "column": 59,
+                        "line": 212
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('QA-123', { exact: true })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('QA-123', { exact: true }) with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('QA-123', { exact: true })\u001b[22m\n\n\n  210 |   });\n  211 |   await page.goto(\"/\");\n> 212 |   await expect(page.getByText(\"QA-123\", { exact: true })).toBeVisible();\n      |                                                           ^\n  213 |   await page.getByLabel(\"Problem type\").selectOption(\"Noise - Residential\");\n  214 |   await expect(page.locator(\".view-context\").getByRole(\"status\")).toContainText(\"Updating chart and requests\");\n  215 |   await expect(page.locator(\".data-content\")).toHaveAttribute(\"aria-busy\", \"true\");\n    at /Users/david/Developer/nyc-service-pulse/tests/ui.spec.ts:212:59"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T05:53:42.562Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/david/Developer/nyc-service-pulse/reports/portfolio/playwright/ui-changing-filters-marks--ff83b-eplacement-response-arrives/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/david/Developer/nyc-service-pulse/reports/portfolio/playwright/ui-changing-filters-marks--ff83b-eplacement-response-arrives/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/david/Developer/nyc-service-pulse/reports/portfolio/playwright/ui-changing-filters-marks--ff83b-eplacement-response-arrives/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/david/Developer/nyc-service-pulse/tests/ui.spec.ts",
+                    "column": 59,
+                    "line": 212
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d425444c687fa36b5882-d6885411166412ba68f0",
+          "file": "ui.spec.ts",
+          "line": 200,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-02T05:51:09.175Z",
+    "duration": 165284.07400000002,
+    "expected": 18,
+    "skipped": 0,
+    "unexpected": 6,
+    "flaky": 0
+  }
+}

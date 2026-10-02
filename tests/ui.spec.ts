@@ -97,7 +97,7 @@ test("desktop renders live data, shared filters, keyboard chart, and reversible 
   expect(initial.summary.total).toBeGreaterThan(0);
   await assertDashboard(page, initial);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("A month of city life.");
-  await page.screenshot({ path: "reports/ui-desktop.png", fullPage: true, animations: "disabled" });
+  await page.screenshot({ path: "reports/portfolio/ui-desktop.png", fullPage: true, animations: "disabled" });
   await page.keyboard.press("Tab");
   await expect(page.getByRole("link", { name: "Skip to dashboard" })).toBeFocused();
   const bars = page.getByRole("group", { name: "Daily request counts" }).getByRole("button");
@@ -116,18 +116,17 @@ test("desktop renders live data, shared filters, keyboard chart, and reversible 
   expect(filtered.requests.every((row) => row.problem === problem && row.createdAt.slice(0, 10) >= "2026-08-05" && row.createdAt.slice(0, 10) <= "2026-08-10")).toBeTruthy();
   expect(new URL(page.url()).searchParams.get("problem")).toBe(problem);
   expect(filtered.daily.reduce((sum, day) => sum + day.count, 0)).toBe(filtered.summary.total);
-  await page.screenshot({ path: "reports/ui-filtered.png", fullPage: true, animations: "disabled" });
+  await page.screenshot({ path: "reports/portfolio/ui-filtered.png", fullPage: true, animations: "disabled" });
 
   await expect(page.getByRole("button", { name: "Next page" })).toBeEnabled();
-  const next = await waitForPulse(page, () => page.getByRole("button", { name: "Next page" }).click(), (url) => url.searchParams.has("cursor"));
-  await assertDashboard(page, next);
-  expect(next.summary).toEqual(filtered.summary);
-  expect(next.daily).toEqual(filtered.daily);
-  expect(next.requests.every((row) => !filtered.requests.some((first) => first.id === row.id))).toBeTruthy();
+  const pendingPage = page.waitForResponse((response) => new URL(response.url()).pathname === "/api/requests" && response.ok());
+  await page.getByRole("button", { name: "Next page" }).click();
+  const next = await (await pendingPage).json();
+  await assertDashboard(page, { ...filtered, requests: next.requests });
+  expect(next.requests.every((row: { id: string }) => !filtered.requests.some((first) => first.id === row.id))).toBeTruthy();
   await expect(page.locator(".table-pagination")).toContainText("requests on page 2");
-  const previous = await waitForPulse(page, () => page.getByRole("button", { name: "Previous page" }).click(), (url) => !url.searchParams.has("cursor"));
-  await assertDashboard(page, previous);
-  expect(previous.requests.map((row) => row.id)).toEqual(filtered.requests.map((row) => row.id));
+  await page.getByRole("button", { name: "Previous page" }).click();
+  await assertDashboard(page, filtered);
   const reset = await waitForPulse(page, () => page.getByRole("button", { name: "Reset filters", exact: true }).click(), (url) => !url.searchParams.has("problem") && url.searchParams.get("from") === "2026-08-01" && url.searchParams.get("to") === "2026-08-31");
   await assertDashboard(page, reset);
   await expect(page.getByRole("button", { name: "Previous page" })).toBeDisabled();
@@ -148,7 +147,7 @@ test("mobile keeps controls accessible and contains table scrolling within the p
   const widths = await page.evaluate(() => ({ document: document.documentElement.scrollWidth, viewport: innerWidth, table: document.querySelector(".table-scroll")!.scrollWidth, tableViewport: document.querySelector(".table-scroll")!.clientWidth }));
   expect(widths.document).toBeLessThanOrEqual(widths.viewport);
   expect(widths.table).toBeGreaterThan(widths.tableViewport);
-  await page.screenshot({ path: "reports/ui-mobile.png", fullPage: true, animations: "disabled" });
+  await page.screenshot({ path: "reports/portfolio/ui-mobile.png", fullPage: true, animations: "disabled" });
   await page.getByRole("region", { name: "Service request records. Scroll for more rows." }).evaluate((table) => { table.scrollLeft = table.scrollWidth; });
   await expect(page.getByRole("columnheader", { name: "Request ID" })).toBeVisible();
   expect(errors).toEqual([]);
@@ -160,9 +159,9 @@ test("loading state is explicit before the first API response", async ({ page })
   const gate = new Promise<void>((resolve) => { release = resolve; });
   await page.route("**/api/pulse*", async (route) => { await gate; await route.fulfill({ json: fixture() }); });
   await page.goto("/");
-  await expect(page.locator(".view-context").getByRole("status")).toContainText("Loading the local August dataset");
+  await expect(page.locator(".view-context").getByRole("status")).toContainText("Loading the August snapshot");
   await expect(page.getByRole("table")).toHaveCount(0);
-  await page.screenshot({ path: "reports/ui-loading.png", fullPage: true, animations: "disabled" });
+  await page.screenshot({ path: "reports/portfolio/ui-loading.png", fullPage: true, animations: "disabled" });
   release();
   await expect(page.getByText("QA-123", { exact: true })).toBeVisible();
 });
@@ -176,7 +175,7 @@ test("empty results show zero totals and useful empty chart and table states", a
   await expect(page.getByText("No requests in this view", { exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "No matching requests" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Next page" })).toBeDisabled();
-  await page.screenshot({ path: "reports/ui-empty.png", fullPage: true, animations: "disabled" });
+  await page.screenshot({ path: "reports/portfolio/ui-empty.png", fullPage: true, animations: "disabled" });
 });
 
 test("service failure presents the API message and recovers through Try again", async ({ page }) => {
@@ -192,7 +191,7 @@ test("service failure presents the API message and recovers through Try again", 
   await expect(page.getByRole("heading", { name: "This view couldn’t load." })).toBeVisible();
   await expect(page.locator(".error-panel")).toContainText("The local database is unavailable.");
   await expect(page.getByRole("table")).toHaveCount(0);
-  await page.screenshot({ path: "reports/ui-error.png", fullPage: true, animations: "disabled" });
+  await page.screenshot({ path: "reports/portfolio/ui-error.png", fullPage: true, animations: "disabled" });
   await page.getByRole("button", { name: "Try again", exact: true }).click();
   await expect(page.getByText("QA-123", { exact: true })).toBeVisible();
   await expect(page.locator(".error-panel")).toHaveCount(0);
@@ -215,7 +214,7 @@ test("changing filters marks previous data busy until the replacement response a
   await expect(page.locator(".view-context").getByRole("status")).toContainText("Updating chart and requests");
   await expect(page.locator(".data-content")).toHaveAttribute("aria-busy", "true");
   await expect(page.locator(".data-content")).toHaveAttribute("inert", "");
-  await page.screenshot({ path: "reports/ui-updating.png", fullPage: true, animations: "disabled" });
+  await page.screenshot({ path: "reports/portfolio/ui-updating.png", fullPage: true, animations: "disabled" });
   release();
   await expect(page.locator(".data-content")).toHaveAttribute("aria-busy", "false");
   await expect(page.locator(".view-context").getByRole("status")).toContainText("Noise - Residential");

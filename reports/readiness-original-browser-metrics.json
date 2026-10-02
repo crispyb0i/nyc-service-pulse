@@ -1,0 +1,312 @@
+{
+  "capturedAt": "2026-10-02T00:12:04.822Z",
+  "browser": "Installed Google Chrome, ephemeral headless context",
+  "method": "Automation action start to response headers and DOM feature/list settlement plus two animation frames; includes automation overhead. These are local interaction observations, not FPS or production SLO claims.",
+  "interactions": [
+    {
+      "scenario": "desktop map shares filters, zooms clusters, supports keyboard exploration, and opens real request details",
+      "name": "initial map load",
+      "interactionToResponseMs": 4714,
+      "responseToDomSettledMs": 144,
+      "interactionToDomSettledMs": 4858,
+      "zoom": 9.5,
+      "mode": "grid",
+      "featureCount": 15,
+      "visibleRequests": 322590,
+      "responseBytes": 3212
+    },
+    {
+      "scenario": "desktop map shares filters, zooms clusters, supports keyboard exploration, and opens real request details",
+      "name": "cluster click",
+      "interactionToResponseMs": 1235,
+      "responseToDomSettledMs": 514,
+      "interactionToDomSettledMs": 1750,
+      "zoom": 11.5,
+      "mode": "grid",
+      "featureCount": 65,
+      "visibleRequests": 191662,
+      "responseBytes": 12501
+    },
+    {
+      "scenario": "desktop map shares filters, zooms clusters, supports keyboard exploration, and opens real request details",
+      "name": "keyboard pan",
+      "interactionToResponseMs": 2106,
+      "responseToDomSettledMs": 360,
+      "interactionToDomSettledMs": 2465,
+      "zoom": 11.5,
+      "mode": "grid",
+      "featureCount": 65,
+      "visibleRequests": 191662,
+      "responseBytes": 12508
+    },
+    {
+      "scenario": "desktop map shares filters, zooms clusters, supports keyboard exploration, and opens real request details",
+      "name": "keyboard zoom",
+      "interactionToResponseMs": 1379,
+      "responseToDomSettledMs": 438,
+      "interactionToDomSettledMs": 1817,
+      "zoom": 12.5,
+      "mode": "grid",
+      "featureCount": 104,
+      "visibleRequests": 105279,
+      "responseBytes": 19570
+    },
+    {
+      "scenario": "desktop map shares filters, zooms clusters, supports keyboard exploration, and opens real request details",
+      "name": "complaint filter",
+      "interactionToResponseMs": 398,
+      "responseToDomSettledMs": 562,
+      "interactionToDomSettledMs": 960,
+      "zoom": 12.5,
+      "mode": "grid",
+      "featureCount": 100,
+      "visibleRequests": 8596,
+      "responseBytes": 18874
+    },
+    {
+      "scenario": "desktop map shares filters, zooms clusters, supports keyboard exploration, and opens real request details",
+      "name": "start date filter",
+      "interactionToResponseMs": 1577,
+      "responseToDomSettledMs": 455,
+      "interactionToDomSettledMs": 2032,
+      "zoom": 12.5,
+      "mode": "grid",
+      "featureCount": 99,
+      "visibleRequests": 7470,
+      "responseBytes": 18680
+    },
+    {
+      "scenario": "desktop map shares filters, zooms clusters, supports keyboard exploration, and opens real request details",
+      "name": "end date filter",
+      "interactionToResponseMs": 490,
+      "responseToDomSettledMs": 327,
+      "interactionToDomSettledMs": 817,
+      "zoom": 12.5,
+      "mode": "grid",
+      "featureCount": 86,
+      "visibleRequests": 1417,
+      "responseBytes": 16271
+    },
+    {
+      "scenario": "desktop map shares filters, zooms clusters, supports keyboard exploration, and opens real request details",
+      "name": "reset extent",
+      "interactionToResponseMs": 489,
+      "responseToDomSettledMs": 141,
+      "interactionToDomSettledMs": 629,
+      "zoom": 9.5,
+      "mode": "grid",
+      "featureCount": 13,
+      "visibleRequests": 5147,
+      "responseBytes": 2833
+    },
+    {
+      "scenario": "desktop map shares filters, zooms clusters, supports keyboard exploration, and opens real request details",
+      "name": "accessible list drilldown",
+      "interactionToResponseMs": 332,
+      "responseToDomSettledMs": 259,
+      "interactionToDomSettledMs": 591,
+      "zoom": 11.5,
+      "mode": "grid",
+      "featureCount": 29,
+      "visibleRequests": 1185,
+      "responseBytes": 5738
+    },
+    {
+      "scenario": "desktop map shares filters, zooms clusters, supports keyboard exploration, and opens real request details",
+      "name": "accessible list drilldown",
+      "interactionToResponseMs": 339,
+      "responseToDomSettledMs": 390,
+      "interactionToDomSettledMs": 728,
+      "zoom": 13.5,
+      "mode": "grid",
+      "featureCount": 66,
+      "visibleRequests": 553,
+      "responseBytes": 12430
+    },
+    {
+      "scenario": "desktop map shares filters, zooms clusters, supports keyboard exploration, and opens real request details",
+      "name": "accessible list drilldown",
+      "interactionToResponseMs": 315,
+      "responseToDomSettledMs": 89,
+      "interactionToDomSettledMs": 404,
+      "zoom": 15.5,
+      "mode": "points",
+      "featureCount": 10,
+      "visibleRequests": 10,
+      "responseBytes": 4655
+    },
+    {
+      "scenario": "mobile map contains its controls, geography, feature list, and horizontal layout",
+      "name": "initial map load",
+      "interactionToResponseMs": 4679,
+      "responseToDomSettledMs": 220,
+      "interactionToDomSettledMs": 4899,
+      "zoom": 9.5,
+      "mode": "grid",
+      "featureCount": 15,
+      "visibleRequests": 322590,
+      "responseBytes": 3167
+    },
+    {
+      "scenario": "local geography failure offers a working retry",
+      "name": "geography retry",
+      "interactionToResponseMs": 1085,
+      "responseToDomSettledMs": 151,
+      "interactionToDomSettledMs": 1236,
+      "zoom": 9.5,
+      "mode": "grid",
+      "featureCount": 15,
+      "visibleRequests": 322590,
+      "responseBytes": 3211
+    },
+    {
+      "scenario": "delayed filter responses cannot restore old counts, markers, list items, or request details",
+      "name": "initial map load",
+      "interactionToResponseMs": 1650,
+      "responseToDomSettledMs": 84,
+      "interactionToDomSettledMs": 1734,
+      "zoom": 9.5,
+      "mode": "grid",
+      "featureCount": 1,
+      "visibleRequests": 1,
+      "responseBytes": 520
+    },
+    {
+      "scenario": "delayed filter responses cannot restore old counts, markers, list items, or request details",
+      "name": "mock detail zoom",
+      "interactionToResponseMs": 558,
+      "responseToDomSettledMs": 91,
+      "interactionToDomSettledMs": 649,
+      "zoom": 10.5,
+      "mode": "grid",
+      "featureCount": 1,
+      "visibleRequests": 1,
+      "responseBytes": 521
+    },
+    {
+      "scenario": "delayed filter responses cannot restore old counts, markers, list items, or request details",
+      "name": "mock detail zoom",
+      "interactionToResponseMs": 559,
+      "responseToDomSettledMs": 90,
+      "interactionToDomSettledMs": 649,
+      "zoom": 11.5,
+      "mode": "grid",
+      "featureCount": 1,
+      "visibleRequests": 1,
+      "responseBytes": 531
+    },
+    {
+      "scenario": "delayed filter responses cannot restore old counts, markers, list items, or request details",
+      "name": "mock detail zoom",
+      "interactionToResponseMs": 558,
+      "responseToDomSettledMs": 74,
+      "interactionToDomSettledMs": 632,
+      "zoom": 12.5,
+      "mode": "grid",
+      "featureCount": 1,
+      "visibleRequests": 1,
+      "responseBytes": 521
+    },
+    {
+      "scenario": "delayed filter responses cannot restore old counts, markers, list items, or request details",
+      "name": "mock detail zoom",
+      "interactionToResponseMs": 557,
+      "responseToDomSettledMs": 76,
+      "interactionToDomSettledMs": 633,
+      "zoom": 13.5,
+      "mode": "grid",
+      "featureCount": 1,
+      "visibleRequests": 1,
+      "responseBytes": 517
+    },
+    {
+      "scenario": "delayed filter responses cannot restore old counts, markers, list items, or request details",
+      "name": "mock detail zoom",
+      "interactionToResponseMs": 600,
+      "responseToDomSettledMs": 116,
+      "interactionToDomSettledMs": 717,
+      "zoom": 14.5,
+      "mode": "grid",
+      "featureCount": 1,
+      "visibleRequests": 1,
+      "responseBytes": 531
+    },
+    {
+      "scenario": "delayed filter responses cannot restore old counts, markers, list items, or request details",
+      "name": "mock detail zoom",
+      "interactionToResponseMs": 555,
+      "responseToDomSettledMs": 76,
+      "interactionToDomSettledMs": 632,
+      "zoom": 15.5,
+      "mode": "points",
+      "featureCount": 1,
+      "visibleRequests": 1,
+      "responseBytes": 756
+    },
+    {
+      "scenario": "delayed filter responses cannot restore old counts, markers, list items, or request details",
+      "name": "newer mocked filter",
+      "interactionToResponseMs": 287,
+      "responseToDomSettledMs": 145,
+      "interactionToDomSettledMs": 432,
+      "zoom": 15.5,
+      "mode": "points",
+      "featureCount": 2,
+      "visibleRequests": 2,
+      "responseBytes": 1119
+    },
+    {
+      "scenario": "delayed pan responses cannot overwrite a newer viewport",
+      "name": "initial map load",
+      "interactionToResponseMs": 2409,
+      "responseToDomSettledMs": 242,
+      "interactionToDomSettledMs": 2650,
+      "zoom": 9.5,
+      "mode": "grid",
+      "featureCount": 1,
+      "visibleRequests": 17,
+      "responseBytes": 527
+    },
+    {
+      "scenario": "delayed pan responses cannot overwrite a newer viewport",
+      "name": "newer mocked pan",
+      "interactionToResponseMs": 521,
+      "responseToDomSettledMs": 76,
+      "interactionToDomSettledMs": 597,
+      "zoom": 9.5,
+      "mode": "grid",
+      "featureCount": 1,
+      "visibleRequests": 41,
+      "responseBytes": 527
+    }
+  ],
+  "rapidPan": {
+    "keyPresses": 6,
+    "requests": 1,
+    "observationMs": 2632,
+    "debounceMs": 250
+  },
+  "desktop": {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "outboundRequests": [],
+    "consoleErrors": [],
+    "mapRequests": 12,
+    "realDetailRequestId": "70004519"
+  },
+  "mobile": {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "featureCount": 15,
+    "visibleRequests": 322590,
+    "outboundRequests": [],
+    "consoleErrors": [],
+    "documentOverflow": false
+  },
+  "staleFilterProtection": "Passed: pending filter cleared all old features, list items, count and open details; obsolete response did not replace newer results.",
+  "stalePanProtection": "Passed: stale viewport count and markers disappeared while pending; obsolete viewport response could not replace newer features/list."
+}

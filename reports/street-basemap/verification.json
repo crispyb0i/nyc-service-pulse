@@ -1,0 +1,77 @@
+{
+  "commands": [
+    {
+      "command": "npm run typecheck",
+      "result": "passed"
+    },
+    {
+      "command": "npm run lint",
+      "result": "passed; initial fixture callback name triggered the React hook lint rule; renamed callback and reran successfully"
+    },
+    {
+      "command": "npm test",
+      "result": "20 passed, 4 opt-in database integration tests skipped because TEST_DATABASE_URL was not set; database code was unchanged"
+    },
+    {
+      "command": "npm run build",
+      "result": "passed"
+    },
+    {
+      "command": "npm run test:ui",
+      "result": "19 passed against the final production build",
+      "stats": {
+        "startTime": "2026-10-02T02:39:10.276Z",
+        "duration": 109634.913,
+        "expected": 19,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "command": "curl -fsS http://127.0.0.1:3100/api/health",
+      "result": {
+        "status": "ok",
+        "database": "connected"
+      }
+    }
+  ],
+  "browserRuns": [
+    {
+      "attempt": 1,
+      "result": "18 passed, 1 failed",
+      "cause": "Removing Leaflet event listeners before layer removal prevented map listener cleanup. Corrected remove/off order.",
+      "evidence": "attempt-1/ui-results.json"
+    },
+    {
+      "attempt": 2,
+      "result": "7 passed, 1 interrupted, 11 did not run",
+      "cause": "Stopped after rebuilding during a production-server test run. Restarted the server and reran the complete suite against final assets.",
+      "evidence": "attempt-2-interrupted/ui-results.json"
+    },
+    {
+      "attempt": 3,
+      "result": "19 passed",
+      "evidence": "automated/ui-results.json"
+    }
+  ],
+  "visualVerification": {
+    "browser": "Chrome through chrome-devtools-axi",
+    "liveTiles": true,
+    "desktop": "1440x1000",
+    "mobile": "390x844",
+    "closeZoom": 17.5,
+    "streetNamesAndBuildingFootprints": "visually confirmed",
+    "greenRequestMarkers": "visible above basemap",
+    "horizontalOverflow": false,
+    "consoleMessages": 0,
+    "screenshots": [
+      "live-desktop.png",
+      "live-buildings.png",
+      "live-mobile.png"
+    ]
+  },
+  "testTilePolicy": "Automated Playwright cases use synthetic tile images, not live public tiles.",
+  "preservation": "All pre-existing report files restored byte-for-byte; new results archived here.",
+  "dependenciesAdded": []
+}

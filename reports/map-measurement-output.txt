@@ -1,0 +1,105 @@
+
+> nyc-service-pulse@0.1.0 measure:map
+> node --env-file=.env.local --import tsx scripts/measure-map.ts
+
+{
+  "endpoints": [
+    {
+      "name": "defaultDesktop",
+      "medianMs": 471.4,
+      "bytes": 3212,
+      "features": 15,
+      "count": 322590,
+      "mode": "grid"
+    },
+    {
+      "name": "city",
+      "medianMs": 596.36,
+      "bytes": 8063,
+      "features": 41,
+      "count": 322590,
+      "mode": "grid"
+    },
+    {
+      "name": "lowerManhattan",
+      "medianMs": 35.06,
+      "bytes": 19100,
+      "features": 102,
+      "count": 15304,
+      "mode": "grid"
+    },
+    {
+      "name": "filteredNeighborhood",
+      "medianMs": 25.23,
+      "bytes": 13550,
+      "features": 72,
+      "count": 1125,
+      "mode": "grid"
+    },
+    {
+      "name": "wideBoundsMaximumZoom",
+      "medianMs": 819.49,
+      "bytes": 8062,
+      "features": 41,
+      "count": 322590,
+      "mode": "grid"
+    },
+    {
+      "name": "empty",
+      "medianMs": 7.52,
+      "bytes": 383,
+      "features": 0,
+      "count": 0,
+      "mode": "grid"
+    },
+    {
+      "name": "individualRequests",
+      "medianMs": 9.03,
+      "bytes": 1326,
+      "features": 2,
+      "count": 2,
+      "mode": "points"
+    }
+  ],
+  "geographyAssets": [
+    {
+      "path": "public/map/boroughs.geojson",
+      "bytes": 186159
+    },
+    {
+      "path": "public/map/labels.geojson",
+      "bytes": 823
+    },
+    {
+      "path": "public/map/neighborhood-labels.geojson",
+      "bytes": 33355
+    }
+  ],
+  "dashboardComparison": [
+    {
+      "name": "cohort",
+      "baselineWarmMedianMs": 619.51,
+      "currentWarmMedianMs": 562.73
+    },
+    {
+      "name": "complaint",
+      "baselineWarmMedianMs": 97.32,
+      "currentWarmMedianMs": 69.63
+    },
+    {
+      "name": "singleDay",
+      "baselineWarmMedianMs": 31.21,
+      "currentWarmMedianMs": 28.65
+    },
+    {
+      "name": "empty",
+      "baselineWarmMedianMs": 41.32,
+      "currentWarmMedianMs": 10.3
+    },
+    {
+      "name": "problems",
+      "baselineWarmMedianMs": 266.7,
+      "currentWarmMedianMs": 194.27
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+✔ PostgreSQL filters, date quality, empty states and microsecond keyset pagination (417.468167ms)
+✔ PostgreSQL page upsert, rollback, resume, dedup and stale-source protection (541.622708ms)
+✔ PostGIS map conserves viewport counts, filter scope, boundary points and bounded detail (616.917625ms)
+[api] Unable to read the local service request database.
+[api] Unable to read the local service request database.
+✔ lost checked-out connections return 503 and are replaced without uncaught errors (635.056834ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2226.899708

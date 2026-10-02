@@ -15,23 +15,23 @@ function date(value: string, label: string): string {
   return value;
 }
 
-function fingerprint(filters: Filters): string {
+function fingerprint(filters: Filters, scope?: string): string {
   return createHash("sha256")
-    .update(JSON.stringify([filters.from, filters.to, filters.problem]))
+    .update(JSON.stringify(scope ? [filters.from, filters.to, filters.problem, scope] : [filters.from, filters.to, filters.problem]))
     .digest("base64url");
 }
 
-export function encodeCursor(cursor: RequestCursor, filters: Filters): string {
-  return Buffer.from(JSON.stringify({ v: 1, t: cursor.createdAt, i: cursor.id, f: fingerprint(filters) })).toString("base64url");
+export function encodeCursor(cursor: RequestCursor, filters: Filters, scope?: string): string {
+  return Buffer.from(JSON.stringify({ v: 1, t: cursor.createdAt, i: cursor.id, f: fingerprint(filters, scope) })).toString("base64url");
 }
 
-export function decodeCursor(raw: string, filters: Filters): RequestCursor {
+export function decodeCursor(raw: string, filters: Filters, scope?: string): RequestCursor {
   try {
     if (raw.length > 2048 || !/^[A-Za-z0-9_-]+$/.test(raw)) throw new Error();
     const data: unknown = JSON.parse(Buffer.from(raw, "base64url").toString("utf8"));
     if (!data || typeof data !== "object") throw new Error();
     const value = data as Record<string, unknown>;
-    if (value.v !== 1 || value.f !== fingerprint(filters)
+    if (value.v !== 1 || value.f !== fingerprint(filters, scope)
       || typeof value.t !== "string" || typeof value.i !== "string"
       || !/^2026-08-(0[1-9]|[12]\d|3[01])T([01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d{1,6})?$/.test(value.t)
       || value.t.slice(0, 10) < filters.from || value.t.slice(0, 10) > filters.to

@@ -1,0 +1,80 @@
+
+> nyc-service-pulse@0.1.0 measure:readiness
+> node scripts/measure-readiness.mjs --label after-retry
+
+{
+  "output": "reports/readiness-after-retry.json",
+  "status": "passed",
+  "runs": [
+    {
+      "device": "desktop",
+      "sample": 1,
+      "status": "passed",
+      "navigationToMapReadyMs": 5879.899999856949,
+      "nodeAssertionsAndTwoFramesSettledMs": 6122.574957999999
+    },
+    {
+      "device": "desktop",
+      "sample": 2,
+      "status": "passed",
+      "navigationToMapReadyMs": 3915.600000143051,
+      "nodeAssertionsAndTwoFramesSettledMs": 4031.987332999999
+    },
+    {
+      "device": "desktop",
+      "sample": 3,
+      "status": "passed",
+      "navigationToMapReadyMs": 5559.299999952316,
+      "nodeAssertionsAndTwoFramesSettledMs": 5665.411625000001
+    },
+    {
+      "device": "desktop",
+      "sample": 4,
+      "status": "passed",
+      "navigationToMapReadyMs": 4029.399999856949,
+      "nodeAssertionsAndTwoFramesSettledMs": 4122.771875000002
+    },
+    {
+      "device": "desktop",
+      "sample": 5,
+      "status": "passed",
+      "navigationToMapReadyMs": 8433.699999809265,
+      "nodeAssertionsAndTwoFramesSettledMs": 8689.757749999997
+    },
+    {
+      "device": "mobile",
+      "sample": 1,
+      "status": "passed",
+      "navigationToMapReadyMs": 3006.7999999523163,
+      "nodeAssertionsAndTwoFramesSettledMs": 3105.6426250000004
+    },
+    {
+      "device": "mobile",
+      "sample": 2,
+      "status": "passed",
+      "navigationToMapReadyMs": 5207,
+      "nodeAssertionsAndTwoFramesSettledMs": 5304.561750000001
+    },
+    {
+      "device": "mobile",
+      "sample": 3,
+      "status": "passed",
+      "navigationToMapReadyMs": 3117.2000000476837,
+      "nodeAssertionsAndTwoFramesSettledMs": 3211.4709159999984
+    },
+    {
+      "device": "mobile",
+      "sample": 4,
+      "status": "passed",
+      "navigationToMapReadyMs": 4380.099999904633,
+      "nodeAssertionsAndTwoFramesSettledMs": 4545.3865829999995
+    },
+    {
+      "device": "mobile",
+      "sample": 5,
+      "status": "passed",
+      "navigationToMapReadyMs": 5668.299999952316,
+      "nodeAssertionsAndTwoFramesSettledMs": 5837.067125000001
+    }
+  ]
+}

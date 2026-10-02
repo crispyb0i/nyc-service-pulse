@@ -142,6 +142,7 @@ try {
   for (const [device, viewport] of [['desktop', { width: 1440, height: 1000 }], ['mobile', { width: 390, height: 844 }]]) {
     for (let sample = 1; sample <= 5; sample++) {
       const context = await browser.newContext({ viewport });
+      await context.route('https://tile.openstreetmap.org/**', (route) => route.fulfill({ contentType: 'image/svg+xml', body: '<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256"><rect width="256" height="256" fill="#edf0e8"/></svg>' }));
       const page = await context.newPage();
       page.setDefaultTimeout(30_000);
       const errors = [];
@@ -155,7 +156,7 @@ try {
       page.on('console', (message) => { if (message.type() === 'error') errors.push(`${message.text()} (${message.location().url})`); });
       page.on('request', (request) => {
         const url = new URL(request.url());
-        if (['http:', 'https:'].includes(url.protocol) && url.origin !== base) externalRequests.push(request.url());
+        if (['http:', 'https:'].includes(url.protocol) && url.origin !== base && url.origin !== 'https://tile.openstreetmap.org') externalRequests.push(request.url());
       });
       try {
         await page.addInitScript(installProbe);
@@ -167,6 +168,7 @@ try {
         step('scrollReturned');
         await page.waitForFunction(() => window.__pulseReadiness?.milestones.mapReadyAfterTwoFramesMs !== undefined, null, { timeout: 60_000 });
         step('browserReadyObserved');
+        await expect(page.locator('tbody tr').first()).toBeVisible();
         step('assertionsStarted');
         result.probe = await page.evaluate(collectProbe);
         const map = result.probe.fetches.filter((item) => item.path === '/api/map' && item.summary).at(-1).summary;
@@ -204,6 +206,7 @@ finally { await browser.close(); }
 const report = {
   label: values.label, measuredAt: new Date().toISOString(), base, status: failure ? 'failed' : 'passed',
   method: {
+    streetTiles: 'Synthetic intercepted street tiles; externalRequests excludes these mocked tile requests. Readiness measures the data overlay, independently of the basemap.',
     samples: 'Five desktop then five mobile runs, sequential fresh ephemeral contexts in one installed Chrome process.',
     serverState: 'Caller controls production restarts. This script does not reset server/database caches or issue extra API requests.',
     browserClock: 'Browser timestamps are performance.now() milliseconds relative to navigation timeOrigin; Node steps use a separate per-run monotonic clock.',

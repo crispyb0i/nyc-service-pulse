@@ -1,11 +1,16 @@
 # NYC Service Pulse
 
-A local civic-data observatory for **NYC 311 requests created during August 2026**. One shared complaint/date filter drives the summary, daily chart, interactive map, and cursor-paginated request table. Built with Next.js App Router, React, TypeScript, PostgreSQL, and PostGIS.
+A civic-data observatory for **NYC 311 requests created during August 2026**. One shared complaint/date filter drives the summary, daily chart, interactive map, and request explorer with a paged table and continuous virtualized list. Built with Next.js App Router, React, TypeScript, PostgreSQL, and PostGIS.
+
+**[Live demo](https://nyc-service-pulse.vercel.app)** · **[Engineering case study](docs/portfolio-case-study.md)** · **[Three-minute walkthrough](docs/demo-walkthrough.md)**
+
+The current portfolio release adds independently loaded views, a request-only pagination API, a bounded 400-record cache, linked day/map/request exploration, URL history, and automated accessibility and rendering budgets. Historical measurement sections below describe earlier implementations; the case study describes the current release.
 
 ## Run locally
 
 ```sh
-cd /Users/david/developer/nyc-service-pulse
+git clone https://github.com/crispyb0i/nyc-service-pulse.git
+cd nyc-service-pulse
 npm ci
 cp .env.example .env.local  # only on a fresh setup; preserve an existing .env.local
 npm run db:up
@@ -14,7 +19,7 @@ npm run import:august
 npm run dev
 ```
 
-The import and build are already complete on this Mac. For a later restart, start the database with `npm run db:up`, then use `npm start` for the saved production build or `npm run dev` for editing. No re-import is required to view the existing snapshot.
+For a later restart, start the database with `npm run db:up`, then use `npm start` for a saved production build or `npm run dev` for editing. No re-import is required to view an existing snapshot.
 
 Open **http://127.0.0.1:3100**. Database: `127.0.0.1:54329`, database name `nyc_service_pulse`. No NYC API account, token, or cloud service is required.
 
@@ -25,7 +30,7 @@ npm run build
 npm start
 ```
 
-Stop the app with Ctrl-C and the project database with `npm run db:stop`. `docker compose stop` retains data. The Compose project `nyc-service-pulse` has its own `pulse_pgdata` volume. Existing databases and containers are not used. The database is bound only to localhost; its example password is deliberately local-development-only. No remote is configured and nothing is deployed.
+Stop the app with Ctrl-C and the project database with `npm run db:stop`. `docker compose stop` retains data. The Compose project `nyc-service-pulse` has its own `pulse_pgdata` volume. Existing databases and containers are not used. The database is bound only to localhost; its example password is deliberately local-development-only. The public demo uses a separate Neon database and Vercel deployment; local import and migration commands refuse remote targets.
 
 ## Source and interpretation
 
@@ -39,17 +44,21 @@ Stop the app with Ctrl-C and the project database with `npm run db:stop`. `docke
 
 ## Architecture and bounded data flow
 
-The browser receives daily aggregates and **50 requests**, never the entire cohort. `/api/pulse` reads the summary, chart, rows, and provenance in one repeatable-read transaction. The exact same parameterized date/complaint predicate is reused. Inclusive UI dates become an exclusive next-day SQL boundary. Pagination orders by `(created_at DESC, id DESC)`; the opaque cursor is tied to its filter set and preserves timestamp microseconds. The B-tree indexes match this ordering and the complaint/date path. Two small timestamp indexes make freshness metadata a pair of index lookups; calendar-day expression statistics inform chart aggregation. Connections use 16 MB work memory to avoid measured median-sort spills, scoped to the five-connection app pool.
+The browser receives daily aggregates and **50 requests**, never the entire cohort. `/api/pulse` reads the summary, chart, rows, and provenance in one repeatable-read transaction. The exact same parameterized date/complaint predicate is reused. Inclusive UI dates become an exclusive next-day SQL boundary. Pagination orders by `(created_at DESC, id DESC)`; the opaque cursor is tied to its filter set and preserves timestamp microseconds. The B-tree indexes match this ordering and the complaint/date path. Two small timestamp indexes make freshness metadata a pair of index lookups; calendar-day expression statistics inform chart aggregation. Each read transaction uses 16 MB work memory to avoid measured median-sort spills and a 15-second statement timeout. The app pool has five connections; transaction-local settings also support Neon’s transaction pooler. A ten-second connection timeout allows the cloud compute to wake.
 
 Endpoints:
 
 - `GET /api/pulse?from=2026-08-01&to=2026-08-31&problem=Noise%20-%20Residential`
-- `GET /api/pulse?...&cursor=<nextCursor>`
+- `GET /api/pulse?...&cursor=<nextCursor>` (retained for compatibility; the UI uses the lighter endpoint below)
+- `GET /api/requests?from=2026-08-01&to=2026-08-31&cursor=<cursor>&direction=next` (50-row keyset page, bidirectional; optional `west,south,east,north` scope)
+- `GET /api/request?id=<request-id>` (one located record or `request: null`)
 - `GET /api/problems?from=2026-08-01&to=2026-08-31`
 - `GET /api/map?west=-74.6&south=40.3&east=-73.4&north=41.15&zoom=10.5&from=2026-08-01&to=2026-08-31`
 - `GET /api/health`
 
 Invalid filters return 400. Database unavailability returns a structured 503 without connection details. Empty selections return 200 with zero daily counts and an empty page. The UI distinguishes initial loading, filter updates, empty results, and retryable failures.
+
+The map mounts independently of summary completion and stays usable during page turns. Clicking a chart day changes the shared dates. “Search this area” explicitly scopes the list; its bounds do not change the summary or chart. Request selection opens details and locates available coordinates. URLs preserve filters, bounds, camera, cursor, browsing mode and selected ID; native Back/Forward restores them. Continuous mode keeps at most eight pages / 400 records, renders only the visible rows plus overscan, and reuses pages for 60 seconds. This is a client navigation cache, not a server freshness guarantee. Each API call has its own read snapshot; pages across a live refresh are not one frozen transaction.
 
 ## Interactive map
 
@@ -197,4 +206,25 @@ Use a new label each time: the probe refuses to overwrite reports. Evidence: [co
 
 ## Deliberate boundaries
 
-No AI, authentication, deployment, or paid infrastructure. The map uses public OpenStreetMap street tiles with local vector geography as a fallback, without a geocoder or an account. Earlier milestone measurements of zero external requests describe the original local-only map. The official pinned PostGIS image currently runs as `linux/amd64` under Docker emulation on this Apple Silicon Mac. Its 1 GB memory and 1.5 CPU limits keep this local project bounded; benchmarks describe that environment rather than claiming native or production performance. Exact aggregates and a median over this bounded month favor simplicity over a separate rollup/cache invalidation system. The pooled database connection count is five.
+No AI or end-user authentication. Deployment uses Vercel and a free Neon project with a separate read-only app role. Exact limits, free-plan availability and cold-start behavior can change; this is a portfolio demo without an uptime guarantee. The map uses public OpenStreetMap street tiles with local vector geography as a fallback, without a geocoder or an account. Earlier milestone measurements of zero external requests describe the original local-only map. The official pinned PostGIS image currently runs as `linux/amd64` under Docker emulation on this Apple Silicon Mac. Its 1 GB memory and 1.5 CPU limits keep this local project bounded; benchmarks describe that environment rather than claiming native or production performance. Exact aggregates and a median over this bounded month favor simplicity over a separate rollup/cache invalidation system. The pooled database connection count is five.
+
+
+## Current verification and deployment
+
+```sh
+npm run typecheck
+npm run lint
+npm test                      # unit tests; DB tests skip without TEST_DATABASE_URL
+TEST_DATABASE_URL=... npm run test:db  # temporary tables and test-owned sessions
+npm run build
+npm start                     # a separate terminal; do not rebuild while checks run
+npm run test:ui
+npm run measure:performance -- --label my-comparison --samples 3 --trace
+npm run measure:window -- --label my-window
+```
+
+Use a fresh report label; measurement scripts refuse overwrites. UI tests mock street tiles to avoid crawling the public tile service, and use the real API except explicit fault/loading fixtures. The performance harness records desktop and constrained mobile viewport conditions, fresh/repeated browser loads (routing disables HTTP cache), page/filter/pan interactions, Event Timing, long tasks/frames, rAF intervals, resource bytes and heap observations. These are lab observations, not field INP or physical-phone measurements. The window probe enforces 8 cached pages, 400 cached records, 20 mounted rows, and 50 KB page bodies.
+
+GitHub Actions runs TypeScript, lint, unit/real PostGIS tests, a production build, and browser checks against 6,200 synthetic records in a fresh CI database. Its large-list test traverses more than 1,000 rows and checks bounded cache/DOM growth. Timing is reported locally rather than enforced with a flaky shared-runner threshold. Browser traces and screenshots are uploaded as CI artifacts.
+
+Production uses `DATABASE_URL` from Vercel’s sensitive environment storage. It points to a pooled Neon connection in US East, with TLS hostname verification and SELECT permission only on `service_requests` and `import_runs`. Schema changes and snapshot transfers use a separate administrative connection. Never commit either connection string. The imported cloud snapshot was reconciled with local row/geocode counts; the read-only role was checked with a denied no-op write. Local scripts continue to reject cloud databases.

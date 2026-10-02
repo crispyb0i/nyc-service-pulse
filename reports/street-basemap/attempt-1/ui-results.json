@@ -1,0 +1,785 @@
+{
+  "config": {
+    "argv": [
+      "/Users/david/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+      "/Users/david/Developer/nyc-service-pulse/node_modules/.bin/playwright",
+      "test"
+    ],
+    "configFile": "/Users/david/Developer/nyc-service-pulse/playwright.config.ts",
+    "rootDir": "/Users/david/Developer/nyc-service-pulse/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/david/Developer/nyc-service-pulse/reports/playwright",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/david/Developer/nyc-service-pulse/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "ui.spec.ts",
+          "map-ui.spec.ts"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "reports/ui-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "map-ui.spec.ts",
+      "file": "map-ui.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "real map aggregates retain every geocoded request and share dashboard filters",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8675,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T02:35:04.795Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "904fa23da2528066cfcc-c528c9616c53606cf45b",
+          "file": "map-ui.spec.ts",
+          "line": 31,
+          "column": 1
+        },
+        {
+          "title": "map rejects unsafe viewport parameters and caps detail mode without truncating dense areas",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 831,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T02:35:13.513Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "904fa23da2528066cfcc-210346ee1d7640a5c3b3",
+          "file": "map-ui.spec.ts",
+          "line": 48,
+          "column": 1
+        },
+        {
+          "title": "desktop map shares filters, zooms clusters, supports keyboard exploration, and opens real request details",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 22123,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T02:35:14.350Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "904fa23da2528066cfcc-140b9fe785a928a4e232",
+          "file": "map-ui.spec.ts",
+          "line": 147,
+          "column": 1
+        },
+        {
+          "title": "mobile map contains its controls, geography, feature list, and horizontal layout",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4615,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T02:35:38.590Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "904fa23da2528066cfcc-4183978bf8db50385cbb",
+          "file": "map-ui.spec.ts",
+          "line": 228,
+          "column": 1
+        },
+        {
+          "title": "slow street tiles do not block requests, and attribution stays visible when tiles load",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3263,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T02:35:43.220Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "904fa23da2528066cfcc-3f6b05088c155de0a42f",
+          "file": "map-ui.spec.ts",
+          "line": 250,
+          "column": 1
+        },
+        {
+          "title": "street tile failure falls back without losing filters, details, or keyboard retry",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 8670,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 7\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Cannot read properties of null (reading 'project')\",\u001b[39m\n\u001b[31m+   \"Cannot read properties of null (reading 'project')\",\u001b[39m\n\u001b[31m+   \"Cannot read properties of null (reading 'project')\",\u001b[39m\n\u001b[31m+   \"Cannot read properties of null (reading 'project')\",\u001b[39m\n\u001b[31m+   \"Cannot read properties of null (reading 'project')\",\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 7\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Cannot read properties of null (reading 'project')\",\u001b[39m\n\u001b[31m+   \"Cannot read properties of null (reading 'project')\",\u001b[39m\n\u001b[31m+   \"Cannot read properties of null (reading 'project')\",\u001b[39m\n\u001b[31m+   \"Cannot read properties of null (reading 'project')\",\u001b[39m\n\u001b[31m+   \"Cannot read properties of null (reading 'project')\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at /Users/david/Developer/nyc-service-pulse/tests/map-ui.spec.ts:294:18",
+                    "location": {
+                      "file": "/Users/david/Developer/nyc-service-pulse/tests/map-ui.spec.ts",
+                      "column": 18,
+                      "line": 294
+                    },
+                    "snippet": "  292 |   await expect(panel(page).getByRole(\"button\", { name: \"Retry street map\" })).toHaveCount(0);\n  293 |   await assertMapUI(page, data);\n> 294 |   expect(errors).toEqual([]);\n      |                  ^\n  295 | });\n  296 |\n  297 | test(\"a stalled street tile request times out to local geography and can recover\", async ({ page }) => {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/david/Developer/nyc-service-pulse/tests/map-ui.spec.ts",
+                        "column": 18,
+                        "line": 294
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 7\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Cannot read properties of null (reading 'project')\",\u001b[39m\n\u001b[31m+   \"Cannot read properties of null (reading 'project')\",\u001b[39m\n\u001b[31m+   \"Cannot read properties of null (reading 'project')\",\u001b[39m\n\u001b[31m+   \"Cannot read properties of null (reading 'project')\",\u001b[39m\n\u001b[31m+   \"Cannot read properties of null (reading 'project')\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  292 |   await expect(panel(page).getByRole(\"button\", { name: \"Retry street map\" })).toHaveCount(0);\n  293 |   await assertMapUI(page, data);\n> 294 |   expect(errors).toEqual([]);\n      |                  ^\n  295 | });\n  296 |\n  297 | test(\"a stalled street tile request times out to local geography and can recover\", async ({ page }) => {\n    at /Users/david/Developer/nyc-service-pulse/tests/map-ui.spec.ts:294:18"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T02:35:46.505Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/david/Developer/nyc-service-pulse/reports/playwright/map-ui-street-tile-failure-2cdb9-s-details-or-keyboard-retry/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/david/Developer/nyc-service-pulse/reports/playwright/map-ui-street-tile-failure-2cdb9-s-details-or-keyboard-retry/error-context.md"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/david/Developer/nyc-service-pulse/reports/playwright/map-ui-street-tile-failure-2cdb9-s-details-or-keyboard-retry/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/david/Developer/nyc-service-pulse/reports/playwright/map-ui-street-tile-failure-2cdb9-s-details-or-keyboard-retry/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/david/Developer/nyc-service-pulse/tests/map-ui.spec.ts",
+                    "column": 18,
+                    "line": 294
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "904fa23da2528066cfcc-9dd2e485f023934e51fc",
+          "file": "map-ui.spec.ts",
+          "line": 268,
+          "column": 1
+        },
+        {
+          "title": "a stalled street tile request times out to local geography and can recover",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 14849,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T02:35:56.458Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "904fa23da2528066cfcc-21d9a6fb092e8d040572",
+          "file": "map-ui.spec.ts",
+          "line": 297,
+          "column": 1
+        },
+        {
+          "title": "map has explicit loading, empty, error, and retry states without losing dashboard totals",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4250,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T02:36:11.823Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "904fa23da2528066cfcc-be8941b79265c3757ef4",
+          "file": "map-ui.spec.ts",
+          "line": 338,
+          "column": 1
+        },
+        {
+          "title": "local geography failure offers a working retry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5239,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T02:36:16.085Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "904fa23da2528066cfcc-cf4985c812aeba904fa4",
+          "file": "map-ui.spec.ts",
+          "line": 368,
+          "column": 1
+        },
+        {
+          "title": "delayed filter responses cannot restore old counts, markers, list items, or request details",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7978,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T02:36:21.336Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "904fa23da2528066cfcc-2a31984d66682526dc8e",
+          "file": "map-ui.spec.ts",
+          "line": 379,
+          "column": 1
+        },
+        {
+          "title": "delayed pan responses cannot overwrite a newer viewport",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3690,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T02:36:29.327Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "904fa23da2528066cfcc-dd05ed360015538dd41f",
+          "file": "map-ui.spec.ts",
+          "line": 415,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "ui.spec.ts",
+      "file": "ui.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "local API rejects invalid dates and a cursor reused with different filters",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1055,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T02:36:33.063Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d425444c687fa36b5882-4e45b8df026e1f47bf45",
+          "file": "ui.spec.ts",
+          "line": 30,
+          "column": 1
+        },
+        {
+          "title": "live API keeps complaint/date totals, daily counts, and keyset pages consistent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 493,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T02:36:34.131Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d425444c687fa36b5882-a0f21a01864645a1fd58",
+          "file": "ui.spec.ts",
+          "line": 45,
+          "column": 1
+        },
+        {
+          "title": "desktop renders live data, shared filters, keyboard chart, and reversible pagination",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11143,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T02:36:34.634Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d425444c687fa36b5882-eb33302a6572982bd5e9",
+          "file": "ui.spec.ts",
+          "line": 94,
+          "column": 1
+        },
+        {
+          "title": "mobile keeps controls accessible and contains table scrolling within the page",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4054,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T02:36:45.811Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d425444c687fa36b5882-35212610a7910fa6ba9f",
+          "file": "ui.spec.ts",
+          "line": 137,
+          "column": 1
+        },
+        {
+          "title": "loading state is explicit before the first API response",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 740,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T02:36:49.878Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d425444c687fa36b5882-85d975c3e8d2cbdbe86d",
+          "file": "ui.spec.ts",
+          "line": 157,
+          "column": 1
+        },
+        {
+          "title": "empty results show zero totals and useful empty chart and table states",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1183,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T02:36:50.631Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d425444c687fa36b5882-575a632cc3e3498f51f9",
+          "file": "ui.spec.ts",
+          "line": 170,
+          "column": 1
+        },
+        {
+          "title": "service failure presents the API message and recovers through Try again",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 920,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T02:36:51.836Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d425444c687fa36b5882-3dff037094c7400e2261",
+          "file": "ui.spec.ts",
+          "line": 182,
+          "column": 1
+        },
+        {
+          "title": "changing filters marks previous data busy until the replacement response arrives",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 922,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T02:36:52.771Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d425444c687fa36b5882-d6885411166412ba68f0",
+          "file": "ui.spec.ts",
+          "line": 201,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-02T02:35:04.149Z",
+    "duration": 110100.92,
+    "expected": 18,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

@@ -8,11 +8,9 @@ export function getPool(): Pool {
     processGlobal.pulsePool = new Pool({
       connectionString: process.env.DATABASE_URL,
       max: 5,
-      // Connection-scoped: keeps the August median sort in memory without changing PostgreSQL globally.
-      options: "-c work_mem=16MB",
       idleTimeoutMillis: 30_000,
-      connectionTimeoutMillis: 3_000,
-      statement_timeout: 15_000,
+      // Allows a suspended Neon compute to wake; queries still have a separate budget.
+      connectionTimeoutMillis: 10_000,
       application_name: "nyc-service-pulse-api",
     });
     processGlobal.pulsePool.on("error", () => {
@@ -32,6 +30,8 @@ export async function withReadSnapshot<T>(read: (client: PoolClient) => Promise<
   client.on("error", onConnectionError);
   try {
     await client.query("BEGIN ISOLATION LEVEL REPEATABLE READ READ ONLY");
+    // Transaction scope also works behind Neon's transaction pooler.
+    await client.query("SET LOCAL work_mem='16MB'; SET LOCAL statement_timeout='15s'");
     const result = await read(client);
     if (connectionError) throw connectionError;
     await client.query("COMMIT");

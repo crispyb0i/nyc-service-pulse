@@ -1,10 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowUpRight, ChevronDown, Layers3, List, LocateFixed, MapPin, Minus, Plus, RefreshCw, TriangleAlert, X } from "lucide-react";
 import type { GeoJsonObject } from "geojson";
 import type * as Leaflet from "leaflet";
 import { MAP_STUDY_BOUNDS, type MapBounds, type MapFeature, type MapResponse } from "@/lib/map-types";
+import type { Camera } from "@/lib/explorer-state";
+import type { LocatedRequest } from "@/lib/request-types";
 import "leaflet/dist/leaflet.css";
 import "./request-map.css";
 
@@ -32,7 +34,12 @@ async function geography(url: string, signal: AbortSignal): Promise<GeoJsonObjec
   return result as GeoJsonObject;
 }
 
-export default function RequestMap({ filters, missingCoordinates }: { filters: Filters; missingCoordinates: number | null }) {
+export default function RequestMap({ filters, missingCoordinates, camera, onCameraChange, onSearchArea, focusedRequest, onSelectRequest }: {
+  filters: Filters; missingCoordinates: number | null; camera?: Camera | null;
+  onCameraChange?: (camera: Camera) => void; onSearchArea?: (bounds: MapBounds) => void;
+  focusedRequest?: LocatedRequest | null; onSelectRequest?: (id: string | null) => void;
+}) {
+  const initialCamera = useRef(camera);
   const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [nearby, setNearby] = useState(false);
@@ -60,7 +67,12 @@ export default function RequestMap({ filters, missingCoordinates }: { filters: F
   const current = !moving && result?.key === queryKey ? result : null;
   const data = current?.data ?? null;
   const loading = !current || moving;
-  const selected = data && selection?.key === queryKey ? selection.feature : null;
+  const focusedFeature = useMemo<MapFeature | null>(() => focusedRequest ? {
+    id: `request:${focusedRequest.id}`, request: focusedRequest, count: 1,
+    longitude: focusedRequest.longitude ?? 0, latitude: focusedRequest.latitude ?? 0,
+    bounds: [focusedRequest.longitude ?? 0, focusedRequest.latitude ?? 0, focusedRequest.longitude ?? 0, focusedRequest.latitude ?? 0],
+  } : null, [focusedRequest]);
+  const selected = focusedFeature ?? (data && selection?.key === queryKey ? selection.feature : null);
   const zoom = viewport?.zoom ?? 9;
 
   useEffect(() => {
@@ -115,11 +127,14 @@ export default function RequestMap({ filters, missingCoordinates }: { filters: F
         const updateViewport = () => {
           const bounds = map.getBounds();
           setViewport({ bounds: [bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()].map((value) => Number(value.toFixed(6))) as MapBounds, zoom: map.getZoom() });
+          const center = map.getCenter();
+          onCameraChange?.({ latitude: Number(center.lat.toFixed(6)), longitude: Number(center.lng.toFixed(6)), zoom: map.getZoom() });
           setMoving(false);
         };
         map.on("movestart", () => { setMoving(true); requestsLayerRef.current?.clearLayers(); });
         map.on("moveend", updateViewport);
-        map.fitBounds(leafletBounds(CITY_BOUNDS), { padding: [20, 20], animate: false });
+        if (initialCamera.current) map.setView([initialCamera.current.latitude, initialCamera.current.longitude], initialCamera.current.zoom, { animate: false });
+        else map.fitBounds(leafletBounds(CITY_BOUNDS), { padding: [20, 20], animate: false });
         updateViewport();
         map.createPane("neighborhoodLabels").style.zIndex = "425";
         map.getPane("neighborhoodLabels")!.style.pointerEvents = "none";
@@ -170,7 +185,33 @@ export default function RequestMap({ filters, missingCoordinates }: { filters: F
       mapRef.current = null;
       requestsLayerRef.current = null;
     };
-  }, [geographyRetry, nearby]);
+  }, [geographyRetry, nearby, onCameraChange]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !camera || !geographyReady) return;
+    const center = map.getCenter();
+    if (Math.abs(center.lat - camera.latitude) > 0.00001 || Math.abs(center.lng - camera.longitude) > 0.00001 || map.getZoom() !== camera.zoom) {
+      map.setView([camera.latitude, camera.longitude], camera.zoom, { animate: false });
+    }
+  }, [camera, geographyReady]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    const L = libraryRef.current;
+    if (!map || !L || !focusedRequest || !geographyReady) return;
+    // A map selection already has a position and focus-return target. Recentring
+    // after its detail fetch would replace the accessible list's opener.
+    if (selection?.feature.request?.id === focusedRequest.id) return;
+    if (!detailRef.current?.contains(document.activeElement)) {
+      returnFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    }
+    const { latitude, longitude } = focusedRequest;
+    if (latitude === null || longitude === null) return;
+    map.setView([latitude, longitude], Math.max(16, map.getZoom()), { animate: false });
+    const highlight = L.circleMarker([latitude, longitude], { pane: "requests", radius: 15, color: "#183e2f", weight: 3, fillColor: "#d2ed83", fillOpacity: .55, interactive: false }).addTo(map);
+    return () => { map.removeLayer(highlight); };
+  }, [focusedRequest, geographyReady, selection]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -236,10 +277,11 @@ export default function RequestMap({ filters, missingCoordinates }: { filters: F
 
   const closeDetails = useCallback(() => {
     setSelection(null);
+    onSelectRequest?.(null);
     const previous = returnFocusRef.current;
     if (previous?.isConnected) previous.focus();
     else containerRef.current?.focus();
-  }, []);
+  }, [onSelectRequest]);
 
   const openFeature = useCallback((feature: MapFeature) => {
     const map = mapRef.current;
@@ -253,7 +295,8 @@ export default function RequestMap({ filters, missingCoordinates }: { filters: F
     }
     returnFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     setSelection({ key: queryKey, feature });
-  }, [queryKey]);
+    if (feature.request) onSelectRequest?.(feature.request.id);
+  }, [queryKey, onSelectRequest]);
 
   useEffect(() => {
     const L = libraryRef.current;
@@ -296,6 +339,7 @@ export default function RequestMap({ filters, missingCoordinates }: { filters: F
     <section ref={sectionRef} id="map" className="panel request-map-panel" aria-labelledby="map-title">
       <div className="panel-heading map-panel-heading"><div><div className="eyebrow">THE GEOGRAPHY OF A REQUEST</div><h2 id="map-title">See the city in context</h2></div><span className="map-mode"><Layers3 size={14} /> {data?.mode === "points" ? "Individual requests" : "Requests by area"}</span></div>
       <div className="map-summary-strip"><div><strong data-testid="map-visible-count">{data ? count.format(data.visibleRequests) : "—"}</strong><span>requests in this map view</span></div><span className="map-filter-note">Same problem and date filters. Pan and zoom to explore.</span></div>
+      {onSearchArea && <div className="map-explore-actions"><span>Find requests in a neighborhood, then explore them in the list.</span><button type="button" disabled={!viewport || moving} onClick={() => { if (viewport) onSearchArea(viewport.bounds); }}>Search this area</button></div>}
       <div className={`map-canvas-frame${loading ? " map-stale" : ""}${basemapStatus === "ready" ? " map-streets-ready" : ""}`}>
         <div ref={containerRef} className="request-map-canvas" tabIndex={0} role="region" aria-label="NYC service request map. Use arrow keys to pan, plus and minus to zoom." aria-describedby="map-instructions" />
         {geographyReady && <><div className="map-north" aria-hidden="true"><span>N</span><i /></div><div className="map-controls" role="group" aria-label="Map controls"><button type="button" aria-label="Zoom in" disabled={zoom >= 18} onClick={() => mapRef.current?.zoomIn()}><Plus size={18} /></button><button type="button" aria-label="Zoom out" disabled={zoom <= 9} onClick={() => mapRef.current?.zoomOut()}><Minus size={18} /></button><button type="button" className="map-reset" aria-label="Reset map to all boroughs" onClick={() => mapRef.current?.fitBounds(leafletBounds(CITY_BOUNDS), { padding: [20, 20], animate: false })}><LocateFixed size={18} /></button></div><span className="map-zoom-label">ZOOM {zoom.toFixed(zoom % 1 ? 1 : 0)}</span></>}
@@ -304,7 +348,7 @@ export default function RequestMap({ filters, missingCoordinates }: { filters: F
         {geographyReady && loading && <div className="map-loading-pill" role="status"><RefreshCw size={13} className="map-spinning" /> {moving ? "Move the map to explore" : "Loading this area…"}</div>}
         {geographyReady && current?.error && <div className="map-state-overlay map-data-error" role="alert"><TriangleAlert size={23} /><strong>This area couldn’t load.</strong><span>{current.error}</span><button type="button" onClick={() => setRetry((value) => value + 1)}><RefreshCw size={14} /> Retry map data</button></div>}
         {geographyReady && data?.visibleRequests === 0 && <div className="map-empty-note" role="status"><MapPin size={18} /><div><strong>No requests in this area</strong><span>Pan, reset the map, or change the filters.</span></div></div>}
-        {selected && <aside ref={detailRef} className="map-request-detail" role="dialog" aria-modal="false" aria-labelledby="map-detail-title" tabIndex={-1}><button type="button" className="map-detail-close" onClick={closeDetails} aria-label="Close request details"><X size={17} /></button><div className="eyebrow">{selected.request ? "ONE REQUEST, IN CONTEXT" : "A DENSE AREA"}</div><h3 id="map-detail-title">{selected.request?.problem ?? `${count.format(selected.count)} requests in this cell`}</h3>{selected.request ? <><p>{selected.request.detail || "No problem detail provided."}</p><dl><div><dt>Request ID</dt><dd>{selected.request.id}</dd></div><div><dt>Status</dt><dd>{selected.request.status}</dd></div><div><dt>Agency / borough</dt><dd>{selected.request.agency} / {selected.request.borough || "Unspecified"}</dd></div><div><dt>Created</dt><dd>{sourceDate(selected.request.createdAt)}</dd></div><div><dt>Closed</dt><dd>{sourceDate(selected.request.closedAt)}</dd></div></dl>{selected.request.qualityFlags.length > 0 && <p className="map-quality-flags">Data flags: {selected.request.qualityFlags.join(", ")}</p>}<span className="map-time-note">Source timestamps; publisher-local time assumed.</span></> : <p>This area still contains more requests than the individual-point limit. Narrow the problem or date filters to explore individual requests.</p>}</aside>}
+        {selected && <aside ref={detailRef} className="map-request-detail" role="dialog" aria-modal="false" aria-labelledby="map-detail-title" tabIndex={-1}><button type="button" className="map-detail-close" onClick={closeDetails} aria-label="Close request details"><X size={17} /></button><div className="eyebrow">{selected.request ? "ONE REQUEST, IN CONTEXT" : "A DENSE AREA"}</div><h3 id="map-detail-title">{selected.request?.problem ?? `${count.format(selected.count)} requests in this cell`}</h3>{selected.request ? <><p>{selected.request.detail || "No problem detail provided."}</p>{focusedRequest && (focusedRequest.latitude === null || focusedRequest.longitude === null) && <p>This request has no mapped location. It remains included in the list and totals.</p>}<dl><div><dt>Request ID</dt><dd>{selected.request.id}</dd></div><div><dt>Status</dt><dd>{selected.request.status}</dd></div><div><dt>Agency / borough</dt><dd>{selected.request.agency} / {selected.request.borough || "Unspecified"}</dd></div><div><dt>Created</dt><dd>{sourceDate(selected.request.createdAt)}</dd></div><div><dt>Closed</dt><dd>{sourceDate(selected.request.closedAt)}</dd></div></dl>{selected.request.qualityFlags.length > 0 && <p className="map-quality-flags">Data flags: {selected.request.qualityFlags.join(", ")}</p>}<span className="map-time-note">Source timestamps; publisher-local time assumed.</span></> : <p>This area still contains more requests than the individual-point limit. Narrow the problem or date filters to explore individual requests.</p>}</aside>}
         <div className="map-legend"><span className="map-legend-dot" /><span>{data?.mode === "points" ? "One marker = one request" : "Circles show grouped request counts"}</span></div>
         <div className="map-tile-attribution">© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a> contributors</div>
       </div>

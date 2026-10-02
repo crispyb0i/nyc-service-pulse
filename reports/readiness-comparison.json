@@ -1,0 +1,198 @@
+{
+  "method": "Five fresh desktop contexts then five fresh mobile contexts per successful run; same production app/Docker limits, app restarted for each. Browser clocks and Node assertion durations are separate. Stage medians do not add to total medians. First after attempt failed and is retained separately.",
+  "groups": {
+    "before": {
+      "desktop": {
+        "intervalMediansMs": {
+          "documentTtfbMs": 32.1,
+          "navigationToDocumentFirstByteMs": 33.2,
+          "documentResponseEndMs": 40.9,
+          "documentTransferMs": 3.2,
+          "documentResponseEndToFirstDataFetchMs": 92.5,
+          "firstDataFetchToMapMountedMs": 1254.6,
+          "mapMountedToNearbyObservedMs": 35,
+          "nearbyObservedToLeafletInitializedMs": 45.8,
+          "leafletInitializedToMapFetchMs": 256,
+          "mapFetchToHeadersMs": 948.9,
+          "mapHeadersToJsonParsedMs": 0.7,
+          "mapJsonParsedToFirstMarkersMs": 5.1,
+          "firstMarkersToReadyAfterTwoFramesMs": 21.8,
+          "navigationToMapReadyMs": 2748.8
+        },
+        "readySamplesMs": [
+          5241.5,
+          2685.7,
+          3669.9,
+          2748.8,
+          2322.7
+        ],
+        "apiLoaderMediansMs": {
+          "/api/pulse": 1227.53,
+          "/api/problems": 809.74,
+          "/api/map": 937.3
+        },
+        "nodeAssertionsAndFramesMedianMs": 66.05,
+        "mapRequestsPerRun": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "mobile": {
+        "intervalMediansMs": {
+          "documentTtfbMs": 24.3,
+          "navigationToDocumentFirstByteMs": 25.2,
+          "documentResponseEndMs": 32.1,
+          "documentTransferMs": 4.2,
+          "documentResponseEndToFirstDataFetchMs": 86,
+          "firstDataFetchToMapMountedMs": 1907,
+          "mapMountedToNearbyObservedMs": 216.9,
+          "nearbyObservedToLeafletInitializedMs": 39.9,
+          "leafletInitializedToMapFetchMs": 255.5,
+          "mapFetchToHeadersMs": 982.9,
+          "mapHeadersToJsonParsedMs": 1.8,
+          "mapJsonParsedToFirstMarkersMs": 6,
+          "firstMarkersToReadyAfterTwoFramesMs": 16.6,
+          "navigationToMapReadyMs": 3391
+        },
+        "readySamplesMs": [
+          3977.5,
+          2708.3,
+          4360.3,
+          3391,
+          3369.8
+        ],
+        "apiLoaderMediansMs": {
+          "/api/pulse": 1884.61,
+          "/api/problems": 1079.17,
+          "/api/map": 968.35
+        },
+        "nodeAssertionsAndFramesMedianMs": 65.1,
+        "mapRequestsPerRun": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "after-retry": {
+      "desktop": {
+        "intervalMediansMs": {
+          "documentTtfbMs": 47.1,
+          "navigationToDocumentFirstByteMs": 49.1,
+          "documentResponseEndMs": 51,
+          "documentTransferMs": 7,
+          "documentResponseEndToFirstDataFetchMs": 93.7,
+          "firstDataFetchToMapMountedMs": 3795,
+          "mapMountedToNearbyObservedMs": 42.3,
+          "nearbyObservedToLeafletInitializedMs": 51.8,
+          "leafletInitializedToMapFetchMs": 5.2,
+          "mapFetchToHeadersMs": 1298.6,
+          "mapHeadersToJsonParsedMs": 1.1,
+          "mapJsonParsedToFirstMarkersMs": 6.8,
+          "firstMarkersToReadyAfterTwoFramesMs": 19.5,
+          "navigationToMapReadyMs": 5559.3
+        },
+        "readySamplesMs": [
+          5879.9,
+          3915.6,
+          5559.3,
+          4029.4,
+          8433.7
+        ],
+        "apiLoaderMediansMs": {
+          "/api/pulse": 3735.4,
+          "/api/problems": 1890.78,
+          "/api/map": 1286.08
+        },
+        "nodeAssertionsAndFramesMedianMs": 65.51,
+        "mapRequestsPerRun": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "mobile": {
+        "intervalMediansMs": {
+          "documentTtfbMs": 46.8,
+          "navigationToDocumentFirstByteMs": 47.9,
+          "documentResponseEndMs": 57.3,
+          "documentTransferMs": 2.8,
+          "documentResponseEndToFirstDataFetchMs": 82.6,
+          "firstDataFetchToMapMountedMs": 1541.5,
+          "mapMountedToNearbyObservedMs": 391.8,
+          "nearbyObservedToLeafletInitializedMs": 68.6,
+          "leafletInitializedToMapFetchMs": 3.9,
+          "mapFetchToHeadersMs": 1348.2,
+          "mapHeadersToJsonParsedMs": 1.2,
+          "mapJsonParsedToFirstMarkersMs": 9,
+          "firstMarkersToReadyAfterTwoFramesMs": 17.2,
+          "navigationToMapReadyMs": 4380.1
+        },
+        "readySamplesMs": [
+          3006.8,
+          5207,
+          3117.2,
+          4380.1,
+          5668.3
+        ],
+        "apiLoaderMediansMs": {
+          "/api/pulse": 1519.57,
+          "/api/problems": 1045.31,
+          "/api/map": 1331.47
+        },
+        "nodeAssertionsAndFramesMedianMs": 64.98,
+        "mapRequestsPerRun": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    }
+  },
+  "cpuCounters": {
+    "before": {
+      "usage_usec": 42962860,
+      "user_usec": 35913648,
+      "system_usec": 7049212,
+      "nice_usec": 0,
+      "nr_periods": 346,
+      "nr_throttled": 250,
+      "throttled_usec": 46452921,
+      "nr_bursts": 0,
+      "burst_usec": 0
+    },
+    "after-retry": {
+      "usage_usec": 71708750,
+      "user_usec": 57465531,
+      "system_usec": 14243218,
+      "nice_usec": 0,
+      "nr_periods": 538,
+      "nr_throttled": 406,
+      "throttled_usec": 77874347,
+      "nr_bursts": 0,
+      "burst_usec": 0
+    }
+  },
+  "interpretation": {
+    "serverLoader": "Includes parameter parsing, pool acquisition, transaction, SQL, result shaping; not pure DB execution.",
+    "hydrationProxy": "HTML end to first API call includes JS loading, hydration and effect scheduling; cannot isolate pure hydration.",
+    "proximity": "Map mount to nearby observer includes lazy visibility and automated scroll scheduling; mobile is a viewport on this Mac, not a physical phone.",
+    "cpu": "Throttled-period deltas demonstrate quota throttling occurred during runs; do not quantify per-request cost or emulation overhead. No native comparison performed.",
+    "failedAttempt": "readiness-after.json: both initial data endpoints returned 503 after about 3150 ms before the map mounted. PostgreSQL remained healthy with no new logged restart. An independent connection later succeeded in 145.59 ms. The exact startup failure cause was not established. One app restart and a bounded repeat passed 10/10."
+  },
+  "outcome": {
+    "initialDispatchStage": "Reduced desktop median from 256.0 ms to 5.2 ms; mobile viewport from 255.5 ms to 3.9 ms.",
+    "endToEnd": "No demonstrated overall speedup: desktop median 2748.8 to 5559.3 ms; mobile viewport 3391.0 to 4380.1 ms, with slower measured server loaders in the later run.",
+    "verification": "20 unit tests, typecheck/production build and ESLint passed; 20 successful measured loads plus one retained failed attempt; 8 affected map browser checks passed.",
+    "remainingLimit": "Serial dashboard/map data-loading path and observed server-side variability; exact transient startup503 cause and emulation cost remain unquantified."
+  }
+}

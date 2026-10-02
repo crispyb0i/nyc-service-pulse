@@ -87,7 +87,7 @@ const metrics: Record<string, unknown> = {
   interactions: [],
 };
 const samples = metrics.interactions as Record<string, unknown>[];
-test.afterAll(() => writeFileSync("reports/map-browser-metrics.json", JSON.stringify(metrics, null, 2) + "\n"));
+test.afterAll(() => writeFileSync("reports/portfolio/map-browser-metrics.json", JSON.stringify(metrics, null, 2) + "\n"));
 const number = new Intl.NumberFormat("en-US");
 const panel = (page: Page) => page.locator("#map");
 const canvas = (page: Page) => panel(page).getByRole("region", { name: "NYC service request map. Use arrow keys to pan, plus and minus to zoom." });
@@ -153,7 +153,7 @@ test("desktop map shares filters, zooms clusters, supports keyboard exploration,
   expect(data.features.length).toBeGreaterThan(0);
   expect(data.mode).toBe("grid");
   await expect(panel(page).locator(".map-status-line")).toContainText(`${number.format(initialPulse.summary.missingCoordinates)} without coordinates · retained in totals and table`);
-  await panel(page).screenshot({ path: "reports/map-desktop.png", animations: "disabled" });
+  await panel(page).screenshot({ path: "reports/portfolio/map-desktop.png", animations: "disabled" });
 
   const denseIndex = data.features.reduce((best, feature, index, all) => feature.count > all[best].count ? index : best, 0);
   const previousZoom = data.zoom;
@@ -190,7 +190,7 @@ test("desktop map shares filters, zooms clusters, supports keyboard exploration,
   expect(await page.locator("tbody .problem-cell strong").allTextContents()).toEqual(pulse.requests.map((row) => row.problem));
   await expect(page.getByRole("group", { name: "Daily request counts" }).getByRole("button")).toHaveCount(6);
   expect(data.visibleRequests).toBeLessThanOrEqual(pulse.summary.total - pulse.summary.missingCoordinates);
-  await panel(page).screenshot({ path: "reports/map-filtered.png", animations: "disabled" });
+  await panel(page).screenshot({ path: "reports/portfolio/map-filtered.png", animations: "disabled" });
 
   data = await mapAction(page, "reset extent", () => panel(page).getByRole("button", { name: "Reset map to all boroughs" }).click());
   await expandList(page);
@@ -211,7 +211,7 @@ test("desktop map shares filters, zooms clusters, supports keyboard exploration,
   await expect(dialog).toBeVisible();
   await expect(dialog).toBeFocused();
   await expect(dialog).toContainText(data.features[0].request!.id);
-  await panel(page).screenshot({ path: "reports/map-request-detail.png", animations: "disabled" });
+  await panel(page).screenshot({ path: "reports/portfolio/map-request-detail.png", animations: "disabled" });
   await page.keyboard.press("Escape");
   await expect(dialog).toHaveCount(0);
   await expect(opener).toBeFocused();
@@ -237,7 +237,7 @@ test("mobile map contains its controls, geography, feature list, and horizontal 
   await expect(canvas(page)).toHaveClass(/leaflet-container/);
   await expect(panel(page).getByRole("link", { name: "OpenStreetMap", exact: true })).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
-  await panel(page).screenshot({ path: "reports/map-mobile.png", animations: "disabled" });
+  await panel(page).screenshot({ path: "reports/portfolio/map-mobile.png", animations: "disabled" });
   await expandList(page);
   await expect(panel(page).locator(".map-accessible-list li button").first()).toBeVisible();
   await expect(panel(page).locator(".map-accessible-list li")).toHaveCount(data.features.length);
@@ -354,16 +354,16 @@ test("map has explicit loading, empty, error, and retry states without losing da
   await expect(panel(page).getByRole("status")).toContainText("Loading this area");
   await expect(panel(page).getByTestId("map-visible-count")).toHaveText("—");
   await expect(markers(page)).toHaveCount(0);
-  await panel(page).screenshot({ path: "reports/map-loading.png", animations: "disabled" });
+  await panel(page).screenshot({ path: "reports/portfolio/map-loading.png", animations: "disabled" });
   gate.resolve();
   await expect(panel(page).getByText("No requests in this area", { exact: true })).toBeVisible();
   await expect(panel(page).getByTestId("map-visible-count")).toHaveText("0");
   await expect(page.locator("tbody tr")).toHaveCount(50);
-  await panel(page).screenshot({ path: "reports/map-empty.png", animations: "disabled" });
+  await panel(page).screenshot({ path: "reports/portfolio/map-empty.png", animations: "disabled" });
   await panel(page).getByRole("button", { name: "Zoom in", exact: true }).click();
   await expect(panel(page).getByRole("alert")).toContainText("Map test: local database temporarily unavailable.");
   await expect(markers(page)).toHaveCount(0);
-  await panel(page).screenshot({ path: "reports/map-error.png", animations: "disabled" });
+  await panel(page).screenshot({ path: "reports/portfolio/map-error.png", animations: "disabled" });
   await panel(page).getByRole("button", { name: "Retry map data" }).click();
   await expect(panel(page).getByTestId("map-visible-count")).toHaveText("42");
   await expect(markers(page)).toHaveCount(1);

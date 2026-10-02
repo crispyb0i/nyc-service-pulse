@@ -1,0 +1,2 @@
+# Preserve measurement evidence while keeping generated traces out of code-review diffs.
+reports/** linguist-generated=true

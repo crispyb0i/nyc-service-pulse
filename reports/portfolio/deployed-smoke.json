@@ -1,0 +1,49 @@
+{
+  "base": "https://nyc-service-pulse.vercel.app",
+  "capturedAt": "2026-10-02T06:02:27.252Z",
+  "method": "Single sequential remote HTTP observations, not a comparative benchmark or load test.",
+  "observations": [
+    {
+      "path": "/api/health",
+      "status": 200,
+      "elapsedMs": 498.948292,
+      "serverTiming": "data;dur=51.25;desc=\"App loader (filters, pool, SQL)\"",
+      "bodyBytes": 38
+    },
+    {
+      "path": "/api/pulse",
+      "status": 200,
+      "elapsedMs": 2426.9191250000003,
+      "serverTiming": "data;dur=2221.14;desc=\"App loader (filters, pool, SQL)\"",
+      "bodyBytes": 13508
+    },
+    {
+      "path": "/api/requests",
+      "status": 200,
+      "elapsedMs": 131.50783300000012,
+      "serverTiming": "data;dur=12.43;desc=\"App loader (filters, pool, SQL)\"",
+      "bodyBytes": 14689
+    },
+    {
+      "path": "/api/map?west=-74.6&south=40.3&east=-73.4&north=41.15&zoom=10",
+      "status": 200,
+      "elapsedMs": 661.2219169999998,
+      "serverTiming": "data;dur=440.24;desc=\"App loader (filters, pool, SQL)\"",
+      "bodyBytes": 8070
+    },
+    {
+      "path": "/api/requests?direction=previous",
+      "status": 400,
+      "elapsedMs": 114.05424999999968,
+      "serverTiming": null,
+      "bodyBytes": 76
+    },
+    {
+      "path": "/api/request?id=absent",
+      "status": 200,
+      "elapsedMs": 204.12379200000032,
+      "serverTiming": "data;dur=14.19;desc=\"App loader (filters, pool, SQL)\"",
+      "bodyBytes": 16
+    }
+  ]
+}

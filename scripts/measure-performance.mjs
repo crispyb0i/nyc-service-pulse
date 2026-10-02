@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { access, mkdir, writeFile } from 'node:fs/promises';
 import { parseArgs } from 'node:util';
 import { chromium, expect } from '@playwright/test';
+import { layoutShiftScores } from './layout-shifts.mjs';
 
 const { values } = parseArgs({ options: { label: { type: 'string' }, samples: { type: 'string', default: '3' }, trace: { type: 'boolean', default: false } } });
 assert.match(values.label ?? '', /^[a-z0-9][a-z0-9-]{0,39}$/);
@@ -105,7 +106,7 @@ try {
         run.heapAfterBytes = (await cdp.send('Runtime.getHeapUsage')).usedSize;
         run.dom = await cdp.send('Memory.getDOMCounters');
         run.probe = await page.evaluate(() => { window.__pulsePerformance.recording = false; return window.__pulsePerformance; });
-        run.summary = { nextPageMedianMs: percentile(run.interactions.filter((i) => i.action === 'next-page').map((i) => i.settledMs), .5), eventDurationP95Ms: percentile(run.probe.events.filter((e) => e.interactionId).map((e) => e.duration), .95), observedLongTasks: run.probe.longTasks.length, observedLongFrames: run.probe.longFrames.length, frameIntervalP95Ms: percentile(run.probe.frames, .95), cls: run.probe.shifts.filter((s) => !s.recentInput).reduce((sum, s) => sum + s.value, 0) };
+        run.summary = { nextPageMedianMs: percentile(run.interactions.filter((i) => i.action === 'next-page').map((i) => i.settledMs), .5), eventDurationP95Ms: percentile(run.probe.events.filter((e) => e.interactionId).map((e) => e.duration), .95), observedLongTasks: run.probe.longTasks.length, observedLongFrames: run.probe.longFrames.length, frameIntervalP95Ms: percentile(run.probe.frames, .95), ...layoutShiftScores(run.probe.shifts) };
         assert.deepEqual(errors, []);
         run.status = 'passed';
       } catch (error) { run.status = 'failed'; run.error = String(error); throw error; }
@@ -125,7 +126,7 @@ try {
   }
 } catch (error) { failure = error; }
 finally { await browser.close(); }
-const report = { label: values.label, measuredAt: new Date().toISOString(), status: failure ? 'failed' : 'passed', method: { samplesPerProfile: samples, tileSource: 'Synthetic intercepted tiles; live local APIs', cache: 'Cold and warm browser loads in each fresh context. Database/server caches are not reset.', timing: 'Settlement includes Playwright dispatch/assertions. Event Timing is quantized and excludes events below 16 ms; not field INP. rAF intervals are scheduling observations, not measured presented frames or an FPS guarantee.', memory: 'Observed JS heap without forced GC; difference is not proof of retained-memory growth. DOM counters can include detached nodes pending GC.', mobile: 'Desktop Chrome with a mobile viewport, 4x CPU slowdown, 100ms latency, 1.6Mbps download/0.75Mbps upload; not a physical phone.', instrumentation: 'Observers, rAF sampling, optional trace and automation add overhead. Keep conditions fixed across comparisons.' }, runs };
+const report = { label: values.label, measuredAt: new Date().toISOString(), status: failure ? 'failed' : 'passed', method: { samplesPerProfile: samples, tileSource: 'Synthetic intercepted tiles; live local APIs', cache: 'Labels cold-browser/warm-browser mean first/repeated navigation in a fresh context. Playwright routing disables HTTP cache; repeat navigation is not a cache-hit benchmark. Database/server caches are not reset; host processes are not isolated.', timing: 'Settlement includes Playwright dispatch/assertions. Event Timing is quantized and excludes events below 16 ms; not field INP. rAF intervals are scheduling observations, not measured presented frames or an FPS guarantee.', memory: 'Observed JS heap without forced GC; difference is not proof of retained-memory growth. DOM counters can include detached nodes pending GC.', mobile: 'Desktop Chrome with a mobile viewport, 4x CPU slowdown, 100ms latency, 1.6Mbps download/0.75Mbps upload; not a physical phone.', instrumentation: 'Observers, rAF sampling, optional trace and automation add overhead. Keep conditions fixed across comparisons.' }, runs };
 await writeFile(`${directory}/performance.json`, JSON.stringify(report, null, 2) + '\n', { flag: 'wx' });
 console.log(JSON.stringify({ directory, status: report.status, runs: runs.map(({ profile, sample, status, summary }) => ({ profile, sample, status, summary })) }, null, 2));
 if (failure) throw failure;

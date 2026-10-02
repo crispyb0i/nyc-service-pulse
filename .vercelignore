@@ -1,0 +1,11 @@
+.git
+reports
+tests
+docs
+db
+scripts
+graft
+.env*
+compose.yaml
+AGENTS.md
+CLAUDE.md

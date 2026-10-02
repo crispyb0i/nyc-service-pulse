@@ -1,0 +1,964 @@
+{
+  "measuredAt": "2026-10-02T00:16:11.131Z",
+  "environment": "MacBook local Next production server, Docker PostgreSQL17/PostGIS3.5 linux/amd64 emulation, database1GB/1.5CPUs; HTTP localhost; first +5 warm sequential requests, uncompressed JSON bytes",
+  "measurements": [
+    {
+      "name": "cohort",
+      "path": "/api/pulse",
+      "first": {
+        "ms": 739.83,
+        "bytes": 13508,
+        "total": 328892,
+        "rows": 50
+      },
+      "warmMedianMs": 562.73,
+      "warmMaxMs": 583.58,
+      "samples": [
+        {
+          "ms": 739.83,
+          "bytes": 13508,
+          "total": 328892,
+          "rows": 50
+        },
+        {
+          "ms": 574.87,
+          "bytes": 13508,
+          "total": 328892,
+          "rows": 50
+        },
+        {
+          "ms": 583.58,
+          "bytes": 13508,
+          "total": 328892,
+          "rows": 50
+        },
+        {
+          "ms": 510.65,
+          "bytes": 13508,
+          "total": 328892,
+          "rows": 50
+        },
+        {
+          "ms": 530.89,
+          "bytes": 13508,
+          "total": 328892,
+          "rows": 50
+        },
+        {
+          "ms": 562.73,
+          "bytes": 13508,
+          "total": 328892,
+          "rows": 50
+        }
+      ]
+    },
+    {
+      "name": "complaint",
+      "path": "/api/pulse?problem=Noise%20-%20Residential",
+      "first": {
+        "ms": 91.1,
+        "bytes": 13570,
+        "total": 30622,
+        "rows": 50
+      },
+      "warmMedianMs": 69.63,
+      "warmMaxMs": 73.33,
+      "samples": [
+        {
+          "ms": 91.1,
+          "bytes": 13570,
+          "total": 30622,
+          "rows": 50
+        },
+        {
+          "ms": 69.63,
+          "bytes": 13570,
+          "total": 30622,
+          "rows": 50
+        },
+        {
+          "ms": 65.27,
+          "bytes": 13570,
+          "total": 30622,
+          "rows": 50
+        },
+        {
+          "ms": 70.3,
+          "bytes": 13570,
+          "total": 30622,
+          "rows": 50
+        },
+        {
+          "ms": 73.33,
+          "bytes": 13570,
+          "total": 30622,
+          "rows": 50
+        },
+        {
+          "ms": 62.66,
+          "bytes": 13570,
+          "total": 30622,
+          "rows": 50
+        }
+      ]
+    },
+    {
+      "name": "singleDay",
+      "path": "/api/pulse?from=2026-08-15&to=2026-08-15",
+      "first": {
+        "ms": 90.86,
+        "bytes": 12426,
+        "total": 9614,
+        "rows": 50
+      },
+      "warmMedianMs": 28.65,
+      "warmMaxMs": 33.86,
+      "samples": [
+        {
+          "ms": 90.86,
+          "bytes": 12426,
+          "total": 9614,
+          "rows": 50
+        },
+        {
+          "ms": 33.86,
+          "bytes": 12426,
+          "total": 9614,
+          "rows": 50
+        },
+        {
+          "ms": 23.12,
+          "bytes": 12426,
+          "total": 9614,
+          "rows": 50
+        },
+        {
+          "ms": 33.25,
+          "bytes": 12426,
+          "total": 9614,
+          "rows": 50
+        },
+        {
+          "ms": 28.65,
+          "bytes": 12426,
+          "total": 9614,
+          "rows": 50
+        },
+        {
+          "ms": 25.84,
+          "bytes": 12426,
+          "total": 9614,
+          "rows": 50
+        }
+      ]
+    },
+    {
+      "name": "empty",
+      "path": "/api/pulse?problem=__no_such_problem__",
+      "first": {
+        "ms": 13.61,
+        "bytes": 1739,
+        "total": 0,
+        "rows": 0
+      },
+      "warmMedianMs": 10.3,
+      "warmMaxMs": 17.7,
+      "samples": [
+        {
+          "ms": 13.61,
+          "bytes": 1739,
+          "total": 0,
+          "rows": 0
+        },
+        {
+          "ms": 11.84,
+          "bytes": 1739,
+          "total": 0,
+          "rows": 0
+        },
+        {
+          "ms": 8.02,
+          "bytes": 1739,
+          "total": 0,
+          "rows": 0
+        },
+        {
+          "ms": 9.74,
+          "bytes": 1739,
+          "total": 0,
+          "rows": 0
+        },
+        {
+          "ms": 10.3,
+          "bytes": 1739,
+          "total": 0,
+          "rows": 0
+        },
+        {
+          "ms": 17.7,
+          "bytes": 1739,
+          "total": 0,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "name": "problems",
+      "path": "/api/problems",
+      "first": {
+        "ms": 280.89,
+        "bytes": 7096
+      },
+      "warmMedianMs": 194.27,
+      "warmMaxMs": 406.06,
+      "samples": [
+        {
+          "ms": 280.89,
+          "bytes": 7096
+        },
+        {
+          "ms": 180.77,
+          "bytes": 7096
+        },
+        {
+          "ms": 194.27,
+          "bytes": 7096
+        },
+        {
+          "ms": 232.33,
+          "bytes": 7096
+        },
+        {
+          "ms": 406.06,
+          "bytes": 7096
+        },
+        {
+          "ms": 188.65,
+          "bytes": 7096
+        }
+      ]
+    }
+  ],
+  "quality": {
+    "total": 328892,
+    "distinct_ids": 328892,
+    "closed": 303483,
+    "valid_closed_intervals": 303143,
+    "missing_coordinates": 6302,
+    "negative_intervals": 344,
+    "table_including_indexes": "164 MB"
+  },
+  "runs": [
+    {
+      "id": "83481afc-5c6e-4b81-aa10-d4c0fe20be2b",
+      "mode": "full",
+      "status": "validated",
+      "phase": "refresh-1",
+      "started_at": "2026-10-01T22:47:52.433Z",
+      "finished_at": "2026-10-01T22:51:02.823Z",
+      "wall_seconds": "190.390483",
+      "rows_processed": "328898",
+      "batches_processed": 118,
+      "validation": {
+        "local": [
+          {
+            "day": "2026-08-01",
+            "count": 9989,
+            "distinct": 9989
+          },
+          {
+            "day": "2026-08-02",
+            "count": 9843,
+            "distinct": 9843
+          },
+          {
+            "day": "2026-08-03",
+            "count": 11228,
+            "distinct": 11228
+          },
+          {
+            "day": "2026-08-04",
+            "count": 11229,
+            "distinct": 11229
+          },
+          {
+            "day": "2026-08-05",
+            "count": 10287,
+            "distinct": 10287
+          },
+          {
+            "day": "2026-08-06",
+            "count": 10388,
+            "distinct": 10388
+          },
+          {
+            "day": "2026-08-07",
+            "count": 10807,
+            "distinct": 10807
+          },
+          {
+            "day": "2026-08-08",
+            "count": 9938,
+            "distinct": 9938
+          },
+          {
+            "day": "2026-08-09",
+            "count": 10629,
+            "distinct": 10629
+          },
+          {
+            "day": "2026-08-10",
+            "count": 11483,
+            "distinct": 11483
+          },
+          {
+            "day": "2026-08-11",
+            "count": 11020,
+            "distinct": 11020
+          },
+          {
+            "day": "2026-08-12",
+            "count": 10800,
+            "distinct": 10800
+          },
+          {
+            "day": "2026-08-13",
+            "count": 10546,
+            "distinct": 10546
+          },
+          {
+            "day": "2026-08-14",
+            "count": 10557,
+            "distinct": 10557
+          },
+          {
+            "day": "2026-08-15",
+            "count": 9614,
+            "distinct": 9614
+          },
+          {
+            "day": "2026-08-16",
+            "count": 9249,
+            "distinct": 9249
+          },
+          {
+            "day": "2026-08-17",
+            "count": 10857,
+            "distinct": 10857
+          },
+          {
+            "day": "2026-08-18",
+            "count": 10977,
+            "distinct": 10977
+          },
+          {
+            "day": "2026-08-19",
+            "count": 10703,
+            "distinct": 10703
+          },
+          {
+            "day": "2026-08-20",
+            "count": 11062,
+            "distinct": 11062
+          },
+          {
+            "day": "2026-08-21",
+            "count": 11521,
+            "distinct": 11521
+          },
+          {
+            "day": "2026-08-22",
+            "count": 10047,
+            "distinct": 10047
+          },
+          {
+            "day": "2026-08-23",
+            "count": 10790,
+            "distinct": 10790
+          },
+          {
+            "day": "2026-08-24",
+            "count": 11667,
+            "distinct": 11667
+          },
+          {
+            "day": "2026-08-25",
+            "count": 10922,
+            "distinct": 10922
+          },
+          {
+            "day": "2026-08-26",
+            "count": 10609,
+            "distinct": 10609
+          },
+          {
+            "day": "2026-08-27",
+            "count": 10043,
+            "distinct": 10043
+          },
+          {
+            "day": "2026-08-28",
+            "count": 10807,
+            "distinct": 10807
+          },
+          {
+            "day": "2026-08-29",
+            "count": 9841,
+            "distinct": 9841
+          },
+          {
+            "day": "2026-08-30",
+            "count": 10231,
+            "distinct": 10231
+          },
+          {
+            "day": "2026-08-31",
+            "count": 11208,
+            "distinct": 11208
+          }
+        ],
+        "scope": "August 2026 created_date cohort; floating timestamps preserved. Counts/daily distinct IDs and stable update watermark verified, not an immutable source snapshot.",
+        "valid": true,
+        "source": {
+          "days": [
+            {
+              "day": "2026-08-01",
+              "count": 9989,
+              "distinct": 9989,
+              "maximumId": "69990387",
+              "minimumId": "69903445"
+            },
+            {
+              "day": "2026-08-02",
+              "count": 9843,
+              "distinct": 9843,
+              "maximumId": "69980364",
+              "minimumId": "69914979"
+            },
+            {
+              "day": "2026-08-03",
+              "count": 11228,
+              "distinct": 11228,
+              "maximumId": "69980483",
+              "minimumId": "69925662"
+            },
+            {
+              "day": "2026-08-04",
+              "count": 11229,
+              "distinct": 11229,
+              "maximumId": "70001157",
+              "minimumId": "69935062"
+            },
+            {
+              "day": "2026-08-05",
+              "count": 10287,
+              "distinct": 10287,
+              "maximumId": "70008988",
+              "minimumId": "69947162"
+            },
+            {
+              "day": "2026-08-06",
+              "count": 10388,
+              "distinct": 10388,
+              "maximumId": "70020418",
+              "minimumId": "69959077"
+            },
+            {
+              "day": "2026-08-07",
+              "count": 10807,
+              "distinct": 10807,
+              "maximumId": "70036816",
+              "minimumId": "69970376"
+            },
+            {
+              "day": "2026-08-08",
+              "count": 9938,
+              "distinct": 9938,
+              "maximumId": "70029399",
+              "minimumId": "69981645"
+            },
+            {
+              "day": "2026-08-09",
+              "count": 10629,
+              "distinct": 10629,
+              "maximumId": "70056926",
+              "minimumId": "69993197"
+            },
+            {
+              "day": "2026-08-10",
+              "count": 11483,
+              "distinct": 11483,
+              "maximumId": "70076415",
+              "minimumId": "70003788"
+            },
+            {
+              "day": "2026-08-11",
+              "count": 11020,
+              "distinct": 11020,
+              "maximumId": "70078952",
+              "minimumId": "70014083"
+            },
+            {
+              "day": "2026-08-12",
+              "count": 10800,
+              "distinct": 10800,
+              "maximumId": "70106055",
+              "minimumId": "70026445"
+            },
+            {
+              "day": "2026-08-13",
+              "count": 10546,
+              "distinct": 10546,
+              "maximumId": "70107601",
+              "minimumId": "70038333"
+            },
+            {
+              "day": "2026-08-14",
+              "count": 10557,
+              "distinct": 10557,
+              "maximumId": "70113641",
+              "minimumId": "70049908"
+            },
+            {
+              "day": "2026-08-15",
+              "count": 9614,
+              "distinct": 9614,
+              "maximumId": "70129604",
+              "minimumId": "70061328"
+            },
+            {
+              "day": "2026-08-16",
+              "count": 9249,
+              "distinct": 9249,
+              "maximumId": "70125159",
+              "minimumId": "70072453"
+            },
+            {
+              "day": "2026-08-17",
+              "count": 10857,
+              "distinct": 10857,
+              "maximumId": "70146385",
+              "minimumId": "70082752"
+            },
+            {
+              "day": "2026-08-18",
+              "count": 10977,
+              "distinct": 10977,
+              "maximumId": "70210014",
+              "minimumId": "70091742"
+            },
+            {
+              "day": "2026-08-19",
+              "count": 10703,
+              "distinct": 10703,
+              "maximumId": "70278902",
+              "minimumId": "70102983"
+            },
+            {
+              "day": "2026-08-20",
+              "count": 11062,
+              "distinct": 11062,
+              "maximumId": "70204655",
+              "minimumId": "70115169"
+            },
+            {
+              "day": "2026-08-21",
+              "count": 11521,
+              "distinct": 11521,
+              "maximumId": "70184287",
+              "minimumId": "70126464"
+            },
+            {
+              "day": "2026-08-22",
+              "count": 10047,
+              "distinct": 10047,
+              "maximumId": "70192161",
+              "minimumId": "70138122"
+            },
+            {
+              "day": "2026-08-23",
+              "count": 10790,
+              "distinct": 10790,
+              "maximumId": "70200391",
+              "minimumId": "70150835"
+            },
+            {
+              "day": "2026-08-24",
+              "count": 11667,
+              "distinct": 11667,
+              "maximumId": "70282512",
+              "minimumId": "70161407"
+            },
+            {
+              "day": "2026-08-25",
+              "count": 10922,
+              "distinct": 10922,
+              "maximumId": "70269037",
+              "minimumId": "70171723"
+            },
+            {
+              "day": "2026-08-26",
+              "count": 10609,
+              "distinct": 10609,
+              "maximumId": "70267712",
+              "minimumId": "70184116"
+            },
+            {
+              "day": "2026-08-27",
+              "count": 10043,
+              "distinct": 10043,
+              "maximumId": "70271667",
+              "minimumId": "70196148"
+            },
+            {
+              "day": "2026-08-28",
+              "count": 10807,
+              "distinct": 10807,
+              "maximumId": "70282513",
+              "minimumId": "70207313"
+            },
+            {
+              "day": "2026-08-29",
+              "count": 9841,
+              "distinct": 9841,
+              "maximumId": "70314859",
+              "minimumId": "70218320"
+            },
+            {
+              "day": "2026-08-30",
+              "count": 10231,
+              "distinct": 10231,
+              "maximumId": "70353027",
+              "minimumId": "70229938"
+            },
+            {
+              "day": "2026-08-31",
+              "count": 11208,
+              "distinct": 11208,
+              "maximumId": "70354369",
+              "minimumId": "70239573"
+            }
+          ],
+          "total": 328892,
+          "distinct": 328892,
+          "fetchedAt": "2026-10-01T22:50:56.860Z",
+          "maxUpdatedAt": "2026-10-01T01:41:53.401Z"
+        },
+        "quality": {
+          "total": 328892,
+          "closed": 303483,
+          "distinct_ids": 328892,
+          "negative_intervals": 344,
+          "closed_missing_date": 3,
+          "missing_coordinates": 6302,
+          "nonclosed_with_date": 3676,
+          "max_source_updated_at": "2026-10-01T01:41:53.401Z",
+          "valid_closed_intervals": 303143
+        },
+        "removed": 0,
+        "checkedAt": "2026-10-01T22:51:02.836Z",
+        "durationSeconds": 190.403,
+        "responseBytesThisProcess": 111098352,
+        "sourceRequestsThisProcess": 121
+      }
+    }
+  ],
+  "daily": [
+    {
+      "day": "2026-08-01",
+      "count": 9989
+    },
+    {
+      "day": "2026-08-02",
+      "count": 9843
+    },
+    {
+      "day": "2026-08-03",
+      "count": 11228
+    },
+    {
+      "day": "2026-08-04",
+      "count": 11229
+    },
+    {
+      "day": "2026-08-05",
+      "count": 10287
+    },
+    {
+      "day": "2026-08-06",
+      "count": 10388
+    },
+    {
+      "day": "2026-08-07",
+      "count": 10807
+    },
+    {
+      "day": "2026-08-08",
+      "count": 9938
+    },
+    {
+      "day": "2026-08-09",
+      "count": 10629
+    },
+    {
+      "day": "2026-08-10",
+      "count": 11483
+    },
+    {
+      "day": "2026-08-11",
+      "count": 11020
+    },
+    {
+      "day": "2026-08-12",
+      "count": 10800
+    },
+    {
+      "day": "2026-08-13",
+      "count": 10546
+    },
+    {
+      "day": "2026-08-14",
+      "count": 10557
+    },
+    {
+      "day": "2026-08-15",
+      "count": 9614
+    },
+    {
+      "day": "2026-08-16",
+      "count": 9249
+    },
+    {
+      "day": "2026-08-17",
+      "count": 10857
+    },
+    {
+      "day": "2026-08-18",
+      "count": 10977
+    },
+    {
+      "day": "2026-08-19",
+      "count": 10703
+    },
+    {
+      "day": "2026-08-20",
+      "count": 11062
+    },
+    {
+      "day": "2026-08-21",
+      "count": 11521
+    },
+    {
+      "day": "2026-08-22",
+      "count": 10047
+    },
+    {
+      "day": "2026-08-23",
+      "count": 10790
+    },
+    {
+      "day": "2026-08-24",
+      "count": 11667
+    },
+    {
+      "day": "2026-08-25",
+      "count": 10922
+    },
+    {
+      "day": "2026-08-26",
+      "count": 10609
+    },
+    {
+      "day": "2026-08-27",
+      "count": 10043
+    },
+    {
+      "day": "2026-08-28",
+      "count": 10807
+    },
+    {
+      "day": "2026-08-29",
+      "count": 9841
+    },
+    {
+      "day": "2026-08-30",
+      "count": 10231
+    },
+    {
+      "day": "2026-08-31",
+      "count": 11208
+    }
+  ],
+  "flags": [
+    {
+      "flag": "closed_missing_closed_date",
+      "count": 3
+    },
+    {
+      "flag": "missing_coordinates",
+      "count": 6302
+    },
+    {
+      "flag": "negative_closure_interval",
+      "count": 344
+    },
+    {
+      "flag": "nonclosed_with_closed_date",
+      "count": 3676
+    }
+  ],
+  "plans": [
+    {
+      "query": "SELECT id,created_at FROM service_requests WHERE created_at>='2026-08-01' AND created_at<'2026-09-01' ORDER BY created_at DESC,id DESC LIMIT 51",
+      "plan": {
+        "Plan": {
+          "Node Type": "Limit",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 0.42,
+          "Total Cost": 2.77,
+          "Plan Rows": 51,
+          "Plan Width": 17,
+          "Actual Startup Time": 0.222,
+          "Actual Total Time": 0.268,
+          "Actual Rows": 51,
+          "Actual Loops": 1,
+          "Shared Hit Blocks": 4,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0,
+          "Plans": [
+            {
+              "Node Type": "Index Only Scan",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Scan Direction": "Forward",
+              "Index Name": "requests_created_id",
+              "Relation Name": "service_requests",
+              "Alias": "service_requests",
+              "Startup Cost": 0.42,
+              "Total Cost": 15168.16,
+              "Plan Rows": 328892,
+              "Plan Width": 17,
+              "Actual Startup Time": 0.071,
+              "Actual Total Time": 0.076,
+              "Actual Rows": 51,
+              "Actual Loops": 1,
+              "Index Cond": "((created_at >= '2026-08-01 00:00:00'::timestamp without time zone) AND (created_at < '2026-09-01 00:00:00'::timestamp without time zone))",
+              "Rows Removed by Index Recheck": 0,
+              "Heap Fetches": 0,
+              "Shared Hit Blocks": 4,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0
+            }
+          ]
+        },
+        "Planning": {
+          "Shared Hit Blocks": 24,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 6.511,
+        "Triggers": [],
+        "Execution Time": 0.66
+      }
+    },
+    {
+      "query": "SELECT id,created_at FROM service_requests WHERE created_at>='2026-08-01' AND created_at<'2026-09-01' AND problem='Noise - Residential' ORDER BY created_at DESC,id DESC LIMIT 51",
+      "plan": {
+        "Plan": {
+          "Node Type": "Limit",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 0.42,
+          "Total Cost": 3.99,
+          "Plan Rows": 51,
+          "Plan Width": 17,
+          "Actual Startup Time": 2.926,
+          "Actual Total Time": 2.943,
+          "Actual Rows": 51,
+          "Actual Loops": 1,
+          "Shared Hit Blocks": 4,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0,
+          "Plans": [
+            {
+              "Node Type": "Index Only Scan",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Scan Direction": "Forward",
+              "Index Name": "requests_problem_created_id",
+              "Relation Name": "service_requests",
+              "Alias": "service_requests",
+              "Startup Cost": 0.42,
+              "Total Cost": 2153.52,
+              "Plan Rows": 30806,
+              "Plan Width": 17,
+              "Actual Startup Time": 2.923,
+              "Actual Total Time": 2.932,
+              "Actual Rows": 51,
+              "Actual Loops": 1,
+              "Index Cond": "((problem = 'Noise - Residential'::text) AND (created_at >= '2026-08-01 00:00:00'::timestamp without time zone) AND (created_at < '2026-09-01 00:00:00'::timestamp without time zone))",
+              "Rows Removed by Index Recheck": 0,
+              "Heap Fetches": 0,
+              "Shared Hit Blocks": 4,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0
+            }
+          ]
+        },
+        "Planning": {
+          "Shared Hit Blocks": 8,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 1.687,
+        "Triggers": [],
+        "Execution Time": 2.988
+      }
+    }
+  ]
+}

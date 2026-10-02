@@ -1,0 +1,225 @@
+{
+  "capturedAt": "2026-10-02T06:00:54.032Z",
+  "method": "Real API, mocked street tiles, desktop Chromium. 30 sequential scroll-to-bottom gestures load 1,550 records. Heap sampled after explicit CDP garbage collection at successive bounded windows; these samples cannot prove absence of leaks. DOM/cache caps are enforced; machine-dependent timing is reported separately.",
+  "budgets": {
+    "cachedPages": 8,
+    "cachedRows": 400,
+    "mountedRows": 20,
+    "pageBodyBytes": 50000
+  },
+  "windows": [
+    {
+      "recordsTraversed": 50,
+      "cachedPages": 1,
+      "cachedRows": 50,
+      "mountedRows": 10,
+      "heapUsedBytesAfterGC": 7009380,
+      "dom": {
+        "documents": 30,
+        "nodes": 3062,
+        "jsEventListeners": 507
+      }
+    },
+    {
+      "recordsTraversed": 400,
+      "cachedPages": 8,
+      "cachedRows": 400,
+      "mountedRows": 14,
+      "heapUsedBytesAfterGC": 8127376,
+      "dom": {
+        "documents": 30,
+        "nodes": 3130,
+        "jsEventListeners": 524
+      }
+    },
+    {
+      "recordsTraversed": 800,
+      "cachedPages": 8,
+      "cachedRows": 400,
+      "mountedRows": 14,
+      "heapUsedBytesAfterGC": 8521936,
+      "dom": {
+        "documents": 30,
+        "nodes": 3393,
+        "jsEventListeners": 570
+      }
+    },
+    {
+      "recordsTraversed": 1200,
+      "cachedPages": 8,
+      "cachedRows": 400,
+      "mountedRows": 14,
+      "heapUsedBytesAfterGC": 8586016,
+      "dom": {
+        "documents": 30,
+        "nodes": 3393,
+        "jsEventListeners": 570
+      }
+    },
+    {
+      "recordsTraversed": 1550,
+      "cachedPages": 8,
+      "cachedRows": 400,
+      "mountedRows": 14,
+      "heapUsedBytesAfterGC": 8663960,
+      "dom": {
+        "documents": 30,
+        "nodes": 3393,
+        "jsEventListeners": 570
+      }
+    }
+  ],
+  "pages": [
+    {
+      "turn": 1,
+      "settledMs": 72.03899999999976,
+      "bodyBytes": 14881
+    },
+    {
+      "turn": 2,
+      "settledMs": 89.6606670000001,
+      "bodyBytes": 14868
+    },
+    {
+      "turn": 3,
+      "settledMs": 91.04341699999986,
+      "bodyBytes": 14890
+    },
+    {
+      "turn": 4,
+      "settledMs": 102.35741599999983,
+      "bodyBytes": 14891
+    },
+    {
+      "turn": 5,
+      "settledMs": 76.63149999999996,
+      "bodyBytes": 14710
+    },
+    {
+      "turn": 6,
+      "settledMs": 32.677374999999756,
+      "bodyBytes": 14708
+    },
+    {
+      "turn": 7,
+      "settledMs": 58.78712499999983,
+      "bodyBytes": 14912
+    },
+    {
+      "turn": 8,
+      "settledMs": 251.50512500000013,
+      "bodyBytes": 14858
+    },
+    {
+      "turn": 9,
+      "settledMs": 52.55208300000004,
+      "bodyBytes": 14795
+    },
+    {
+      "turn": 10,
+      "settledMs": 72.80770800000028,
+      "bodyBytes": 15002
+    },
+    {
+      "turn": 11,
+      "settledMs": 51.69979199999989,
+      "bodyBytes": 14629
+    },
+    {
+      "turn": 12,
+      "settledMs": 61.32466699999986,
+      "bodyBytes": 14749
+    },
+    {
+      "turn": 13,
+      "settledMs": 47.618375000000015,
+      "bodyBytes": 14712
+    },
+    {
+      "turn": 14,
+      "settledMs": 55.63679199999979,
+      "bodyBytes": 15020
+    },
+    {
+      "turn": 15,
+      "settledMs": 55.57941600000004,
+      "bodyBytes": 14785
+    },
+    {
+      "turn": 16,
+      "settledMs": 59.29541699999936,
+      "bodyBytes": 14799
+    },
+    {
+      "turn": 17,
+      "settledMs": 48.56554099999994,
+      "bodyBytes": 14866
+    },
+    {
+      "turn": 18,
+      "settledMs": 50.02966699999979,
+      "bodyBytes": 14758
+    },
+    {
+      "turn": 19,
+      "settledMs": 58.377832999999555,
+      "bodyBytes": 14800
+    },
+    {
+      "turn": 20,
+      "settledMs": 52.08116700000028,
+      "bodyBytes": 14552
+    },
+    {
+      "turn": 21,
+      "settledMs": 48.07545899999968,
+      "bodyBytes": 14703
+    },
+    {
+      "turn": 22,
+      "settledMs": 52.211459000000104,
+      "bodyBytes": 14772
+    },
+    {
+      "turn": 23,
+      "settledMs": 53.70929200000046,
+      "bodyBytes": 14684
+    },
+    {
+      "turn": 24,
+      "settledMs": 56.607332999999926,
+      "bodyBytes": 14808
+    },
+    {
+      "turn": 25,
+      "settledMs": 53.63245900000038,
+      "bodyBytes": 14988
+    },
+    {
+      "turn": 26,
+      "settledMs": 102.45341700000063,
+      "bodyBytes": 14555
+    },
+    {
+      "turn": 27,
+      "settledMs": 55.02154200000041,
+      "bodyBytes": 14976
+    },
+    {
+      "turn": 28,
+      "settledMs": 53.94079099999999,
+      "bodyBytes": 14631
+    },
+    {
+      "turn": 29,
+      "settledMs": 53.2191670000002,
+      "bodyBytes": 14617
+    },
+    {
+      "turn": 30,
+      "settledMs": 76.46370800000022,
+      "bodyBytes": 14516
+    }
+  ],
+  "errors": []
+}

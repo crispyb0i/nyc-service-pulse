@@ -1,0 +1,166 @@
+{
+  "generatedAt": "2026-10-01T23:59:54.033Z",
+  "source": {
+    "title": "Borough Boundaries",
+    "publisher": "Department of City Planning (DCP)",
+    "datasetId": "gthc-hcne",
+    "description": "Boundaries of boroughs (water areas excluded).\n\nAll previously released versions of this data are available on the <a href=\"https://www.nyc.gov/content/planning/pages/resources/datasets/borough-boundaries\">DCP Website: BYTES of the BIG APPLE</a>. Current version: 26b",
+    "metadataUrl": "https://data.cityofnewyork.us/api/views/gthc-hcne.json",
+    "geojsonUrl": "https://data.cityofnewyork.us/resource/gthc-hcne.geojson?$limit=5&$order=borocode",
+    "landingPage": "https://www.nyc.gov/content/planning/pages/resources/datasets/borough-boundaries",
+    "version": "26b",
+    "rowsUpdatedAt": "2026-05-26T19:35:50.000Z",
+    "bytes": 3167672,
+    "sha256": "9c90ce27269252c5ea44d264689b294d0fc8e1828687386a711bf90d9c64c65c"
+  },
+  "neighborhoods": {
+    "title": "2020 Neighborhood Tabulation Areas (NTAs)",
+    "publisher": "Department of City Planning (DCP)",
+    "datasetId": "9nt8-h7nd",
+    "description": "2020 Neighborhood Tabulation Areas (NTAs) are medium-sized statistical geographies for reporting Decennial Census and American Community Survey (ACS). 2020 NTAs are created by aggregating 2020 census tracts and nest within Community District Tabulation Areas (CDTA). NTAs were delineated with the need for both geographic specificity and statistical reliability in mind. Consequently, each NTA contains enough population to mitigate sampling error associated with the ACS yet offers a unit of analysis that is smaller than a Community District.\n\nThough NTA boundaries and their associated names roughly correspond with many neighborhoods commonly recognized by New Yorkers, NTAs are not intended to definitively represent neighborhoods, nor are they intended to be exhaustive of all possible names and understandings of neighborhoods throughout New York City. Additionally, non-residential areas including large parks, airports, cemeteries, and other special areas are represented separately within this dataset and are assigned codes according to their type (See NTAType field).\n\nAll previously released versions of this data are available on the <a href=\"https://www.nyc.gov/content/planning/pages/resources/datasets/neighborhood-tabulation\">DCP Website: BYTES of the BIG APPLE</a>. Current version: 26b",
+    "metadataUrl": "https://data.cityofnewyork.us/api/views/9nt8-h7nd.json",
+    "geojsonUrl": "https://data.cityofnewyork.us/resource/9nt8-h7nd.geojson?$limit=500&$order=nta2020",
+    "landingPage": "https://www.nyc.gov/content/planning/pages/resources/datasets/neighborhood-tabulation",
+    "version": "26b",
+    "rowsUpdatedAt": "2026-05-28T15:11:19.000Z",
+    "sourceBytes": 4589305,
+    "sourceSha256": "4a036c53ce665a73954f260ef4f3a8c49f33d75fb2fc859fe0baf92f4b7f8af8",
+    "sourceFeatures": 262,
+    "outputFeatures": 197,
+    "outputBytes": 33355,
+    "outputSha256": "96429a4cb09e52a076d91c622763208151bff18c85405c2ec95fba6f5931c102",
+    "processing": "NTAType=0 residential statistical areas only; ST_PointOnSurface in EPSG:2263 transformed to WGS84. No NTA polygons are shipped to the browser.",
+    "caveat": "Official NTA names roughly correspond to common neighborhoods but are statistical geography, not definitive or exhaustive neighborhood names or boundaries."
+  },
+  "attribution": {
+    "text": "NYC Department of City Planning",
+    "url": "https://www.nyc.gov/content/planning/pages/resources/datasets/borough-boundaries"
+  },
+  "use": {
+    "metadataLicenseId": null,
+    "sourceIsPublicOpenData": true,
+    "termsUrl": "https://www.nyc.gov/main/terms-of-use",
+    "metadataAttachmentUrl": "https://data.cityofnewyork.us/api/views/gthc-hcne/files/f0af73fe-df03-43fe-91b3-0c0553c83008?download=true&filename=nybb_metadata.pdf",
+    "note": "NYC Open Data public download. No SPDX or Creative Commons license is assigned in the dataset metadata; do not label it CC0. DCP provides its data for informational use without a warranty of completeness, accuracy, or fitness. Retain DCP attribution and consult the linked source terms before redistribution outside this local portfolio."
+  },
+  "processing": {
+    "method": "ST_SimplifyPreserveTopology in EPSG:2263 (US survey feet), then ST_ReducePrecision to 1e-7 degrees after WGS84 transform",
+    "toleranceFeet": 45,
+    "approximateToleranceMeters": 13.716027432054863,
+    "outputCrs": "EPSG:4326 / GeoJSON longitude, latitude",
+    "postgis": "POSTGIS=\"3.5.2 dea6d0a\" [EXTENSION] PGSQL=\"170\" GEOS=\"3.9.0-CAPI-1.16.2\" PROJ=\"7.2.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 7.2.1) LIBXML=\"2.9.10\" LIBJSON=\"0.15\" LIBPROTOBUF=\"1.3.3\" WAGYU=\"0.5.0 (Internal)\" TOPOLOGY",
+    "labelMethod": "ST_PointOnSurface of the original borough polygon, transformed to WGS84; labels are display anchors, not official centroids",
+    "limitation": "Simplification preserves each borough's topology, not shared-edge topology between different boroughs. Shoreline-only contextual map, not a street map, survey, geocoder, or spatial filter. All service-request coordinates remain untouched."
+  },
+  "runtime": {
+    "externalNetworkRequests": 0,
+    "files": [
+      "/map/boroughs.geojson",
+      "/map/labels.geojson",
+      "/map/neighborhood-labels.geojson"
+    ],
+    "suggestedInitialBounds": [
+      -74.27,
+      40.49,
+      -73.69,
+      40.93
+    ]
+  },
+  "output": {
+    "boroughBytes": 186159,
+    "labelBytes": 823,
+    "sha256": "9102a6c3bf97abc043ef94e4b6b779eeb169407c387b5ee36f94abddfaaa0fc7",
+    "features": [
+      {
+        "code": "1",
+        "name": "Manhattan",
+        "source_valid": true,
+        "output_valid": true,
+        "source_points": 6124,
+        "output_points": 866,
+        "source_polygons": 36,
+        "output_polygons": 36,
+        "area_change_fraction": 0.0004177218619540065,
+        "label_on_land": true,
+        "bbox": [
+          -74.0477296,
+          40.6829169,
+          -73.906651,
+          40.879038
+        ]
+      },
+      {
+        "code": "2",
+        "name": "Bronx",
+        "source_valid": true,
+        "output_valid": true,
+        "source_points": 8980,
+        "output_points": 1458,
+        "source_polygons": 26,
+        "output_polygons": 26,
+        "area_change_fraction": 0.0002773929429132999,
+        "label_on_land": true,
+        "bbox": [
+          -73.9336059,
+          40.7853566,
+          -73.7653324,
+          40.9155328
+        ]
+      },
+      {
+        "code": "3",
+        "name": "Brooklyn",
+        "source_valid": true,
+        "output_valid": true,
+        "source_points": 20907,
+        "output_points": 1985,
+        "source_polygons": 28,
+        "output_polygons": 28,
+        "area_change_fraction": 0.00004917114067640746,
+        "label_on_land": true,
+        "bbox": [
+          -74.0418944,
+          40.56953,
+          -73.8335592,
+          40.7391148
+        ]
+      },
+      {
+        "code": "4",
+        "name": "Queens",
+        "source_valid": true,
+        "output_valid": true,
+        "source_points": 36089,
+        "output_points": 2190,
+        "source_polygons": 23,
+        "output_polygons": 23,
+        "area_change_fraction": 0.0002895133211310005,
+        "label_on_land": true,
+        "bbox": [
+          -73.9626082,
+          40.541834,
+          -73.7000202,
+          40.8010115
+        ]
+      },
+      {
+        "code": "5",
+        "name": "Staten Island",
+        "source_valid": true,
+        "output_valid": true,
+        "source_points": 8985,
+        "output_points": 970,
+        "source_polygons": 4,
+        "output_polygons": 4,
+        "area_change_fraction": 0.0003128584056363686,
+        "label_on_land": true,
+        "bbox": [
+          -74.2555319,
+          40.496134,
+          -74.0492363,
+          40.6488911
+        ]
+      }
+    ]
+  }
+}

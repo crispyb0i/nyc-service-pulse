@@ -1,0 +1,91 @@
+{
+  "before": "before",
+  "after": "after-stable-layout",
+  "method": "Medians across three runs per profile. Page statistic is median of each run’s five-page median. CLS is recomputed from raw shifts using largest 5-second session windows with <1-second gaps, excluding recent input. Earlier reports mislabeled the all-shifts sum as cls; their original files remain preserved. No field INP, FPS, or service-level claim.",
+  "profiles": {
+    "desktop": {
+      "before": {
+        "nextPageMedianMs": 856.1343330000018,
+        "nextPageRunRangeMs": [
+          842.6600830000007,
+          1409.6798750000016
+        ],
+        "coldBrowserSettlementMs": 1896.8123330000017,
+        "warmBrowserSettlementMs": 1434.4559579999986,
+        "observedEventP95Ms": 72,
+        "rafIntervalP95Ms": 16.700000000000728,
+        "cls": 0.002126010079089506,
+        "longTasks": [
+          0,
+          0,
+          0
+        ],
+        "pageRequestPaths": [
+          "/api/pulse"
+        ]
+      },
+      "after-stable-layout": {
+        "nextPageMedianMs": 109.12095799999952,
+        "nextPageRunRangeMs": [
+          100.67545900000005,
+          114.81570800000009
+        ],
+        "coldBrowserSettlementMs": 2205.3392089999998,
+        "warmBrowserSettlementMs": 2163.854417,
+        "observedEventP95Ms": 48,
+        "rafIntervalP95Ms": 16.700000000000273,
+        "cls": 0.020406459508825234,
+        "longTasks": [
+          0,
+          0,
+          0
+        ],
+        "pageRequestPaths": [
+          "/api/requests"
+        ]
+      }
+    },
+    "constrained-mobile": {
+      "before": {
+        "nextPageMedianMs": 957.4072080000042,
+        "nextPageRunRangeMs": [
+          934.8181250000052,
+          1014.2510839999959
+        ],
+        "coldBrowserSettlementMs": 4643.846500000007,
+        "warmBrowserSettlementMs": 4488.861540999998,
+        "observedEventP95Ms": 152,
+        "rafIntervalP95Ms": 16.800000000000182,
+        "cls": 0.000010888696143968938,
+        "longTasks": [
+          6,
+          6,
+          6
+        ],
+        "pageRequestPaths": [
+          "/api/pulse"
+        ]
+      },
+      "after-stable-layout": {
+        "nextPageMedianMs": 405.90620800000033,
+        "nextPageRunRangeMs": [
+          390.9180419999975,
+          437.08087499999965
+        ],
+        "coldBrowserSettlementMs": 6055.424334000003,
+        "warmBrowserSettlementMs": 3252.3955000000024,
+        "observedEventP95Ms": 80,
+        "rafIntervalP95Ms": 33.30000000000018,
+        "cls": 0.000010888696143968938,
+        "longTasks": [
+          1,
+          1,
+          2
+        ],
+        "pageRequestPaths": [
+          "/api/requests"
+        ]
+      }
+    }
+  }
+}

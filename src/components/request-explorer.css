@@ -1,0 +1,35 @@
+.explorer-toolbar { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; padding: 16px 24px; border-bottom: 1px solid #e3e9dc; }
+.explorer-toolbar > div { display: flex; border: 1px solid #c4d1b7; border-radius: 5px; overflow: hidden; }
+.explorer-toolbar button, .load-earlier { min-height: 44px; padding: 8px 12px; background: #f6f9f1; color: #36523b; font-size: 11px; }
+.explorer-toolbar button[aria-pressed="true"] { background: #315640; color: #fff; }
+.explorer-toolbar > span { color: #53664d; font-size: 11px; line-height: 1.6; }
+.explorer-scope { margin: 0; padding: 12px 24px; color: #53664d; font-size: 11px; line-height: 1.7; background: #f8faf4; }
+.explorer-feedback { min-height: 38px; padding: 9px 24px; color: #53664d; font-size: 11px; line-height: 1.6; }
+.explorer-feedback > span { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.explorer-feedback button { min-height: 44px; background: #315640; color: #fff; padding: 6px 12px; border-radius: 4px; }
+.request-open { display: block; text-align: left; width: 100%; min-height: 44px; background: transparent; padding: 4px 0; }
+.request-open:hover strong { text-decoration: underline; }
+.request-selected { background: #eef5de; }
+.requests-panel .table-scroll { height: 566px; }
+.request-virtual-scroll { height: 480px; overflow: auto; overscroll-behavior: contain; overflow-anchor: none; scrollbar-width: thin; }
+.request-virtual-list { position: relative; margin: 0; padding: 0; list-style: none; }
+.request-virtual-list li { position: absolute; top: 0; left: 0; width: 100%; padding: 0 24px; }
+.request-virtual-list button { width: 100%; height: 100%; display: flex; justify-content: space-between; gap: 20px; text-align: left; align-items: center; border-bottom: 1px solid #e2e8da; background: #fff; padding: 8px 4px; }
+.request-virtual-list button:hover, .request-virtual-list button[aria-pressed="true"] { background: #f1f6e7; }
+.request-virtual-list button > span { min-width: 0; }
+.request-virtual-list button > span:last-child { flex-shrink: 0; text-align: right; }
+.request-virtual-list strong { display: block; color: #344e39; font-size: 12px; }
+.request-virtual-list b { display: block; color: #52644c; font-size: 10px; font-weight: 500; }
+.request-virtual-list small { display: block; margin-top: 6px; color: #596b52; font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.request-virtual-list button:focus-visible { outline-offset: -3px; }
+.load-earlier { margin: 8px 24px; border: 1px solid #c4d1b7; border-radius: 4px; }
+@media (max-width: 620px) {
+  .requests-panel .table-scroll { height: 454px; }
+  .explorer-toolbar { padding: 12px 15px; gap: 9px; }
+  .explorer-scope, .explorer-feedback { padding-left: 15px; padding-right: 15px; }
+  .request-virtual-list li { padding: 0 12px; }
+  .request-virtual-list button { gap: 8px; }
+  .request-virtual-list strong { font-size: 11px; }
+  .request-virtual-list small { max-width: 160px; font-size: 9px; }
+  .request-virtual-list button > span:last-child { max-width: 116px; }
+}

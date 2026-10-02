@@ -1,0 +1,18 @@
+{
+  "provider": "Neon",
+  "project": "nyc-service-pulse",
+  "region": "aws-us-east-1",
+  "postgresMajor": 17,
+  "plan": "free",
+  "requests": 328892,
+  "geocoded": 322590,
+  "databaseSize": "199 MB",
+  "appRole": "pulse_reader",
+  "pooledConnection": true,
+  "tls": "verify-full",
+  "readVerified": true,
+  "noOpWriteDenied": true,
+  "importTargetWasEmpty": true,
+  "suspendPolicy": "Free-plan default: suspend after five minutes idle (API value 0 means default).",
+  "plannerStatisticsRefreshed": true
+}

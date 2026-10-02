@@ -1,0 +1,19 @@
+
+> nyc-service-pulse@0.1.0 test:ui
+> playwright test tests/map-ui.spec.ts --reporter=list
+
+
+Running 8 tests using 1 worker
+
+(node:63721) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/map-ui.spec.ts:30:1 › real map aggregates retain every geocoded request and share dashboard filters (3.8s)
+  ✓  2 tests/map-ui.spec.ts:47:1 › map rejects unsafe viewport parameters and caps detail mode without truncating dense areas (1.9s)
+  ✓  3 tests/map-ui.spec.ts:144:1 › desktop map shares filters, zooms clusters, supports keyboard exploration, and opens real request details (21.0s)
+  ✓  4 tests/map-ui.spec.ts:224:1 › mobile map contains its controls, geography, feature list, and horizontal layout (3.5s)
+  ✓  5 tests/map-ui.spec.ts:265:1 › map has explicit loading, empty, error, and retry states without losing dashboard totals (5.2s)
+  ✓  6 tests/map-ui.spec.ts:295:1 › local geography failure offers a working retry (4.3s)
+  ✓  7 tests/map-ui.spec.ts:306:1 › delayed filter responses cannot restore old counts, markers, list items, or request details (8.1s)
+  ✓  8 tests/map-ui.spec.ts:342:1 › delayed pan responses cannot overwrite a newer viewport (4.0s)
+
+  8 passed (56.1s)

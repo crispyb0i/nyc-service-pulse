@@ -1,0 +1,76 @@
+{
+  "output": "reports/readiness-before.json",
+  "status": "passed",
+  "runs": [
+    {
+      "device": "desktop",
+      "sample": 1,
+      "status": "passed",
+      "navigationToMapReadyMs": 5241.5,
+      "nodeAssertionsAndTwoFramesSettledMs": 5397.371000000001
+    },
+    {
+      "device": "desktop",
+      "sample": 2,
+      "status": "passed",
+      "navigationToMapReadyMs": 2685.699999809265,
+      "nodeAssertionsAndTwoFramesSettledMs": 2810.2164589999993
+    },
+    {
+      "device": "desktop",
+      "sample": 3,
+      "status": "passed",
+      "navigationToMapReadyMs": 3669.899999856949,
+      "nodeAssertionsAndTwoFramesSettledMs": 3753.4965420000008
+    },
+    {
+      "device": "desktop",
+      "sample": 4,
+      "status": "passed",
+      "navigationToMapReadyMs": 2748.7999999523163,
+      "nodeAssertionsAndTwoFramesSettledMs": 2874.188583000001
+    },
+    {
+      "device": "desktop",
+      "sample": 5,
+      "status": "passed",
+      "navigationToMapReadyMs": 2322.699999809265,
+      "nodeAssertionsAndTwoFramesSettledMs": 2451.9905419999996
+    },
+    {
+      "device": "mobile",
+      "sample": 1,
+      "status": "passed",
+      "navigationToMapReadyMs": 3977.5,
+      "nodeAssertionsAndTwoFramesSettledMs": 4096.25275
+    },
+    {
+      "device": "mobile",
+      "sample": 2,
+      "status": "passed",
+      "navigationToMapReadyMs": 2708.2999999523163,
+      "nodeAssertionsAndTwoFramesSettledMs": 2806.7292909999996
+    },
+    {
+      "device": "mobile",
+      "sample": 3,
+      "status": "passed",
+      "navigationToMapReadyMs": 4360.300000190735,
+      "nodeAssertionsAndTwoFramesSettledMs": 4454.217667000001
+    },
+    {
+      "device": "mobile",
+      "sample": 4,
+      "status": "passed",
+      "navigationToMapReadyMs": 3391,
+      "nodeAssertionsAndTwoFramesSettledMs": 3493.209041999995
+    },
+    {
+      "device": "mobile",
+      "sample": 5,
+      "status": "passed",
+      "navigationToMapReadyMs": 3369.7999999523163,
+      "nodeAssertionsAndTwoFramesSettledMs": 3445.6428339999984
+    }
+  ]
+}

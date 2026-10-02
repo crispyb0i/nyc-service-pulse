@@ -13,11 +13,11 @@ export function createGetHandler<T>(load: (params: URLSearchParams) => Promise<T
       } });
     } catch (error) {
       const invalid = error instanceof FilterError;
-      if (!invalid) console.error("[api] Unable to read the local service request database.");
+      if (!invalid) console.error("[api] Unable to read the service request database.");
       return Response.json({
         error: {
           code: invalid ? "INVALID_FILTERS" : "DATA_UNAVAILABLE",
-          message: invalid ? error.message : "The local database is unavailable. Check that PostgreSQL is running and the schema is installed, then try again.",
+          message: invalid ? error.message : "The data service is temporarily unavailable. Please try again in a moment.",
         },
       }, { status: invalid ? 400 : 503, headers: { "Cache-Control": "no-store" } });
     }

@@ -1,23 +1,24 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { PulseResponse, ProblemsResponse } from "@/lib/types";
 import RequestMap from "@/components/request-map";
+import RequestExplorer from "@/components/request-explorer";
+import { DEFAULT_FILTERS, FIRST_PAGE, explorerParams, parseExplorerState, type Camera, type ExplorerState, type PageAnchor } from "@/lib/explorer-state";
+import type { MapBounds } from "@/lib/map-types";
+import type { LocatedRequest } from "@/lib/request-types";
 import {
-  ArrowDown,
   ArrowDownRight,
   ArrowUpRight,
   ChartNoAxesCombined,
   Check,
   ChevronDown,
-  ChevronLeft,
   ChevronRight,
   CircleHelp,
   Clock3,
   Database,
   ExternalLink,
   Filter,
-  ListFilter,
   MapPinOff,
   Map,
   RefreshCw,
@@ -33,7 +34,7 @@ type DailyCount = { date: string; count: number };
 type PulseData = PulseResponse;
 type Problem = { name: string; count: number };
 
-const INITIAL_FILTERS: Filters = { from: "2026-08-01", to: "2026-08-31", problem: "" };
+const INITIAL_FILTERS = DEFAULT_FILTERS;
 const number = new Intl.NumberFormat("en-US");
 const compactNumber = new Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 });
 const SOURCE_URL = "https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2020-to-Present/erm2-nwe9";
@@ -46,18 +47,6 @@ function displayDate(value: string, withYear = false) {
   return `${months[Number(month) - 1] ?? month} ${Number(day)}${withYear ? `, ${year}` : ""}`;
 }
 
-function displayTime(value: string) {
-  const match = value.match(/T(\d{2}):(\d{2})/);
-  if (!match) return "Time unavailable";
-  const hours = Number(match[1]);
-  return `${hours % 12 || 12}:${match[2]} ${hours >= 12 ? "PM" : "AM"}`;
-}
-
-function titleCase(value: string | null) {
-  if (!value || value.toUpperCase() === "UNSPECIFIED") return "Unspecified";
-  return value.toLowerCase().replace(/\b\w/g, (letter) => letter.toUpperCase());
-}
-
 function humanDuration(hours: number | null) {
   if (hours === null || !Number.isFinite(hours)) return { value: "—", unit: "" };
   if (hours < 48) return { value: hours.toFixed(1), unit: "hrs" };
@@ -65,17 +54,6 @@ function humanDuration(hours: number | null) {
 }
 
 type InitialQuery = Record<string, string | string[] | undefined>;
-
-function filtersFromQuery(query: InitialQuery): Filters {
-  const validDate = (value: unknown): value is string => typeof value === "string" && /^2026-08-(0[1-9]|[12]\d|3[01])$/.test(value);
-  const from = validDate(query.from) ? query.from : INITIAL_FILTERS.from;
-  const to = validDate(query.to) ? query.to : INITIAL_FILTERS.to;
-  return { from: from <= to ? from : INITIAL_FILTERS.from, to, problem: typeof query.problem === "string" ? query.problem : "" };
-}
-
-function readUrlFilters(): Filters {
-  return filtersFromQuery(Object.fromEntries(new URLSearchParams(window.location.search)));
-}
 
 function PulseMark({ small = false }: { small?: boolean }) {
   return <span aria-hidden="true" className={`pulse-mark${small ? " pulse-mark-small" : ""}`}><i /><i /><i /><i /></span>;
@@ -85,7 +63,16 @@ function MetricSkeleton() {
   return <div className="metric-grid" aria-label="Loading summary"><div className="metric-card skeleton-card"><span /><b /><i /></div><div className="metric-card skeleton-card"><span /><b /><i /></div><div className="metric-card skeleton-card"><span /><b /><i /></div><div className="metric-card skeleton-card"><span /><b /><i /></div></div>;
 }
 
-function DailyChart({ daily, total }: { daily: DailyCount[]; total: number }) {
+function ChartSkeleton() {
+  return <section className="panel chart-panel" aria-label="Loading daily activity">
+    <div className="panel-heading"><div><div className="eyebrow">THE DAILY PICTURE</div><h2>Service requests over time</h2></div><div className="chart-key"><span /> Requests created</div></div>
+    <div className="chart-summary"><div><strong aria-hidden="true">—</strong><span>Loading daily activity…</span></div><span className="peak-note" aria-hidden="true">&nbsp;</span></div>
+    <div className="chart" aria-hidden="true"><div className="chart-axis" /><div className="chart-plot"><div className="chart-bars">{Array.from({ length: 31 }, (_, index) => <div className="chart-column" key={index}><i className="chart-bar" style={{ height: `${25 + (index * 17 % 65)}%` }} /></div>)}</div></div></div>
+    <div className="chart-footer"><span>Daily totals by creation date. Select a bar to filter every view to that day.</span><span>AUGUST 2026</span></div>
+  </section>;
+}
+
+function DailyChart({ daily, total, onSelectDay }: { daily: DailyCount[]; total: number; onSelectDay: (day: string) => void }) {
   const [active, setActive] = useState<DailyCount | null>(null);
   const highest = Math.max(0, ...daily.map((day) => day.count));
   const ceiling = highest === 0 ? 100 : Math.ceil(highest / (highest > 10000 ? 5000 : highest > 1000 ? 1000 : highest > 100 ? 100 : 10)) * (highest > 10000 ? 5000 : highest > 1000 ? 1000 : highest > 100 ? 100 : 10);
@@ -118,7 +105,7 @@ function DailyChart({ daily, total }: { daily: DailyCount[]; total: number }) {
                   onMouseLeave={() => setActive(null)}
                   onFocus={() => setActive(day)}
                   onBlur={() => setActive(null)}
-                  onClick={() => setActive(day)}
+                  onClick={() => onSelectDay(day.date)}
                 >
                   <span className="chart-tooltip" aria-hidden="true"><b>{number.format(day.count)}</b>{displayDate(day.date)}</span>
                 </button>
@@ -129,60 +116,49 @@ function DailyChart({ daily, total }: { daily: DailyCount[]; total: number }) {
           {total === 0 && <div className="chart-empty"><Search size={23} /><strong>No requests in this view</strong><span>Try a different problem or a wider date range.</span></div>}
         </div>
       </div>
-      <div className="chart-footer"><span id="chart-description">Daily totals by creation date. Hover or focus a bar to explore.</span><span>AUGUST 2026</span></div>
-    </section>
-  );
-}
-
-function RequestsTable({ data, page, onPrevious, onNext }: { data: PulseData; page: number; onPrevious: () => void; onNext: () => void }) {
-  return (
-    <section id="requests" className="panel requests-panel" aria-labelledby="requests-title">
-      <div className="panel-heading">
-        <div><div className="eyebrow">BEHIND THE NUMBERS</div><h2 id="requests-title">Explore the requests <span className="count-pill">{number.format(data.summary.total)}</span></h2></div>
-        <span className="table-order"><ArrowDown size={13} /> Newest first</span>
-      </div>
-      {data.requests.length === 0 ? (
-        <div className="table-empty"><ListFilter size={28} /><h3>No matching requests</h3><p>Change the filters above to explore another part of the month.</p></div>
-      ) : (
-        <div className="table-scroll" tabIndex={0} role="region" aria-label="Service request records. Scroll for more rows.">
-          <table>
-            <thead><tr><th scope="col">Created <ArrowDown size={11} /></th><th scope="col">Problem / detail</th><th scope="col">Borough</th><th scope="col">Agency</th><th scope="col">Status</th><th scope="col" className="id-heading">Request ID</th></tr></thead>
-            <tbody>
-              {data.requests.map((request) => (
-                <tr key={request.id}>
-                  <td className="created-cell"><strong>{displayDate(request.createdAt)}</strong><span>{displayTime(request.createdAt)}</span></td>
-                  <td className="problem-cell"><strong>{request.problem || "Unspecified"}</strong><span title={request.detail ?? undefined}>{request.detail || "No detail provided"}</span></td>
-                  <td className="borough-cell">{titleCase(request.borough)}</td>
-                  <td><span className="agency-badge">{request.agency || "—"}</span></td>
-                  <td><span className={`status-badge ${request.status?.toLowerCase() === "closed" ? "status-closed" : "status-other"}`}><span />{request.status || "Unknown"}</span></td>
-                  <td className="request-id">{request.id}{Boolean(request.qualityFlags?.length) && <span className="quality-indicator" tabIndex={0} role="img" aria-label={`Data quality flags: ${request.qualityFlags!.join(", ")}`} title={`Data quality flags: ${request.qualityFlags!.join(", ")}`}><TriangleAlert size={12} /></span>}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-      <div className="table-pagination"><span><b>{number.format(data.requests.length)}</b> requests on page <b>{page}</b><span className="pagination-detail"> · {number.format(data.summary.total)} matching</span></span><div><button type="button" onClick={onPrevious} disabled={page === 1} aria-label="Previous page"><ChevronLeft size={15} /> Previous</button><button type="button" onClick={onNext} disabled={!data.nextCursor} aria-label="Next page">Next <ChevronRight size={15} /></button></div></div>
+      <div className="chart-footer"><span id="chart-description">Daily totals by creation date. Select a bar to filter every view to that day.</span><span>AUGUST 2026</span></div>
     </section>
   );
 }
 
 export default function PulseDashboard({ initialQuery = {} }: { initialQuery?: InitialQuery }) {
-  const [filters, setFilters] = useState<Filters>(() => filtersFromQuery(initialQuery));
-  const [cursorStack, setCursorStack] = useState<Array<string | null>>([null]);
+  const [view, setView] = useState<ExplorerState>(() => parseExplorerState(new URLSearchParams(Object.entries(initialQuery).filter((entry): entry is [string, string] => typeof entry[1] === "string"))));
+  const viewRef = useRef(view);
+  const filters = view.filters;
+  const anchor = useMemo(() => ({ cursor: view.cursor, direction: view.direction, page: view.page }), [view.cursor, view.direction, view.page]);
+  const navigate = useCallback((patch: Partial<ExplorerState>, replace = false) => {
+    const next = { ...viewRef.current, ...patch };
+    const params = explorerParams(next).toString();
+    if (params === explorerParams(viewRef.current).toString()) return;
+    viewRef.current = next;
+    window.history[replace ? "replaceState" : "pushState"](null, "", `${window.location.pathname}?${params}${window.location.hash}`);
+    setView(next);
+  }, []);
+  const navigatePage = useCallback((next: PageAnchor, replace = false) => navigate(next, replace), [navigate]);
+  const selectRequest = useCallback((id: string | null) => navigate({ request: id }), [navigate]);
+  const moveMap = useCallback((camera: Camera) => navigate({ camera }, true), [navigate]);
+  const searchArea = useCallback((area: MapBounds) => { navigate({ area, request: null, ...FIRST_PAGE }); document.getElementById("requests")?.scrollIntoView({ block: "start" }); }, [navigate]);
+  const clearArea = useCallback(() => navigate({ area: null, ...FIRST_PAGE }), [navigate]);
+  const changeMode = useCallback((mode: "pages" | "continuous") => navigate({ mode }), [navigate]);
+  const [requestDetail, setRequestDetail] = useState<{ id: string; request: LocatedRequest | null; error: string | null } | null>(null);
+  const [detailRetry, setDetailRetry] = useState(0);
+  const focusedRequest = requestDetail?.id === view.request ? requestDetail.request : null;
   const [result, setResult] = useState<{ key: string; data: PulseData | null; error: string | null } | null>(null);
   const [problems, setProblems] = useState<Problem[]>([]);
   const [problemError, setProblemError] = useState(false);
   const [retry, setRetry] = useState(0);
   const [activeSection, setActiveSection] = useState("overview");
-  const cursor = cursorStack[cursorStack.length - 1];
-  const requestKey = JSON.stringify([filters.from, filters.to, filters.problem, cursor, retry]);
+  const requestKey = JSON.stringify([filters.from, filters.to, filters.problem, retry]);
   const loading = result?.key !== requestKey;
   const data = result?.data ?? null;
   const error = loading ? null : result?.error ?? null;
 
   useEffect(() => {
-    const onPopState = () => { setFilters(readUrlFilters()); setCursorStack([null]); };
+    const onPopState = () => {
+      const next = parseExplorerState(new URLSearchParams(window.location.search));
+      viewRef.current = next;
+      setView(next);
+    };
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
   }, []);
@@ -200,23 +176,20 @@ export default function PulseDashboard({ initialQuery = {} }: { initialQuery?: I
     const controller = new AbortController();
     const params = new URLSearchParams({ from: filters.from, to: filters.to });
     if (filters.problem) params.set("problem", filters.problem);
-    const urlParams = params.toString();
-    window.history.replaceState(null, "", `${window.location.pathname}?${urlParams}${window.location.hash}`);
-    if (cursor) params.set("cursor", cursor);
     fetch(`/api/pulse?${params.toString()}`, { signal: controller.signal })
       .then(async (response) => {
         const result = await response.json();
-        if (!response.ok) throw new Error(typeof result.error?.message === "string" ? result.error.message : typeof result.error === "string" ? result.error : "The local data service could not load this view.");
+        if (!response.ok) throw new Error(typeof result.error?.message === "string" ? result.error.message : typeof result.error === "string" ? result.error : "The data service could not load this view.");
         return result as PulseData;
       })
       .then((data) => { if (!controller.signal.aborted) setResult({ key: requestKey, data, error: null }); })
       .catch((reason: Error) => {
         if (reason.name !== "AbortError") {
-          setResult({ key: requestKey, data: null, error: reason.message || "The local data service could not load this view." });
+          setResult({ key: requestKey, data: null, error: reason.message || "The data service could not load this view." });
         }
       });
     return () => controller.abort();
-  }, [filters.from, filters.to, filters.problem, cursor, requestKey]);
+  }, [filters.from, filters.to, filters.problem, requestKey]);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -226,16 +199,25 @@ export default function PulseDashboard({ initialQuery = {} }: { initialQuery?: I
     return () => observer.disconnect();
   }, [data, loading]);
 
-  const updateFilters = useCallback((update: Partial<Filters>) => {
-    setFilters((current) => {
-      const next = { ...current, ...update };
-      if (next.from > next.to) { if (update.from) next.to = next.from; else next.from = next.to; }
-      return next;
-    });
-    setCursorStack([null]);
-  }, []);
+  useEffect(() => {
+    if (!view.request) return;
+    const abort = new AbortController();
+    const id = view.request;
+    fetch(`/api/request?${new URLSearchParams({ id })}`, { signal: abort.signal }).then(async (response) => {
+      const body = await response.json();
+      if (!response.ok) throw new Error(body.error?.message ?? "Request details could not load.");
+      if (!abort.signal.aborted) setRequestDetail({ id, request: body.request, error: body.request ? null : "This request was not found in the August snapshot." });
+    }).catch((reason) => { if (!abort.signal.aborted) setRequestDetail({ id, request: null, error: reason instanceof Error ? reason.message : "Request details could not load." }); });
+    return () => abort.abort();
+  }, [view.request, detailRetry]);
 
-  const resetFilters = () => { setFilters(INITIAL_FILTERS); setCursorStack([null]); };
+  const updateFilters = useCallback((update: Partial<Filters>) => {
+    const next = { ...viewRef.current.filters, ...update };
+    if (next.from > next.to) { if (update.from) next.to = next.from; else next.from = next.to; }
+    navigate({ filters: next, request: null, ...FIRST_PAGE });
+  }, [navigate]);
+  const selectDay = useCallback((day: string) => updateFilters({ from: day, to: day }), [updateFilters]);
+  const resetFilters = () => navigate({ filters: INITIAL_FILTERS, area: null, request: null, ...FIRST_PAGE });
   const filtered = filters.problem !== "" || filters.from !== INITIAL_FILTERS.from || filters.to !== INITIAL_FILTERS.to;
   const duration = humanDuration(data?.summary.medianClosureHours ?? null);
   const period = `${displayDate(filters.from)}–${displayDate(filters.to)}`;
@@ -279,14 +261,14 @@ export default function PulseDashboard({ initialQuery = {} }: { initialQuery?: I
             {problemError && <p className="field-error" id="problem-error">Problem types could not load. <button type="button" onClick={() => setRetry((value) => value + 1)}>Try again</button></p>}
           </section>
 
-          <div className="view-context"><span><span className={`context-dot${loading ? " is-loading" : ""}`} /><span aria-live="polite" role="status">{loading ? !data ? "Loading the local August dataset…" : "Updating chart and requests…" : error ? "Local data unavailable" : `${filters.problem || "All problem types"} · ${period}, 2026`}</span></span><span className="scope-note"><Filter size={11} /> Filters apply to every view</span></div>
+          <div className="view-context"><span><span className={`context-dot${loading ? " is-loading" : ""}`} /><span aria-live="polite" role="status">{loading ? !data ? "Loading the August snapshot…" : "Updating chart and requests…" : error ? "Data unavailable" : `${filters.problem || "All problem types"} · ${period}, 2026`}</span></span><span className="scope-note"><Filter size={11} /> Filters apply to every view</span></div>
 
-          {importStatus && importStatus !== "validated" && !error && <div className="import-notice" role="status"><TriangleAlert size={15} /><span><strong>{importStatus === "running" ? "Import in progress." : importStatus === "not_started" ? "The August dataset is not imported yet." : "Import validation is pending."}</strong> {importStatus === "not_started" ? "Run the local import to populate this dashboard." : "Counts may be partial until the full month has been reconciled with the source."}</span></div>}
+          {importStatus && importStatus !== "validated" && !error && <div className="import-notice" role="status"><TriangleAlert size={15} /><span><strong>{importStatus === "running" ? "Import in progress." : importStatus === "not_started" ? "The August dataset is not imported yet." : "Import validation is pending."}</strong> {importStatus === "not_started" ? "The snapshot is being prepared. Please check back shortly." : "Counts may be partial until the full month has been reconciled with the source."}</span></div>}
 
           {error ? (
-            <section className="error-panel" role="alert"><span className="error-icon"><Database size={26} /></span><div><div className="eyebrow">LET’S RECONNECT</div><h2>This view couldn’t load.</h2><p>{error}</p><p className="error-hint">Check that the local database is running and the August import is available.</p><button type="button" className="primary-button" onClick={() => setRetry((value) => value + 1)}><RefreshCw size={15} /> Try again</button></div></section>
+            <section className="error-panel" role="alert"><span className="error-icon"><Database size={26} /></span><div><div className="eyebrow">LET’S RECONNECT</div><h2>This view couldn’t load.</h2><p>{error}</p><p className="error-hint">Your filters are saved. Retry to load this view again.</p><button type="button" className="primary-button" onClick={() => setRetry((value) => value + 1)}><RefreshCw size={15} /> Try again</button></div></section>
           ) : loading && !data ? (
-            <div aria-busy="true"><MetricSkeleton /><div className="panel chart-loading"><div className="skeleton-line" /><div className="skeleton-chart" aria-label="Loading daily activity">{Array.from({ length: 31 }, (_, index) => <i key={index} style={{ height: `${25 + (index * 17 % 65)}%` }} />)}</div></div><div className="panel table-loading"><div className="skeleton-line" />{Array.from({ length: 5 }, (_, index) => <div className="skeleton-row" key={index} />)}</div></div>
+            <div aria-busy="true"><MetricSkeleton /><ChartSkeleton /></div>
           ) : data ? (
             <div className={`data-content${loading ? " data-updating" : ""}`} aria-busy={loading} inert={loading}>
               {loading && <div className="updating-overlay"><span><RefreshCw size={15} /> Updating this view</span></div>}
@@ -296,18 +278,21 @@ export default function PulseDashboard({ initialQuery = {} }: { initialQuery?: I
                 <article className="metric-card"><div className="metric-label">Median time to close <span className="metric-icon"><Clock3 size={15} /></span></div><strong className="metric-value">{duration.value}<span>{duration.unit}</span></strong><div className="metric-foot">Across {number.format(data.summary.validClosureCount)} valid closed requests</div><span className="metric-definition">Created → closed</span></article>
                 <article className="metric-card"><div className="metric-label">Without coordinates <span className="metric-icon"><MapPinOff size={15} /></span></div><strong className="metric-value">{number.format(data.summary.missingCoordinates)}</strong><div className="metric-foot">Included in totals and table</div><span className="metric-definition">{data.summary.total ? (data.summary.missingCoordinates / data.summary.total * 100).toFixed(1) : "0.0"}% of this view</span></article>
               </section>
-              <DailyChart daily={data.daily} total={data.summary.total} />
-              <RequestMap filters={filters} missingCoordinates={loading ? null : data.summary.missingCoordinates} />
-              <RequestsTable data={data} page={cursorStack.length} onPrevious={() => setCursorStack((stack) => stack.slice(0, -1))} onNext={() => { if (data.nextCursor) setCursorStack((stack) => [...stack, data.nextCursor]); }} />
+              <DailyChart daily={data.daily} total={data.summary.total} onSelectDay={selectDay} />
             </div>
           ) : null}
 
+          <RequestMap filters={filters} missingCoordinates={loading ? null : data?.summary.missingCoordinates ?? null} camera={view.camera} onCameraChange={moveMap} onSearchArea={searchArea} focusedRequest={focusedRequest} onSelectRequest={selectRequest} />
+          {view.request && requestDetail?.id !== view.request && <p className="explorer-scope" role="status">Loading request details…</p>}
+          {view.request && requestDetail?.id === view.request && requestDetail.error && <div className="explorer-feedback" role="alert">{requestDetail.error} <button type="button" onClick={() => setDetailRetry((n) => n + 1)}>Retry request details</button> <button type="button" onClick={() => selectRequest(null)}>Dismiss</button></div>}
+          {!loading && data && !error && <RequestExplorer key={`${requestKey}:${JSON.stringify(view.area)}:${data.meta.generatedAt}`} filters={filters} area={view.area} seed={data} anchor={anchor} mode={view.mode} selectedId={view.request} onNavigate={navigatePage} onModeChange={changeMode} onSelect={selectRequest} onClearArea={clearArea} />}
+
           <section id="methodology" className="methodology" aria-labelledby="methodology-title">
             <div className="methodology-heading"><span className="method-icon"><ShieldCheck size={18} /></span><div><div className="eyebrow">TRANSPARENCY, BY DESIGN</div><h2 id="methodology-title">A little context goes a long way.</h2></div><a href={SOURCE_URL} target="_blank" rel="noreferrer">View source <ArrowUpRight size={15} /></a></div>
-            <div className="methodology-grid"><div><span>01 / THE SCOPE</span><p>311 requests created August 1–31, 2026, across all five boroughs. A local snapshot of a source that continues to change.</p></div><div><span>02 / THE CLOCK</span><p>Source timestamps are preserved and displayed as publisher-local New York time, an assumption. Closing times use valid, nonnegative intervals for closed requests.</p></div><div><span>03 / THE WHOLE PICTURE</span><p>Requests without coordinates remain in the totals and table. “Closed” describes the source status; it does not prove the underlying issue was resolved.</p></div></div>
-            {sourceMeta && <p className="source-fetched">Local data fetched: <time dateTime={sourceMeta}>{sourceMeta.replace("T", " ").replace(/\.\d{3}Z$/, " UTC")}</time>{data?.meta.lastValidatedAt && <span> · Cohort reconciled against the source</span>}</p>}
+            <div className="methodology-grid"><div><span>01 / THE SCOPE</span><p>311 requests created August 1–31, 2026, across all five boroughs. A recorded snapshot of a source that continues to change.</p></div><div><span>02 / THE CLOCK</span><p>Source timestamps are preserved and displayed as publisher-local New York time, an assumption. Closing times use valid, nonnegative intervals for closed requests.</p></div><div><span>03 / THE WHOLE PICTURE</span><p>Requests without coordinates remain in the totals and table. “Closed” describes the source status; it does not prove the underlying issue was resolved.</p></div></div>
+            {sourceMeta && <p className="source-fetched">Snapshot fetched: <time dateTime={sourceMeta}>{sourceMeta.replace("T", " ").replace(/\.\d{3}Z$/, " UTC")}</time>{data?.meta.lastValidatedAt && <span> · Cohort reconciled against the source</span>}</p>}
           </section>
-          <footer className="page-footer"><span><PulseMark small /> NYC SERVICE PULSE</span><span>Small signals. A bigger picture.</span><a href="#overview">Back to top <ArrowUpRight size={13} /></a></footer>
+          <footer className="page-footer"><span><PulseMark small /> NYC SERVICE PULSE</span><a href="https://github.com/crispyb0i/nyc-service-pulse/blob/main/docs/portfolio-case-study.md" target="_blank" rel="noreferrer">Engineering case study <ArrowUpRight size={13} /></a><a href="#overview">Back to top <ArrowUpRight size={13} /></a></footer>
         </main>
       </div>
     </div>

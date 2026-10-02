@@ -1,0 +1,37 @@
+
+> nyc-service-pulse@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+﹣ PostgreSQL filters, date quality, empty states and microsecond keyset pagination (2.300584ms) # SKIP
+[api] Unable to read the local service request database.
+✔ bad filters return a useful 400 and do not reach the data loader (180.744583ms)
+✔ database failures are 503 responses with no connection string or SQL details (4.271584ms)
+✔ successful empty data is 200, distinct from an unavailable database (0.965167ms)
+﹣ lost checked-out connections return 503 and are replaced without uncaught errors (3.188209ms) # SKIP
+✔ filter defaults cover only the complete August cohort (3.437083ms)
+✔ rejects invalid, reversed, out-of-cohort and ambiguous query dates (1.369208ms)
+✔ keeps complaint filters as SQL parameters with an exclusive next-day boundary (0.181375ms)
+✔ cursor roundtrips microsecond timestamps and text IDs without timezone conversion (0.370625ms)
+✔ cursors cannot be reused across complaint or date filters (0.198084ms)
+✔ cursor validation rejects impossible times and dates outside the selected interval (0.184ms)
+﹣ PostgreSQL page upsert, rollback, resume, dedup and stale-source protection (0.446084ms) # SKIP
+✔ floating source dates keep their exact clock and microseconds (13.44125ms)
+✔ invalid dates and coordinates survive as raw values with quality flags (0.434292ms)
+✔ missing labels have filterable Unknown values and explicit flags (0.115625ms)
+✔ unique_key text ordering, deduplication, and resume cursor cannot skip a bad page (4.014ms)
+✔ daily request is bounded, keyset-resumable, and uses source update overlap (2.107167ms)
+✔ daily reconciliation rejects missing IDs, duplicates, and shifted dates (0.374042ms)
+✔ system updated_at supports timestamp and epoch formats (0.109208ms)
+﹣ PostGIS map conserves viewport counts, filter scope, boundary points and bounded detail (1.686375ms) # SKIP
+✔ map validates bounds and reuses the shared inclusive August filter (3.708958ms)
+✔ wide legal viewports clip to NYC and disjoint viewports avoid all database queries (13.750375ms)
+✔ grid adapts to viewport size and guarantees at most 400 cells even at spoofed high zoom (0.958541ms)
+✔ invalid map params use the existing structured 400 response (35.26025ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 4
+ℹ todo 0
+ℹ duration_ms 429.51075

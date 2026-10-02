@@ -1,0 +1,1 @@
+Two early failures: a virtual-list assertion raced the scroll render and footer contrast remained below AA. Four later failures occurred because the local production assets were rebuilt while the suite was running. The full suite was restarted against a stable build after correcting the assertion and contrast.

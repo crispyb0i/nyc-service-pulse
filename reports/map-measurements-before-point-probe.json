@@ -1,0 +1,503 @@
+{
+  "measuredAt": "2026-10-02T00:16:33.084Z",
+  "environment": "Local production Next server; same Docker PostgreSQL17/PostGIS3.5 amd64 emulation,1GB/1.5CPUs. One initial+5 sequential warm samples; uncompressed JSON bytes; no concurrent project tests during run. HTTP timing is request-through-body, not FPS.",
+  "measurements": [
+    {
+      "name": "defaultDesktop",
+      "bounds": [
+        -74.583301,
+        40.372214,
+        -73.398603,
+        41.046466
+      ],
+      "zoom": 9.5,
+      "problem": null,
+      "path": "/api/map?from=2026-08-01&to=2026-08-31&west=-74.583301&south=40.372214&east=-73.398603&north=41.046466&zoom=9.5",
+      "first": {
+        "ms": 503.41,
+        "bytes": 3215,
+        "features": 15,
+        "count": 322590,
+        "mode": "grid"
+      },
+      "warmMedianMs": 426.9,
+      "warmMaxMs": 841.84,
+      "samples": [
+        {
+          "ms": 503.41,
+          "bytes": 3215,
+          "features": 15,
+          "count": 322590,
+          "mode": "grid"
+        },
+        {
+          "ms": 841.84,
+          "bytes": 3213,
+          "features": 15,
+          "count": 322590,
+          "mode": "grid"
+        },
+        {
+          "ms": 581.53,
+          "bytes": 3211,
+          "features": 15,
+          "count": 322590,
+          "mode": "grid"
+        },
+        {
+          "ms": 426.9,
+          "bytes": 3212,
+          "features": 15,
+          "count": 322590,
+          "mode": "grid"
+        },
+        {
+          "ms": 334.1,
+          "bytes": 3211,
+          "features": 15,
+          "count": 322590,
+          "mode": "grid"
+        },
+        {
+          "ms": 387.2,
+          "bytes": 3215,
+          "features": 15,
+          "count": 322590,
+          "mode": "grid"
+        }
+      ]
+    },
+    {
+      "name": "city",
+      "bounds": [
+        -74.6,
+        40.3,
+        -73.4,
+        41.15
+      ],
+      "zoom": 10.5,
+      "problem": null,
+      "path": "/api/map?from=2026-08-01&to=2026-08-31&west=-74.6&south=40.3&east=-73.4&north=41.15&zoom=10.5",
+      "first": {
+        "ms": 496.98,
+        "bytes": 8060,
+        "features": 41,
+        "count": 322590,
+        "mode": "grid"
+      },
+      "warmMedianMs": 495.01,
+      "warmMaxMs": 756.04,
+      "samples": [
+        {
+          "ms": 496.98,
+          "bytes": 8060,
+          "features": 41,
+          "count": 322590,
+          "mode": "grid"
+        },
+        {
+          "ms": 495.01,
+          "bytes": 8069,
+          "features": 41,
+          "count": 322590,
+          "mode": "grid"
+        },
+        {
+          "ms": 329.95,
+          "bytes": 8067,
+          "features": 41,
+          "count": 322590,
+          "mode": "grid"
+        },
+        {
+          "ms": 755.77,
+          "bytes": 8058,
+          "features": 41,
+          "count": 322590,
+          "mode": "grid"
+        },
+        {
+          "ms": 756.04,
+          "bytes": 8070,
+          "features": 41,
+          "count": 322590,
+          "mode": "grid"
+        },
+        {
+          "ms": 457.51,
+          "bytes": 8060,
+          "features": 41,
+          "count": 322590,
+          "mode": "grid"
+        }
+      ]
+    },
+    {
+      "name": "lowerManhattan",
+      "bounds": [
+        -74.025,
+        40.695,
+        -73.975,
+        40.735
+      ],
+      "zoom": 14,
+      "problem": null,
+      "path": "/api/map?from=2026-08-01&to=2026-08-31&west=-74.025&south=40.695&east=-73.975&north=40.735&zoom=14",
+      "first": {
+        "ms": 122.23,
+        "bytes": 19100,
+        "features": 102,
+        "count": 15304,
+        "mode": "grid"
+      },
+      "warmMedianMs": 33.1,
+      "warmMaxMs": 38.32,
+      "samples": [
+        {
+          "ms": 122.23,
+          "bytes": 19100,
+          "features": 102,
+          "count": 15304,
+          "mode": "grid"
+        },
+        {
+          "ms": 38.32,
+          "bytes": 19100,
+          "features": 102,
+          "count": 15304,
+          "mode": "grid"
+        },
+        {
+          "ms": 35.67,
+          "bytes": 19100,
+          "features": 102,
+          "count": 15304,
+          "mode": "grid"
+        },
+        {
+          "ms": 33.1,
+          "bytes": 19100,
+          "features": 102,
+          "count": 15304,
+          "mode": "grid"
+        },
+        {
+          "ms": 30.25,
+          "bytes": 19100,
+          "features": 102,
+          "count": 15304,
+          "mode": "grid"
+        },
+        {
+          "ms": 27.51,
+          "bytes": 19100,
+          "features": 102,
+          "count": 15304,
+          "mode": "grid"
+        }
+      ]
+    },
+    {
+      "name": "filteredNeighborhood",
+      "bounds": [
+        -74.025,
+        40.695,
+        -73.975,
+        40.735
+      ],
+      "zoom": 14,
+      "problem": "Noise - Residential",
+      "path": "/api/map?from=2026-08-01&to=2026-08-31&west=-74.025&south=40.695&east=-73.975&north=40.735&zoom=14&problem=Noise+-+Residential",
+      "first": {
+        "ms": 27.58,
+        "bytes": 13550,
+        "features": 72,
+        "count": 1125,
+        "mode": "grid"
+      },
+      "warmMedianMs": 16.86,
+      "warmMaxMs": 19.36,
+      "samples": [
+        {
+          "ms": 27.58,
+          "bytes": 13550,
+          "features": 72,
+          "count": 1125,
+          "mode": "grid"
+        },
+        {
+          "ms": 16.04,
+          "bytes": 13550,
+          "features": 72,
+          "count": 1125,
+          "mode": "grid"
+        },
+        {
+          "ms": 16.86,
+          "bytes": 13550,
+          "features": 72,
+          "count": 1125,
+          "mode": "grid"
+        },
+        {
+          "ms": 17.78,
+          "bytes": 13550,
+          "features": 72,
+          "count": 1125,
+          "mode": "grid"
+        },
+        {
+          "ms": 19.36,
+          "bytes": 13550,
+          "features": 72,
+          "count": 1125,
+          "mode": "grid"
+        },
+        {
+          "ms": 14.41,
+          "bytes": 13550,
+          "features": 72,
+          "count": 1125,
+          "mode": "grid"
+        }
+      ]
+    },
+    {
+      "name": "wideBoundsMaximumZoom",
+      "bounds": [
+        -74.6,
+        40.3,
+        -73.4,
+        41.15
+      ],
+      "zoom": 18.5,
+      "problem": null,
+      "path": "/api/map?from=2026-08-01&to=2026-08-31&west=-74.6&south=40.3&east=-73.4&north=41.15&zoom=18.5",
+      "first": {
+        "ms": 1612.92,
+        "bytes": 8068,
+        "features": 41,
+        "count": 322590,
+        "mode": "grid"
+      },
+      "warmMedianMs": 2175.8,
+      "warmMaxMs": 3123.77,
+      "samples": [
+        {
+          "ms": 1612.92,
+          "bytes": 8068,
+          "features": 41,
+          "count": 322590,
+          "mode": "grid"
+        },
+        {
+          "ms": 3123.77,
+          "bytes": 8061,
+          "features": 41,
+          "count": 322590,
+          "mode": "grid"
+        },
+        {
+          "ms": 2175.8,
+          "bytes": 8057,
+          "features": 41,
+          "count": 322590,
+          "mode": "grid"
+        },
+        {
+          "ms": 1623.6,
+          "bytes": 8063,
+          "features": 41,
+          "count": 322590,
+          "mode": "grid"
+        },
+        {
+          "ms": 2870.97,
+          "bytes": 8071,
+          "features": 41,
+          "count": 322590,
+          "mode": "grid"
+        },
+        {
+          "ms": 954.43,
+          "bytes": 8067,
+          "features": 41,
+          "count": 322590,
+          "mode": "grid"
+        }
+      ]
+    },
+    {
+      "name": "empty",
+      "bounds": [
+        -74.025,
+        40.695,
+        -73.975,
+        40.735
+      ],
+      "zoom": 14,
+      "problem": "__no_such_problem__",
+      "path": "/api/map?from=2026-08-01&to=2026-08-31&west=-74.025&south=40.695&east=-73.975&north=40.735&zoom=14&problem=__no_such_problem__",
+      "first": {
+        "ms": 76.35,
+        "bytes": 383,
+        "features": 0,
+        "count": 0,
+        "mode": "grid"
+      },
+      "warmMedianMs": 12.51,
+      "warmMaxMs": 12.8,
+      "samples": [
+        {
+          "ms": 76.35,
+          "bytes": 383,
+          "features": 0,
+          "count": 0,
+          "mode": "grid"
+        },
+        {
+          "ms": 12.74,
+          "bytes": 383,
+          "features": 0,
+          "count": 0,
+          "mode": "grid"
+        },
+        {
+          "ms": 12.8,
+          "bytes": 383,
+          "features": 0,
+          "count": 0,
+          "mode": "grid"
+        },
+        {
+          "ms": 9.02,
+          "bytes": 383,
+          "features": 0,
+          "count": 0,
+          "mode": "grid"
+        },
+        {
+          "ms": 11.89,
+          "bytes": 383,
+          "features": 0,
+          "count": 0,
+          "mode": "grid"
+        },
+        {
+          "ms": 12.51,
+          "bytes": 383,
+          "features": 0,
+          "count": 0,
+          "mode": "grid"
+        }
+      ]
+    },
+    {
+      "name": "individualRequests",
+      "bounds": [
+        -73.92202838150132,
+        40.81898007425296,
+        -73.92202438150133,
+        40.81898407425297
+      ],
+      "zoom": 18.5,
+      "problem": null,
+      "path": "/api/map?from=2026-08-01&to=2026-08-31&west=-73.92202838150132&south=40.81898007425296&east=-73.92202438150133&north=40.81898407425297&zoom=18.5",
+      "first": {
+        "ms": 22.32,
+        "bytes": 1326,
+        "features": 2,
+        "count": 2,
+        "mode": "points"
+      },
+      "warmMedianMs": 10.92,
+      "warmMaxMs": 17.15,
+      "samples": [
+        {
+          "ms": 22.32,
+          "bytes": 1326,
+          "features": 2,
+          "count": 2,
+          "mode": "points"
+        },
+        {
+          "ms": 13.49,
+          "bytes": 1326,
+          "features": 2,
+          "count": 2,
+          "mode": "points"
+        },
+        {
+          "ms": 10.92,
+          "bytes": 1326,
+          "features": 2,
+          "count": 2,
+          "mode": "points"
+        },
+        {
+          "ms": 9.9,
+          "bytes": 1326,
+          "features": 2,
+          "count": 2,
+          "mode": "points"
+        },
+        {
+          "ms": 17.15,
+          "bytes": 1326,
+          "features": 2,
+          "count": 2,
+          "mode": "points"
+        },
+        {
+          "ms": 10.56,
+          "bytes": 1326,
+          "features": 2,
+          "count": 2,
+          "mode": "points"
+        }
+      ]
+    }
+  ],
+  "geographyAssets": [
+    {
+      "path": "public/map/boroughs.geojson",
+      "bytes": 186159
+    },
+    {
+      "path": "public/map/labels.geojson",
+      "bytes": 823
+    },
+    {
+      "path": "public/map/neighborhood-labels.geojson",
+      "bytes": 33355
+    }
+  ],
+  "dashboardComparison": [
+    {
+      "name": "cohort",
+      "baselineWarmMedianMs": 619.51,
+      "currentWarmMedianMs": 562.73
+    },
+    {
+      "name": "complaint",
+      "baselineWarmMedianMs": 97.32,
+      "currentWarmMedianMs": 69.63
+    },
+    {
+      "name": "singleDay",
+      "baselineWarmMedianMs": 31.21,
+      "currentWarmMedianMs": 28.65
+    },
+    {
+      "name": "empty",
+      "baselineWarmMedianMs": 41.32,
+      "currentWarmMedianMs": 10.3
+    },
+    {
+      "name": "problems",
+      "baselineWarmMedianMs": 266.7,
+      "currentWarmMedianMs": 194.27
+    }
+  ],
+  "countsVerifiedAgainstIndependentSQL": true
+}

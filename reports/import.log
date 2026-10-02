@@ -1,0 +1,526 @@
+
+> nyc-service-pulse@0.1.0 import:august
+> node --env-file=.env.local --import tsx scripts/import.ts --mode=full
+
+{"runId":"83481afc-5c6e-4b81-aa10-d4c0fe20be2b","mode":"full","phase":"full","sourceRowsAtStart":328892,"message":"Checkpoints resume automatically; Ctrl-C safely stops after rollback/commit."}
+{"phase":"full","day":"2026-08-01","rows":5000,"cursor":"69919792","completed":false}
+{"phase":"full","day":"2026-08-01","rows":4989,"cursor":"69990387","completed":true}
+{"phase":"full","day":"2026-08-02","rows":5000,"cursor":"69929756","completed":false}
+{"phase":"full","day":"2026-08-02","rows":4843,"cursor":"69980364","completed":true}
+{"phase":"full","day":"2026-08-03","rows":5000,"cursor":"69940172","completed":false}
+{"phase":"full","day":"2026-08-03","rows":5000,"cursor":"69945782","completed":false}
+{"phase":"full","day":"2026-08-03","rows":1228,"cursor":"69980483","completed":true}
+{"phase":"full","day":"2026-08-04","rows":5000,"cursor":"69952264","completed":false}
+{"phase":"full","day":"2026-08-04","rows":5000,"cursor":"69957935","completed":false}
+{"phase":"full","day":"2026-08-04","rows":1229,"cursor":"70001157","completed":true}
+{"phase":"full","day":"2026-08-05","rows":5000,"cursor":"69964378","completed":false}
+{"phase":"full","day":"2026-08-05","rows":5000,"cursor":"69970038","completed":false}
+{"phase":"full","day":"2026-08-05","rows":287,"cursor":"70008988","completed":true}
+{"phase":"full","day":"2026-08-06","rows":5000,"cursor":"69975564","completed":false}
+{"phase":"full","day":"2026-08-06","rows":5000,"cursor":"69981335","completed":false}
+{"phase":"full","day":"2026-08-06","rows":388,"cursor":"70020418","completed":true}
+{"phase":"full","day":"2026-08-07","rows":5000,"cursor":"69986689","completed":false}
+{"phase":"full","day":"2026-08-07","rows":5000,"cursor":"69992368","completed":false}
+{"phase":"full","day":"2026-08-07","rows":807,"cursor":"70036816","completed":true}
+{"phase":"full","day":"2026-08-08","rows":5000,"cursor":"69998171","completed":false}
+{"phase":"full","day":"2026-08-08","rows":4938,"cursor":"70029399","completed":true}
+{"phase":"full","day":"2026-08-09","rows":5000,"cursor":"70008119","completed":false}
+{"phase":"full","day":"2026-08-09","rows":5000,"cursor":"70013629","completed":false}
+{"phase":"full","day":"2026-08-09","rows":629,"cursor":"70056926","completed":true}
+{"phase":"full","day":"2026-08-10","rows":5000,"cursor":"70019118","completed":false}
+{"phase":"full","day":"2026-08-10","rows":5000,"cursor":"70024760","completed":false}
+{"phase":"full","day":"2026-08-10","rows":1483,"cursor":"70076415","completed":true}
+{"phase":"full","day":"2026-08-11","rows":5000,"cursor":"70031598","completed":false}
+{"phase":"full","day":"2026-08-11","rows":5000,"cursor":"70037253","completed":false}
+{"phase":"full","day":"2026-08-11","rows":1020,"cursor":"70078952","completed":true}
+{"phase":"full","day":"2026-08-12","rows":5000,"cursor":"70043406","completed":false}
+{"phase":"full","day":"2026-08-12","rows":5000,"cursor":"70049062","completed":false}
+{"phase":"full","day":"2026-08-12","rows":800,"cursor":"70106055","completed":true}
+{"phase":"full","day":"2026-08-13","rows":5000,"cursor":"70055035","completed":false}
+{"phase":"full","day":"2026-08-13","rows":5000,"cursor":"70060629","completed":false}
+{"phase":"full","day":"2026-08-13","rows":546,"cursor":"70107601","completed":true}
+{"phase":"full","day":"2026-08-14","rows":5000,"cursor":"70066308","completed":false}
+{"phase":"full","day":"2026-08-14","rows":5000,"cursor":"70071980","completed":false}
+{"phase":"full","day":"2026-08-14","rows":557,"cursor":"70113641","completed":true}
+{"phase":"full","day":"2026-08-15","rows":5000,"cursor":"70077510","completed":false}
+{"phase":"full","day":"2026-08-15","rows":4614,"cursor":"70129604","completed":true}
+{"phase":"full","day":"2026-08-16","rows":5000,"cursor":"70087079","completed":false}
+{"phase":"full","day":"2026-08-16","rows":4249,"cursor":"70125159","completed":true}
+{"phase":"full","day":"2026-08-17","rows":5000,"cursor":"70096780","completed":false}
+{"phase":"full","day":"2026-08-17","rows":5000,"cursor":"70102342","completed":false}
+{"phase":"full","day":"2026-08-17","rows":857,"cursor":"70146385","completed":true}
+{"phase":"full","day":"2026-08-18","rows":5000,"cursor":"70108237","completed":false}
+{"phase":"full","day":"2026-08-18","rows":5000,"cursor":"70114125","completed":false}
+{"phase":"full","day":"2026-08-18","rows":977,"cursor":"70210014","completed":true}
+{"phase":"full","day":"2026-08-19","rows":5000,"cursor":"70120255","completed":false}
+{"phase":"full","day":"2026-08-19","rows":5000,"cursor":"70125866","completed":false}
+{"phase":"full","day":"2026-08-19","rows":703,"cursor":"70278902","completed":true}
+{"phase":"full","day":"2026-08-20","rows":5000,"cursor":"70131605","completed":false}
+{"phase":"full","day":"2026-08-20","rows":5000,"cursor":"70137136","completed":false}
+{"phase":"full","day":"2026-08-20","rows":1062,"cursor":"70204655","completed":true}
+{"phase":"full","day":"2026-08-21","rows":5000,"cursor":"70143443","completed":false}
+{"phase":"full","day":"2026-08-21","rows":5000,"cursor":"70149133","completed":false}
+{"phase":"full","day":"2026-08-21","rows":1521,"cursor":"70184287","completed":true}
+{"phase":"full","day":"2026-08-22","rows":5000,"cursor":"70155586","completed":false}
+{"phase":"full","day":"2026-08-22","rows":5000,"cursor":"70167777","completed":false}
+{"phase":"full","day":"2026-08-22","rows":47,"cursor":"70192161","completed":true}
+{"phase":"full","day":"2026-08-23","rows":5000,"cursor":"70165600","completed":false}
+{"phase":"full","day":"2026-08-23","rows":5000,"cursor":"70171012","completed":false}
+{"phase":"full","day":"2026-08-23","rows":790,"cursor":"70200391","completed":true}
+{"phase":"full","day":"2026-08-24","rows":5000,"cursor":"70176822","completed":false}
+{"phase":"full","day":"2026-08-24","rows":5000,"cursor":"70182388","completed":false}
+{"phase":"full","day":"2026-08-24","rows":1667,"cursor":"70282512","completed":true}
+{"phase":"full","day":"2026-08-25","rows":5000,"cursor":"70189409","completed":false}
+{"phase":"full","day":"2026-08-25","rows":5000,"cursor":"70195124","completed":false}
+{"phase":"full","day":"2026-08-25","rows":922,"cursor":"70269037","completed":true}
+{"phase":"full","day":"2026-08-26","rows":5000,"cursor":"70201137","completed":false}
+{"phase":"full","day":"2026-08-26","rows":5000,"cursor":"70206801","completed":false}
+{"phase":"full","day":"2026-08-26","rows":609,"cursor":"70267712","completed":true}
+{"phase":"full","day":"2026-08-27","rows":5000,"cursor":"70212539","completed":false}
+{"phase":"full","day":"2026-08-27","rows":5000,"cursor":"70226966","completed":false}
+{"phase":"full","day":"2026-08-27","rows":43,"cursor":"70271667","completed":true}
+{"phase":"full","day":"2026-08-28","rows":5000,"cursor":"70223338","completed":false}
+{"phase":"full","day":"2026-08-28","rows":5000,"cursor":"70229060","completed":false}
+{"phase":"full","day":"2026-08-28","rows":807,"cursor":"70282513","completed":true}
+{"phase":"full","day":"2026-08-29","rows":5000,"cursor":"70234819","completed":false}
+{"phase":"full","day":"2026-08-29","rows":4841,"cursor":"70314859","completed":true}
+{"phase":"full","day":"2026-08-30","rows":5000,"cursor":"70244069","completed":false}
+{"phase":"full","day":"2026-08-30","rows":5000,"cursor":"70249988","completed":false}
+{"phase":"full","day":"2026-08-30","rows":231,"cursor":"70353027","completed":true}
+{"phase":"full","day":"2026-08-31","rows":5000,"cursor":"70255357","completed":false}
+{"phase":"full","day":"2026-08-31","rows":5000,"cursor":"70260998","completed":false}
+{"phase":"full","day":"2026-08-31","rows":1208,"cursor":"70354369","completed":true}
+{"phase":"refresh-1","day":"2026-08-01","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-02","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-03","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-04","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-05","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-06","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-07","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-08","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-09","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-10","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-11","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-12","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-13","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-14","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-15","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-16","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-17","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-18","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-19","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-20","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-21","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-22","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-23","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-24","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-25","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-26","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-27","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-28","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-29","rows":6,"cursor":"70249550","completed":true}
+{"phase":"refresh-1","day":"2026-08-30","rows":0,"cursor":null,"completed":true}
+{"phase":"refresh-1","day":"2026-08-31","rows":0,"cursor":null,"completed":true}
+{
+  "runId": "83481afc-5c6e-4b81-aa10-d4c0fe20be2b",
+  "valid": true,
+  "source": {
+    "fetchedAt": "2026-10-01T22:50:56.860Z",
+    "total": 328892,
+    "distinct": 328892,
+    "maxUpdatedAt": "2026-10-01T01:41:53.401Z",
+    "days": [
+      {
+        "day": "2026-08-01",
+        "count": 9989,
+        "distinct": 9989,
+        "minimumId": "69903445",
+        "maximumId": "69990387"
+      },
+      {
+        "day": "2026-08-02",
+        "count": 9843,
+        "distinct": 9843,
+        "minimumId": "69914979",
+        "maximumId": "69980364"
+      },
+      {
+        "day": "2026-08-03",
+        "count": 11228,
+        "distinct": 11228,
+        "minimumId": "69925662",
+        "maximumId": "69980483"
+      },
+      {
+        "day": "2026-08-04",
+        "count": 11229,
+        "distinct": 11229,
+        "minimumId": "69935062",
+        "maximumId": "70001157"
+      },
+      {
+        "day": "2026-08-05",
+        "count": 10287,
+        "distinct": 10287,
+        "minimumId": "69947162",
+        "maximumId": "70008988"
+      },
+      {
+        "day": "2026-08-06",
+        "count": 10388,
+        "distinct": 10388,
+        "minimumId": "69959077",
+        "maximumId": "70020418"
+      },
+      {
+        "day": "2026-08-07",
+        "count": 10807,
+        "distinct": 10807,
+        "minimumId": "69970376",
+        "maximumId": "70036816"
+      },
+      {
+        "day": "2026-08-08",
+        "count": 9938,
+        "distinct": 9938,
+        "minimumId": "69981645",
+        "maximumId": "70029399"
+      },
+      {
+        "day": "2026-08-09",
+        "count": 10629,
+        "distinct": 10629,
+        "minimumId": "69993197",
+        "maximumId": "70056926"
+      },
+      {
+        "day": "2026-08-10",
+        "count": 11483,
+        "distinct": 11483,
+        "minimumId": "70003788",
+        "maximumId": "70076415"
+      },
+      {
+        "day": "2026-08-11",
+        "count": 11020,
+        "distinct": 11020,
+        "minimumId": "70014083",
+        "maximumId": "70078952"
+      },
+      {
+        "day": "2026-08-12",
+        "count": 10800,
+        "distinct": 10800,
+        "minimumId": "70026445",
+        "maximumId": "70106055"
+      },
+      {
+        "day": "2026-08-13",
+        "count": 10546,
+        "distinct": 10546,
+        "minimumId": "70038333",
+        "maximumId": "70107601"
+      },
+      {
+        "day": "2026-08-14",
+        "count": 10557,
+        "distinct": 10557,
+        "minimumId": "70049908",
+        "maximumId": "70113641"
+      },
+      {
+        "day": "2026-08-15",
+        "count": 9614,
+        "distinct": 9614,
+        "minimumId": "70061328",
+        "maximumId": "70129604"
+      },
+      {
+        "day": "2026-08-16",
+        "count": 9249,
+        "distinct": 9249,
+        "minimumId": "70072453",
+        "maximumId": "70125159"
+      },
+      {
+        "day": "2026-08-17",
+        "count": 10857,
+        "distinct": 10857,
+        "minimumId": "70082752",
+        "maximumId": "70146385"
+      },
+      {
+        "day": "2026-08-18",
+        "count": 10977,
+        "distinct": 10977,
+        "minimumId": "70091742",
+        "maximumId": "70210014"
+      },
+      {
+        "day": "2026-08-19",
+        "count": 10703,
+        "distinct": 10703,
+        "minimumId": "70102983",
+        "maximumId": "70278902"
+      },
+      {
+        "day": "2026-08-20",
+        "count": 11062,
+        "distinct": 11062,
+        "minimumId": "70115169",
+        "maximumId": "70204655"
+      },
+      {
+        "day": "2026-08-21",
+        "count": 11521,
+        "distinct": 11521,
+        "minimumId": "70126464",
+        "maximumId": "70184287"
+      },
+      {
+        "day": "2026-08-22",
+        "count": 10047,
+        "distinct": 10047,
+        "minimumId": "70138122",
+        "maximumId": "70192161"
+      },
+      {
+        "day": "2026-08-23",
+        "count": 10790,
+        "distinct": 10790,
+        "minimumId": "70150835",
+        "maximumId": "70200391"
+      },
+      {
+        "day": "2026-08-24",
+        "count": 11667,
+        "distinct": 11667,
+        "minimumId": "70161407",
+        "maximumId": "70282512"
+      },
+      {
+        "day": "2026-08-25",
+        "count": 10922,
+        "distinct": 10922,
+        "minimumId": "70171723",
+        "maximumId": "70269037"
+      },
+      {
+        "day": "2026-08-26",
+        "count": 10609,
+        "distinct": 10609,
+        "minimumId": "70184116",
+        "maximumId": "70267712"
+      },
+      {
+        "day": "2026-08-27",
+        "count": 10043,
+        "distinct": 10043,
+        "minimumId": "70196148",
+        "maximumId": "70271667"
+      },
+      {
+        "day": "2026-08-28",
+        "count": 10807,
+        "distinct": 10807,
+        "minimumId": "70207313",
+        "maximumId": "70282513"
+      },
+      {
+        "day": "2026-08-29",
+        "count": 9841,
+        "distinct": 9841,
+        "minimumId": "70218320",
+        "maximumId": "70314859"
+      },
+      {
+        "day": "2026-08-30",
+        "count": 10231,
+        "distinct": 10231,
+        "minimumId": "70229938",
+        "maximumId": "70353027"
+      },
+      {
+        "day": "2026-08-31",
+        "count": 11208,
+        "distinct": 11208,
+        "minimumId": "70239573",
+        "maximumId": "70354369"
+      }
+    ]
+  },
+  "local": [
+    {
+      "day": "2026-08-01",
+      "count": 9989,
+      "distinct": 9989
+    },
+    {
+      "day": "2026-08-02",
+      "count": 9843,
+      "distinct": 9843
+    },
+    {
+      "day": "2026-08-03",
+      "count": 11228,
+      "distinct": 11228
+    },
+    {
+      "day": "2026-08-04",
+      "count": 11229,
+      "distinct": 11229
+    },
+    {
+      "day": "2026-08-05",
+      "count": 10287,
+      "distinct": 10287
+    },
+    {
+      "day": "2026-08-06",
+      "count": 10388,
+      "distinct": 10388
+    },
+    {
+      "day": "2026-08-07",
+      "count": 10807,
+      "distinct": 10807
+    },
+    {
+      "day": "2026-08-08",
+      "count": 9938,
+      "distinct": 9938
+    },
+    {
+      "day": "2026-08-09",
+      "count": 10629,
+      "distinct": 10629
+    },
+    {
+      "day": "2026-08-10",
+      "count": 11483,
+      "distinct": 11483
+    },
+    {
+      "day": "2026-08-11",
+      "count": 11020,
+      "distinct": 11020
+    },
+    {
+      "day": "2026-08-12",
+      "count": 10800,
+      "distinct": 10800
+    },
+    {
+      "day": "2026-08-13",
+      "count": 10546,
+      "distinct": 10546
+    },
+    {
+      "day": "2026-08-14",
+      "count": 10557,
+      "distinct": 10557
+    },
+    {
+      "day": "2026-08-15",
+      "count": 9614,
+      "distinct": 9614
+    },
+    {
+      "day": "2026-08-16",
+      "count": 9249,
+      "distinct": 9249
+    },
+    {
+      "day": "2026-08-17",
+      "count": 10857,
+      "distinct": 10857
+    },
+    {
+      "day": "2026-08-18",
+      "count": 10977,
+      "distinct": 10977
+    },
+    {
+      "day": "2026-08-19",
+      "count": 10703,
+      "distinct": 10703
+    },
+    {
+      "day": "2026-08-20",
+      "count": 11062,
+      "distinct": 11062
+    },
+    {
+      "day": "2026-08-21",
+      "count": 11521,
+      "distinct": 11521
+    },
+    {
+      "day": "2026-08-22",
+      "count": 10047,
+      "distinct": 10047
+    },
+    {
+      "day": "2026-08-23",
+      "count": 10790,
+      "distinct": 10790
+    },
+    {
+      "day": "2026-08-24",
+      "count": 11667,
+      "distinct": 11667
+    },
+    {
+      "day": "2026-08-25",
+      "count": 10922,
+      "distinct": 10922
+    },
+    {
+      "day": "2026-08-26",
+      "count": 10609,
+      "distinct": 10609
+    },
+    {
+      "day": "2026-08-27",
+      "count": 10043,
+      "distinct": 10043
+    },
+    {
+      "day": "2026-08-28",
+      "count": 10807,
+      "distinct": 10807
+    },
+    {
+      "day": "2026-08-29",
+      "count": 9841,
+      "distinct": 9841
+    },
+    {
+      "day": "2026-08-30",
+      "count": 10231,
+      "distinct": 10231
+    },
+    {
+      "day": "2026-08-31",
+      "count": 11208,
+      "distinct": 11208
+    }
+  ],
+  "quality": {
+    "total": 328892,
+    "distinct_ids": 328892,
+    "missing_coordinates": 6302,
+    "closed": 303483,
+    "valid_closed_intervals": 303143,
+    "negative_intervals": 344,
+    "closed_missing_date": 3,
+    "nonclosed_with_date": 3676,
+    "max_source_updated_at": "2026-10-01T01:41:53.401Z"
+  },
+  "removed": 0,
+  "durationSeconds": 190.403,
+  "responseBytesThisProcess": 111098352,
+  "sourceRequestsThisProcess": 121,
+  "checkedAt": "2026-10-01T22:51:02.836Z",
+  "scope": "August 2026 created_date cohort; floating timestamps preserved. Counts/daily distinct IDs and stable update watermark verified, not an immutable source snapshot."
+}

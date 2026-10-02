@@ -2,14 +2,14 @@ import { defineConfig } from "@playwright/test";
 
 export default defineConfig({
   testDir: "./tests",
-  testMatch: ["ui.spec.ts", "map-ui.spec.ts"],
+  testMatch: ["ui.spec.ts", "map-ui.spec.ts", "explorer-ui.spec.ts"],
   fullyParallel: false,
   workers: 1,
   retries: 0,
   timeout: 45_000,
   expect: { timeout: 10_000 },
-  outputDir: "reports/playwright",
-  reporter: [["list"], ["json", { outputFile: "reports/ui-results.json" }]],
+  outputDir: "reports/portfolio/playwright",
+  reporter: [["list"], ["json", { outputFile: "reports/portfolio/ui-results.json" }]],
   use: {
     baseURL: process.env.PULSE_TEST_URL ?? "http://127.0.0.1:3100",
     browserName: "chromium",

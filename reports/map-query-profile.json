@@ -1,0 +1,50 @@
+{
+  "measuredAt": "2026-10-02T00:07:01.995Z",
+  "scope": "Direct readMap calls; local PostgreSQL17/PostGIS under amd64emulation,1.5CPU/1GB; first +2warm samples,concurrent development may compete; use root HTTP final report for delivery latency",
+  "changes": [
+    "GiST viewport candidate index",
+    "Exact double-coordinate boundaries on constrained Point geometry",
+    "Integer globally anchored EPSG3857 grid; adaptive max400cells",
+    "SET LOCAL jit=off in maptransaction; no projectedcolumn"
+  ],
+  "beforeReport": "map-query-profile-before.json",
+  "spatialIndexBytes": 13557760,
+  "samples": [
+    {
+      "name": "study",
+      "samplesMs": [
+        1415.13,
+        410.06,
+        424.06
+      ],
+      "visibleRequests": 322590,
+      "features": 41,
+      "mode": "grid",
+      "bytes": 8062
+    },
+    {
+      "name": "street",
+      "samplesMs": [
+        50.17,
+        8.08,
+        11.75
+      ],
+      "visibleRequests": 94,
+      "features": 94,
+      "mode": "points",
+      "bytes": 39661
+    },
+    {
+      "name": "complaint",
+      "samplesMs": [
+        104.57,
+        68.21,
+        56.52
+      ],
+      "visibleRequests": 30521,
+      "features": 37,
+      "mode": "grid",
+      "bytes": 7298
+    }
+  ]
+}
