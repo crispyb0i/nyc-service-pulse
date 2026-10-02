@@ -29,3 +29,12 @@ Timings are lab observations. See the case study for conditions, comparability l
 - `npx playwright test tests/map-ui.spec.ts --grep "unchanged viewport" --reporter=line`: failed before the fix (two requests instead of one), passed after it. The test holds the first response, resets the already fitted map, and verifies one request with no abort before releasing the response.
 - Post-fix `npm run typecheck`, `npm run build`, and `npm run lint`: passed; lint retains the one documented warning. `npm test`: 24 passed, five DB tests skipped. `npm run test:db` with the local database loaded from `.env.local`: five passed. `npm run test:ui`: all 29 passed in 1.9 minutes.
 - Performance timings belong to the preserved `portfolio-after` tag. The contrast and unchanged-viewport corrections were checked separately; the timing series was not rerun after them.
+
+## Scroll-to-zoom follow-up
+
+- `npm run typecheck` and `npm run build`: passed.
+- `npm run lint`: passed with the existing TanStack Virtual warning.
+- `npm test`: 24 passed; five database tests skipped without `TEST_DATABASE_URL`.
+- `npx playwright test tests/map-ui.spec.ts --grep "desktop map shares|mobile map contains" --reporter=line --output=/tmp/nyc-pulse-scroll-zoom-test`: mobile passed; desktop received an initial map API 503 and timed out. The local database logged a statement timeout; subsequent health/map requests recovered without a code or timeout change.
+- `npx playwright test tests/map-ui.spec.ts --grep "desktop map shares" --reporter=line --output=/tmp/nyc-pulse-scroll-zoom-retry`: passed on retry, including keyboard pan/zoom, filtering, request details and focus return.
+- Chrome DOM wheel-event checks: zoom changed 10 → 10.5 → 10 while page position stayed at 646 px; wheel input outside the canvas was not cancelled. A separate page scroll moved to 885 px without changing map zoom. These were browser event checks, not a physical mouse or trackpad test.
