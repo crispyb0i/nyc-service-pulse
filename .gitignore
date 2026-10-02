@@ -1,0 +1,14 @@
+node_modules/
+.next/
+.env*
+!.env.example
+*.tsbuildinfo
+.DS_Store
+
+# graft's local graph cache — regenerable, not committed (run `graft build`).
+/graft/
+
+# Browser traces remain local or in CI artifacts; retain the compact JSON evidence.
+reports/**/playwright/
+reports/**/playwright-map/
+.vercel
