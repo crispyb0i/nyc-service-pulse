@@ -77,7 +77,7 @@ The continuous-window probe traversed **1,550 records**. At its recorded checkpo
 
 ## Verification and delivery
 
-TypeScript and production builds pass. Unit tests cover validation, cursor scope, import normalization and URL round-trips. Five real PostgreSQL/PostGIS integration tests use temporary tables or test-owned sessions, including lost-connection recovery, rollback and bidirectional microsecond keysets. All 28 browser checks pass and exercise cancellation, deep links, history, local retries, map outage fallbacks, continuous scrolling bounds and automated WCAG A/AA scans at desktop/mobile widths.
+TypeScript and production builds pass. Unit tests cover validation, cursor scope, import normalization and URL round-trips. Five real PostgreSQL/PostGIS integration tests use temporary tables or test-owned sessions, including lost-connection recovery, rollback and bidirectional microsecond keysets. All 28 browser checks pass and exercise cancellation, deep links, history, local retries, map outage fallbacks, continuous scrolling bounds and automated WCAG A/AA scans at desktop/mobile widths, including the open request-detail dialog.
 
 The lint run exits successfully with one known `react-hooks/incompatible-library` warning for TanStack Virtual’s instance API. React Compiler is not enabled, and the instance is consumed within its component; it is not passed into memoized children. The warning is retained rather than suppressing the rule.
 

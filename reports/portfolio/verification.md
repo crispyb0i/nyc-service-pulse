@@ -21,3 +21,6 @@ Timings are lab observations. See the case study for conditions, comparability l
 - `node scripts/compare-performance.mjs`: passed; recomputes windowed CLS from raw events for both versions.
 - `npm run measure:readiness -- --label portfolio`: ten loads passed.
 - Measurement errata: intercepted routing disables HTTP cache. Cold/warm labels represent fresh/repeated navigation, not network-cache misses/hits. Older raw `cls` summaries summed shifts; final comparisons use the correct largest session window.
+
+- Final detail contrast refinement: `npm run typecheck`, `npm run lint`, and `npm run build` passed; `npx playwright test tests/explorer-ui.spec.ts --grep "automated WCAG" --reporter=line` passed with the detail dialog included at both widths.
+- Public Chrome check: 328,892 records, no page overflow at 390 px, continuous mode rendered 10 rows from 50 cached, no console errors, and real street/building tiles visible with a linked request selected.
